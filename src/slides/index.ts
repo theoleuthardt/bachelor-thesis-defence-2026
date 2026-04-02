@@ -1,0 +1,11 @@
+export { default as TitleSlide } from './TitleSlide';
+export { default as AgendaSlide } from './AgendaSlide';
+export { default as SectionHeaderSlide } from './SectionHeaderSlide';
+export { default as ContentSlide } from './ContentSlide';
+export { default as CardsSlide } from './CardsSlide';
+export { default as DefinitionSlide } from './DefinitionSlide';
+export { default as VisualSlide } from './VisualSlide';
+export { default as ComparisonSlide } from './ComparisonSlide';
+export { default as TableSlide } from './TableSlide';
+export { default as TakeawaysSlide } from './TakeawaysSlide';
+export { default as ClosingSlide } from './ClosingSlide';
