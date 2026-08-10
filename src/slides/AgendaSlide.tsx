@@ -1,9 +1,7 @@
-interface AgendaSlideProps {
-  items?: string[];
-}
+import type { AgendaSlideProps } from '../types';
 
 export default function AgendaSlide({
-  items = ['Section One', 'Section Two', 'Section Three', 'Section Four', 'Summary & Conclusion'],
+  items = ['Teilabschnitt 1', 'Teilabschnitt 2', 'Teilabschnitt 3', 'Teilabschnitt 4', 'Zusammenfassung'],
 }: AgendaSlideProps) {
   return (
     <section>

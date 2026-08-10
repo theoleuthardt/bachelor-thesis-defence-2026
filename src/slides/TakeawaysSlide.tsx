@@ -1,19 +1,11 @@
-interface TakeawayItem {
-  title: string;
-  description: string;
-}
-
-interface TakeawaysSlideProps {
-  title?: string;
-  items?: TakeawayItem[];
-}
+import type { TakeawaysSlideProps } from '../types';
 
 export default function TakeawaysSlide({
-  title = 'Takeaways',
+  title = 'Kernbotschaften',
   items = [
-    { title: 'Key takeaway 1', description: 'Short elaboration.' },
-    { title: 'Key takeaway 2', description: 'Short elaboration.' },
-    { title: 'Key takeaway 3', description: 'Short elaboration.' },
+    { title: 'Erste Botschaft', description: 'Kurze Erläuterung.' },
+    { title: 'Zweite Botschaft', description: 'Kurze Erläuterung.' },
+    { title: 'Dritte Botschaft', description: 'Kurze Erläuterung.' },
   ],
 }: TakeawaysSlideProps) {
   return (

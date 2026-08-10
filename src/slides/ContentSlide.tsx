@@ -1,15 +1,11 @@
-interface ContentSlideProps {
-  title?: string;
-  content?: string;
-  boxes?: Array<{ title: string; description: string }>;
-}
+import type { ContentSlideProps } from '../types';
 
 export default function ContentSlide({
-  title = 'Content Slide',
-  content = 'Plain text paragraph with general information.',
+  title = 'Folientitel',
+  content = 'Hier steht der Hauptinhalt dieser Folie — eine kurze Einleitung oder ein einleitender Satz.',
   boxes = [
-    { title: 'Key Point A', description: 'Description or details.' },
-    { title: 'Key Point B', description: 'Description or details.' },
+    { title: 'Erster Punkt', description: 'Beschreibung des ersten Punktes.' },
+    { title: 'Zweiter Punkt', description: 'Beschreibung des zweiten Punktes.' },
   ],
 }: ContentSlideProps) {
   return (

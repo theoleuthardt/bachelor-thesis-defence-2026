@@ -1,20 +1,11 @@
-interface TableRow {
-  cells: string[];
-  isFragment?: boolean;
-}
-
-interface TableSlideProps {
-  title?: string;
-  headers?: string[];
-  rows?: TableRow[];
-}
+import type { TableSlideProps } from '../types';
 
 export default function TableSlide({
-  title = 'Table',
-  headers = ['Column A', 'Column B', 'Column C'],
+  title = 'Tabelle',
+  headers = ['Spalte A', 'Spalte B', 'Spalte C'],
   rows = [
-    { cells: ['Value 1', 'Value 2', 'Value 3'] },
-    { cells: ['Value 4', 'Value 5', 'Value 6'], isFragment: true },
+    { cells: ['Wert 1', 'Wert 2', 'Wert 3'] },
+    { cells: ['Wert 4', 'Wert 5', 'Wert 6'], isFragment: true },
   ],
 }: TableSlideProps) {
   return (

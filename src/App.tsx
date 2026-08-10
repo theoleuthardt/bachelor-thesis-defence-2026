@@ -1,30 +1,26 @@
 import { useEffect, useRef } from 'react';
+import type { RevealDeck } from './types';
 import './styles/slides.css';
 import Slides from './Slides';
 
 function App() {
-  const deckRef = useRef<any>(null);
+  const deckRef = useRef<RevealDeck | null>(null);
 
   useEffect(() => {
-    // Prevent multiple initializations
-    if (deckRef.current) {
-      return;
-    }
+    if (deckRef.current) return;
 
     const initReveal = async () => {
       try {
-        console.log('Initializing Reveal.js...');
-        const Reveal = (await import('reveal.js')).default;
-        
+        const RevealModule = await import('reveal.js');
+        const Reveal = RevealModule.default as unknown as new (
+          el: HTMLElement,
+          opts: object
+        ) => RevealDeck;
+
         const revealElement = document.querySelector('.reveal') as HTMLElement;
-        if (!revealElement) {
-          console.error('Reveal element not found');
-          return;
-        }
-        
-        console.log('Reveal element:', revealElement);
-        
-        deckRef.current = new Reveal(revealElement, {
+        if (!revealElement) return;
+
+        const deck = new Reveal(revealElement, {
           hash: true,
           transition: 'slide',
           transitionSpeed: 'default',
@@ -40,9 +36,8 @@ function App() {
           fragmentInURL: false,
         });
 
-        console.log('Reveal instance created, initializing...');
-        await deckRef.current.initialize();
-        console.log('Reveal.js initialized successfully');
+        deckRef.current = deck;
+        await deck.initialize();
       } catch (error) {
         console.error('Failed to initialize Reveal.js:', error);
       }

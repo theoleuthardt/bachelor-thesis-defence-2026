@@ -1,17 +1,12 @@
-interface VisualSlideProps {
-  title?: string;
-  subtitle?: string;
-  imageAlt?: string;
-  boxes?: Array<{ label: string; description: string }>;
-}
+import type { VisualSlideProps } from '../types';
 
 export default function VisualSlide({
-  title = 'Visual Content',
-  subtitle = 'Add an image, diagram, or SVG below.',
-  imageAlt = 'Image placeholder',
+  title = 'Visueller Inhalt',
+  subtitle = 'Platzhalter für ein Diagramm, Bild oder eine Skizze.',
+  imageAlt = '[Bild / Diagramm einfügen]',
   boxes = [
-    { label: 'Label X', description: 'description.' },
-    { label: 'Label Y', description: 'description.' },
+    { label: 'Legende 1', description: 'Beschreibung.' },
+    { label: 'Legende 2', description: 'Beschreibung.' },
   ],
 }: VisualSlideProps) {
   return (

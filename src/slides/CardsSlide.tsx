@@ -1,23 +1,13 @@
-interface CardItem {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-interface CardsSlideProps {
-  title?: string;
-  cards?: CardItem[];
-  concludingRemark?: string;
-}
+import type { CardsSlideProps } from '../types';
 
 export default function CardsSlide({
-  title = 'Fragmented Content',
+  title = 'Drei zentrale Aspekte',
   cards = [
-    { icon: '★', title: 'Idea 1', description: 'Short description.' },
-    { icon: '◆', title: 'Idea 2', description: 'Short description.' },
-    { icon: '●', title: 'Idea 3', description: 'Short description.' },
+    { icon: '★', title: 'Aspekt 1', description: 'Beschreibung des ersten Aspekts.' },
+    { icon: '◆', title: 'Aspekt 2', description: 'Beschreibung des zweiten Aspekts.' },
+    { icon: '●', title: 'Aspekt 3', description: 'Beschreibung des dritten Aspekts.' },
   ],
-  concludingRemark = 'Concluding remark.',
+  concludingRemark = 'Optionaler abschließender Gedanke.',
 }: CardsSlideProps) {
   return (
     <section>

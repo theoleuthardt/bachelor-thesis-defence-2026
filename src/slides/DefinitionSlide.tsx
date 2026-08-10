@@ -1,15 +1,10 @@
-interface DefinitionSlideProps {
-  title?: string;
-  formalName?: string;
-  description?: string;
-  formula?: string;
-}
+import type { DefinitionSlideProps } from '../types';
 
 export default function DefinitionSlide({
   title = 'Definition',
-  formalName = 'Formal Name',
-  description = 'Description or formula here.',
-  formula = '$$E = mc^2$$',
+  formalName = 'Begriff',
+  description = 'Beschreibung oder Erklärung des Begriffs.',
+  formula = '$$Beispiel-Formel$$',
 }: DefinitionSlideProps) {
   return (
     <section>

@@ -1,18 +1,10 @@
-interface ComparisonItem {
-  title: string;
-  description: string;
-}
-
-interface ComparisonSlideProps {
-  title?: string;
-  items?: ComparisonItem[];
-}
+import type { ComparisonSlideProps } from '../types';
 
 export default function ComparisonSlide({
-  title = 'Comparison',
+  title = 'Vergleich',
   items = [
-    { title: 'Approach A', description: 'Pros and cons.' },
-    { title: 'Approach B', description: 'Pros and cons.' },
+    { title: 'Option A', description: 'Vor- und Nachteile.' },
+    { title: 'Option B', description: 'Vor- und Nachteile.' },
   ],
 }: ComparisonSlideProps) {
   return (

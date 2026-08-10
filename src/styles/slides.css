@@ -1,7 +1,3 @@
-/* ═══════════════════════════════════════════════════════
-   RevealJS Template — Styling
-   ═══════════════════════════════════════════════════════ */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
@@ -9,17 +5,18 @@
 
   --bg-primary: #ffffff;
   --bg-secondary: #f4f6fb;
-  --text-primary: #18181b;
-  --text-secondary: #3f3f46;
-  --text-muted: #71717a;
-  --accent-blue: #2563eb;
-  --accent-blue-light: #dbeafe;
-  --accent-red: #dc2626;
-  --accent-green: #16a34a;
-  --border-light: #e4e7ec;
+  --text-primary: #030044;
+  --text-secondary: #1033A2;
+  --text-muted: #878787;
+  --accent-blue: #296EF5;
+  --accent-blue-mid: #A6C8FF;
+  --accent-blue-light: #D0E2FF;
+  --accent-red: #E60037;
+  --accent-green: #00543C;
+  --accent-warn: #FFC200;
+  --accent-gray-mid: #575757;
+  --border-light: #DADADA;
 }
-
-/* ─── Base ───────────────────────────────────────────── */
 
 .reveal {
   font-family: var(--font-family);
@@ -95,8 +92,6 @@
   color: var(--text-primary);
 }
 
-/* ─── Title Slide ────────────────────────────────────── */
-
 .title-slide {
   text-align: center;
   position: relative;
@@ -132,20 +127,18 @@
 .title-bg-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, #93c5fd 1px, transparent 1px);
+  background-image: radial-gradient(circle, #A6C8FF 1px, transparent 1px);
   background-size: 36px 36px;
   opacity: 0.25;
   z-index: 0;
 }
-
-/* ─── Section Header Slides ──────────────────────────── */
 
 .section-header {
   display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #eff6ff 0%, #f4f6fb 100%);
+  background: var(--bg-primary);
 }
 
 .section-header h2 {
@@ -156,7 +149,7 @@
 .section-number {
   font-size: 4em;
   font-weight: 700;
-  color: var(--accent-blue-light);
+  color: var(--accent-blue);
   line-height: 1;
   margin-bottom: 0.15em;
   padding-bottom: 0.12em;
@@ -169,8 +162,6 @@
   font-size: 0.95em;
   margin-top: 0.3em;
 }
-
-/* ─── Table of Contents ──────────────────────────────── */
 
 .reveal ol.toc-list {
   text-align: left;
@@ -198,24 +189,10 @@
   display: inline-block;
 }
 
-/* Active fragment highlighting - only when visible */
 .reveal ol.toc-list li.fragment.visible.current-fragment {
-  background-color: rgba(0, 0, 0, 0.07);
+  background-color: rgba(41, 110, 245, 0.07);
   border-radius: 4px;
 }
-
-/* Ensure fragments are displayed one at a time */
-.reveal .fragment {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.reveal .fragment.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ─── Boxes ──────────────────────────────────────────── */
 
 .box {
   background-color: var(--bg-secondary);
@@ -237,8 +214,6 @@
   margin: 0.35em 0;
 }
 
-/* ─── Grids ──────────────────────────────────────────── */
-
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -250,8 +225,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5em;
 }
-
-/* ─── Cards ──────────────────────────────────────────── */
 
 .card {
   background-color: var(--bg-primary);
@@ -271,8 +244,6 @@
   color: var(--accent-blue);
   font-family: serif;
 }
-
-/* ─── Table ──────────────────────────────────────────── */
 
 .reveal table {
   margin: 0.4em auto;
@@ -299,8 +270,6 @@
 .reveal table tr:last-child td {
   border-bottom: none;
 }
-
-/* ─── Typography utilities ───────────────────────────── */
 
 .highlight {
   color: var(--accent-blue);
@@ -333,12 +302,6 @@
   color: var(--accent-red);
 }
 
-.color-gold {
-  color: #b45309;
-}
-
-/* ─── Badges ─────────────────────────────────────────── */
-
 .badge {
   display: inline-block;
   padding: 0.18em 0.55em;
@@ -352,28 +315,74 @@
 
 .badge-blue {
   background-color: var(--accent-blue-light);
-  color: #1e40af;
+  color: var(--text-secondary);
 }
 
 .badge-red {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: #fde2e7;
+  color: var(--accent-red);
 }
-
-/* ─── Closing Slide ──────────────────────────────────── */
 
 .closing-slide {
-  background: linear-gradient(160deg, #eff6ff 0%, #ffffff 100%);
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-.closing-box {
-  margin: 1em auto;
-  max-width: 560px;
-  border-left: 3px solid var(--accent-blue) !important;
+.closing-slide h2,
+.closing-slide p {
+  color: var(--text-primary);
+}
+
+.closing-content {
   text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-/* ─── Open Questions List ────────────────────────────── */
+.closing-title {
+  font-size: 2.2em;
+  color: var(--text-primary) !important;
+  margin-bottom: 0.6em;
+}
+
+.closing-slide .closing-message {
+  font-size: 1em;
+  color: var(--accent-blue) !important;
+  margin-bottom: 2em;
+}
+
+.closing-contact {
+  display: inline-block;
+  text-align: left;
+  font-size: 0.7em;
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  padding: 1.4em 2em;
+}
+
+.closing-contact-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2em;
+  margin-bottom: 0.7em;
+}
+
+.closing-contact-row:last-child {
+  margin-bottom: 0;
+}
+
+.closing-contact-label {
+  color: var(--accent-blue);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8em;
+  text-align: left;
+}
+
+.closing-contact-row > span:last-child {
+  text-align: right;
+}
 
 .open-questions {
   text-align: left;
@@ -409,7 +418,21 @@
   justify-content: center;
 }
 
-/* ─── RevealJS Chrome ────────────────────────────────── */
+.slide-logo {
+  position: absolute;
+  top: 1em;
+  z-index: 10;
+  user-select: none;
+  pointer-events: none;
+}
+
+.slide-logo-top-left {
+  left: 1.5em;
+}
+
+.slide-logo-top-right {
+  right: 1.5em;
+}
 
 .reveal .progress {
   color: var(--accent-blue);
@@ -417,15 +440,4 @@
 
 .reveal .controls {
   color: var(--accent-blue);
-}
-
-/* Slide number position */
-.reveal .slide-number {
-  color: var(--text-muted);
-  font-size: 0.65em;
-  background: transparent;
-  left: 12px;
-  right: auto;
-  bottom: auto;
-  top: 12px;
 }

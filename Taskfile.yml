@@ -1,0 +1,127 @@
+version: "3"
+
+vars:
+  PORT: "5173"
+  URL: "http://localhost:{{.PORT}}"
+  
+tasks:
+  default:
+    cmds:
+      - task --list
+    silent: true
+  
+  dev:
+    desc: Start Vite dev server on port {{.PORT}}
+    cmds:
+      - npm run dev
+
+  dev:open:
+    desc: Start dev server and open the browser automatically
+    cmds:
+      - open {{.URL}}
+
+  dev:host:
+    desc: Start dev server exposed on the network
+    cmds:
+      - npm run dev -- --host
+
+  build:
+    desc: Type-check and production build into dist/
+    cmds:
+      - npm run build
+
+  preview:
+    desc: Serve the production build locally
+    cmds:
+      - npm run preview
+
+  preview:open:
+    desc: Serve the production build and open the browser
+    cmds:
+      - open http://localhost:4173
+      - npm run preview
+
+  clean:
+    desc: Remove build artifacts (dist/, node_modules/.vite)
+    cmds:
+      - rm -rf dist node_modules/.vite
+
+  lint:
+    desc: Run ESLint over the project
+    cmds:
+      - npm run lint
+
+  lint:fix:
+    desc: Run ESLint with --fix
+    cmds:
+      - npx eslint . --fix
+
+  typecheck:
+    desc: TypeScript type-check only no emit
+    cmds:
+      - npx tsc -b --noEmit
+
+  check:
+    desc: Run lint and typecheck as pre-commit gate
+    cmds:
+      - task:lint
+      - task:typecheck
+
+  reveal:help:
+    desc: Print all Reveal.js keyboard shortcuts
+    cmds:
+      - cat scripts/reveal-cheatsheet.txt
+
+  reveal:overview:
+    desc: Open the slide overview as grid view of all slides
+    cmds:
+      - open "{{.URL}}#/0"
+
+  reveal:notes:
+    desc: Open the speaker-notes pop-up window
+    cmds:
+      - open "{{.URL}}?receiver"
+
+  reveal:pdf:
+    desc: Open the print-to-PDF mode (use browser's File → Print)
+    cmds:
+      - open "{{.URL}}?print-pdf"
+
+  reveal:first:
+    desc: Open directly at slide 1
+    cmds:
+      - open "{{.URL}}#/1"
+
+  reveal:jump:
+    desc: 'Open a specific slide number (use: task reveal:jump N=5)'
+    cmds:
+      - open "{{.URL}}#/{{.N}}"
+    preconditions:
+      - sh: "[ -n \"{{.N}}\" ]"
+        msg: "Usage: task reveal:jump N=<slide-number>"
+
+  start:
+    desc: Fresh setup with install, typecheck, lint, then start dev server
+    cmds:
+      - task:install
+      - task:check
+      - task:dev
+
+  install:
+    desc: Install all dependencies
+    cmds:
+      - npm install
+
+  reset:
+    desc: Clean install with delete node_modules and reinstall
+    cmds:
+      - rm -rf node_modules package-lock.json
+      - npm install
+
+  ci:
+    desc: Full CI pipeline with install, lint, typecheck, build
+    cmds:
+      - task:install
+      - task:lint
+      - task:typecheck
+      - task:build
