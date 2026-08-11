@@ -13,7 +13,7 @@ export default function AgendaSlide({
           </li>
         ))}
       </ol>
-      <aside className="notes">Brief overview of the talk structure.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

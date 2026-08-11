@@ -97,3 +97,80 @@ export interface RevealDeck {
   initialize: () => Promise<void>;
   destroy: () => void;
 }
+
+export interface BulletItem {
+  text: string;
+  subitems?: string[];
+}
+
+export interface BulletSlideProps {
+  title?: string;
+  subtitle?: string;
+  bullets?: BulletItem[];
+  columns?: 1 | 2;
+  notes?: string;
+}
+
+export interface StatItem {
+  value: string;
+  label: string;
+  source?: string;
+}
+
+export interface StatsSlideProps {
+  title?: string;
+  stats?: StatItem[];
+  footer?: string;
+  notes?: string;
+}
+
+export interface CodeSlideProps {
+  title?: string;
+  caption?: string;
+  code?: string;
+  language?: string;
+  highlightLines?: number[];
+  notes?: string;
+}
+
+export interface ImageSlideProps {
+  title?: string;
+  subtitle?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  bullets?: string[];
+  showPlaceholder?: boolean;
+  notes?: string;
+}
+
+export interface QuoteSlideProps {
+  title?: string;
+  quote?: string;
+  attribution?: string;
+  notes?: string;
+}
+
+export interface PipelineStage {
+  label: string;
+  detail?: string;
+}
+
+export interface PipelineSlideProps {
+  title?: string;
+  stages?: PipelineStage[];
+  caption?: string;
+  notes?: string;
+}
+
+export interface KeyValueItem {
+  label: string;
+  value: string;
+}
+
+export interface KeyValueSlideProps {
+  title?: string;
+  subtitle?: string;
+  items?: KeyValueItem[];
+  footer?: string;
+  notes?: string;
+}

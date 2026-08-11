@@ -27,7 +27,7 @@ export default function CardsSlide({
       >
         {concludingRemark}
       </p>
-      <aside className="notes">Speaker notes.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

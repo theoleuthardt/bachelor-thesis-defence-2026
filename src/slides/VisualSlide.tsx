@@ -36,7 +36,7 @@ export default function VisualSlide({
           </div>
         ))}
       </div>
-      <aside className="notes">Speaker notes.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

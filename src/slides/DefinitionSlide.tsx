@@ -20,7 +20,7 @@ export default function DefinitionSlide({
       <div className="formula-box fragment" style={{ marginTop: '0.8em' }}>
         {formula}
       </div>
-      <aside className="notes">Speaker notes.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

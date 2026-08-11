@@ -10,15 +10,15 @@ export default function ComparisonSlide({
   return (
     <section>
       <h3>{title}</h3>
-      <div className="grid-2" style={{ marginTop: '0.6em' }}>
+      <div className={items.length > 2 ? 'comparison-grid-2x2' : 'grid-2'} style={{ marginTop: '0.6em' }}>
         {items.map((item, index) => (
-          <div key={index} className="card fragment">
+          <div key={index} className="card comparison-card fragment">
             <h4>{item.title}</h4>
             <p className="small-text">{item.description}</p>
           </div>
         ))}
       </div>
-      <aside className="notes">Speaker notes.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

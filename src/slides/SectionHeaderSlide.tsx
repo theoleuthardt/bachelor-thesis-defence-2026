@@ -4,7 +4,7 @@ import type { SectionHeaderSlideProps } from '../types';
 export default function SectionHeaderSlide({
   number = '01',
   title = 'Titel des Teilabschnitts',
-  subtitle = 'Kurze Beschreibung',
+  subtitle,
 }: SectionHeaderSlideProps) {
   return (
     <section className="section-header">
@@ -12,7 +12,7 @@ export default function SectionHeaderSlide({
       <Logo src="/HWR.png" alt="Hochschule für Wirtschaft und Recht" position="top-right" width={230} />
       <span className="section-number">{number}</span>
       <h2>{title}</h2>
-      <p className="section-subtitle">{subtitle}</p>
+      {subtitle && <p className="section-subtitle">{subtitle}</p>}
     </section>
   );
 }

@@ -28,7 +28,7 @@ export default function TitleSlide({
           {author} &nbsp;·&nbsp; {date}
         </p>
       </div>
-      <aside className="notes">Speaker notes for the title slide.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

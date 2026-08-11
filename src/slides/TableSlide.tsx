@@ -29,7 +29,7 @@ export default function TableSlide({
           ))}
         </tbody>
       </table>
-      <aside className="notes">Speaker notes.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

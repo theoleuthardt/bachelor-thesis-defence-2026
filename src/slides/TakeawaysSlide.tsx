@@ -20,7 +20,7 @@ export default function TakeawaysSlide({
           </li>
         ))}
       </ol>
-      <aside className="notes">Speaker notes.</aside>
+      <aside className="notes"></aside>
     </section>
   );
 }

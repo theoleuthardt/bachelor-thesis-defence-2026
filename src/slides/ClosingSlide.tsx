@@ -3,7 +3,7 @@ import type { ClosingSlideProps } from '../types';
 
 export default function ClosingSlide({
   title = 'Vielen Dank.',
-  message = 'Fragen und Diskussion sind herzlich willkommen.',
+  message = 'Gibt es Fragen?',
   author = 'Theo Leuthardt',
   email = 'theo.leuthardt@bdr.de',
   company = 'Bundesdruckerei GmbH',
