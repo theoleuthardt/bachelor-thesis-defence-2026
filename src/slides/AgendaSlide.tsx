@@ -1,7 +1,13 @@
-import type { AgendaSlideProps } from '../types';
+import type { AgendaSlideProps } from "../types";
 
 export default function AgendaSlide({
-  items = ['Teilabschnitt 1', 'Teilabschnitt 2', 'Teilabschnitt 3', 'Teilabschnitt 4', 'Zusammenfassung'],
+  items = [
+    "Teilabschnitt 1",
+    "Teilabschnitt 2",
+    "Teilabschnitt 3",
+    "Teilabschnitt 4",
+    "Zusammenfassung",
+  ],
 }: AgendaSlideProps) {
   return (
     <section>

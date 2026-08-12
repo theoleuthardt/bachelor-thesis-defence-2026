@@ -1,10 +1,14 @@
-import type { StatsSlideProps } from '../types';
+import type { StatsSlideProps } from "../types";
 
 export default function StatsSlide({
-  title = 'Zahlen, die sprechen',
+  title = "Zahlen, die sprechen",
   stats = [
-    { value: '95,9 %', label: 'WCAG-Verstöße', source: 'WebAIM 2024' },
-    { value: '1,3 Mrd.', label: 'Menschen mit Behinderung', source: 'WHO 2022' },
+    { value: "95,9 %", label: "WCAG-Verstöße", source: "WebAIM 2024" },
+    {
+      value: "1,3 Mrd.",
+      label: "Menschen mit Behinderung",
+      source: "WHO 2022",
+    },
   ],
   footer,
   notes,
@@ -12,7 +16,7 @@ export default function StatsSlide({
   return (
     <section>
       {title && <h3>{title}</h3>}
-      <div className="stats-grid" style={{ marginTop: '0.6em' }}>
+      <div className="stats-grid" style={{ marginTop: "0.6em" }}>
         {stats.map((s, i) => (
           <div key={i} className="stat-card fragment">
             <div className="stat-value">{s.value}</div>
@@ -21,10 +25,8 @@ export default function StatsSlide({
           </div>
         ))}
       </div>
-      {footer && (
-        <p className="fragment slide-footer">{footer}</p>
-      )}
-      <aside className="notes">{notes ?? ''}</aside>
+      {footer && <p className="fragment slide-footer">{footer}</p>}
+      <aside className="notes">{notes ?? ""}</aside>
     </section>
   );
 }

@@ -1,10 +1,10 @@
-import type { ImageSlideProps } from '../types';
+import type { ImageSlideProps } from "../types";
 
 export default function ImageSlide({
-  title = 'Abbildung',
+  title = "Abbildung",
   subtitle,
   imageSrc,
-  imageAlt = '[Abbildung]',
+  imageAlt = "[Abbildung]",
   bullets = [],
   showPlaceholder = true,
   notes,
@@ -25,11 +25,13 @@ export default function ImageSlide({
       {bullets.length > 0 && (
         <ul className="bullet-list slide-bullets">
           {bullets.map((b, i) => (
-            <li key={i} className="fragment small-text">{b}</li>
+            <li key={i} className="fragment small-text">
+              {b}
+            </li>
           ))}
         </ul>
       )}
-      <aside className="notes">{notes ?? ''}</aside>
+      <aside className="notes">{notes ?? ""}</aside>
     </section>
   );
 }

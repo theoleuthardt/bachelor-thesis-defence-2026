@@ -75,15 +75,15 @@ The configuration lives in `src/App.tsx`:
 
 ## Keyboard shortcuts
 
-| Key | Action |
-|-----|--------|
-| `→` / `Space` | Next slide / fragment |
-| `←` | Previous slide |
-| `↓` / `↑` | Vertical navigation (backup slides) |
-| `s` | Speaker notes |
-| `f` | Fullscreen |
-| `Esc` | Slide overview |
-| `?` | Show all shortcuts |
+| Key           | Action                              |
+| ------------- | ----------------------------------- |
+| `→` / `Space` | Next slide / fragment               |
+| `←`           | Previous slide                      |
+| `↓` / `↑`     | Vertical navigation (backup slides) |
+| `s`           | Speaker notes                       |
+| `f`           | Fullscreen                          |
+| `Esc`         | Slide overview                      |
+| `?`           | Show all shortcuts                  |
 
 ## Dependencies
 

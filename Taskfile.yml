@@ -3,13 +3,13 @@ version: "3"
 vars:
   PORT: "5173"
   URL: "http://localhost:{{.PORT}}"
-  
+
 tasks:
   default:
     cmds:
       - task --list
     silent: true
-  
+
   dev:
     desc: Start Vite dev server on port {{.PORT}}
     cmds:
@@ -93,11 +93,11 @@ tasks:
       - open "{{.URL}}#/1"
 
   reveal:jump:
-    desc: 'Open a specific slide number (use: task reveal:jump N=5)'
+    desc: "Open a specific slide number (use: task reveal:jump N=5)"
     cmds:
       - open "{{.URL}}#/{{.N}}"
     preconditions:
-      - sh: "[ -n \"{{.N}}\" ]"
+      - sh: '[ -n "{{.N}}" ]'
         msg: "Usage: task reveal:jump N=<slide-number>"
 
   start:

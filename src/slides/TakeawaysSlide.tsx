@@ -1,11 +1,11 @@
-import type { TakeawaysSlideProps } from '../types';
+import type { TakeawaysSlideProps } from "../types";
 
 export default function TakeawaysSlide({
-  title = 'Kernbotschaften',
+  title = "Kernbotschaften",
   items = [
-    { title: 'Erste Botschaft', description: 'Kurze Erläuterung.' },
-    { title: 'Zweite Botschaft', description: 'Kurze Erläuterung.' },
-    { title: 'Dritte Botschaft', description: 'Kurze Erläuterung.' },
+    { title: "Erste Botschaft", description: "Kurze Erläuterung." },
+    { title: "Zweite Botschaft", description: "Kurze Erläuterung." },
+    { title: "Dritte Botschaft", description: "Kurze Erläuterung." },
   ],
 }: TakeawaysSlideProps) {
   return (

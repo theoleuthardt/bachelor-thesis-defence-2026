@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import type { RevealDeck } from './types';
-import './styles/slides.css';
-import Slides from './Slides';
+import { useEffect, useRef } from "react";
+import type { RevealDeck } from "./types";
+import "./styles/slides.css";
+import Slides from "./Slides";
 
 function App() {
   const deckRef = useRef<RevealDeck | null>(null);
@@ -11,27 +11,27 @@ function App() {
 
     const initReveal = async () => {
       try {
-        const RevealModule = await import('reveal.js');
+        const RevealModule = await import("reveal.js");
         const Reveal = RevealModule.default as unknown as new (
           el: HTMLElement,
-          opts: object
+          opts: object,
         ) => RevealDeck;
 
-        const revealElement = document.querySelector('.reveal') as HTMLElement;
+        const revealElement = document.querySelector(".reveal") as HTMLElement;
         if (!revealElement) return;
 
         const deck = new Reveal(revealElement, {
           hash: true,
-          transition: 'slide',
-          transitionSpeed: 'default',
-          backgroundTransition: 'fade',
+          transition: "slide",
+          transitionSpeed: "default",
+          backgroundTransition: "fade",
           center: true,
           width: 1200,
           height: 700,
           margin: 0.02,
           minScale: 0.1,
           maxScale: 2.0,
-          slideNumber: 'c/t',
+          slideNumber: "c/t",
           fragments: true,
           fragmentInURL: false,
         });
@@ -39,7 +39,7 @@ function App() {
         deckRef.current = deck;
         await deck.initialize();
       } catch (error) {
-        console.error('Failed to initialize Reveal.js:', error);
+        console.error("Failed to initialize Reveal.js:", error);
       }
     };
 

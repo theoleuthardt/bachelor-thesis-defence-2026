@@ -1,9 +1,9 @@
-import type { LogoProps } from '../types';
+import type { LogoProps } from "../types";
 
 export default function Logo({
   src,
   alt,
-  position = 'top-left',
+  position = "top-left",
   width = 150,
 }: LogoProps) {
   return (
@@ -11,7 +11,7 @@ export default function Logo({
       src={src}
       alt={alt}
       className={`slide-logo slide-logo-${position}`}
-      style={{ width: `${width}px`, height: 'auto' }}
+      style={{ width: `${width}px`, height: "auto" }}
       draggable={false}
     />
   );

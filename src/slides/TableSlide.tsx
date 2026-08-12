@@ -1,11 +1,11 @@
-import type { TableSlideProps } from '../types';
+import type { TableSlideProps } from "../types";
 
 export default function TableSlide({
-  title = 'Tabelle',
-  headers = ['Spalte A', 'Spalte B', 'Spalte C'],
+  title = "Tabelle",
+  headers = ["Spalte A", "Spalte B", "Spalte C"],
   rows = [
-    { cells: ['Wert 1', 'Wert 2', 'Wert 3'] },
-    { cells: ['Wert 4', 'Wert 5', 'Wert 6'], isFragment: true },
+    { cells: ["Wert 1", "Wert 2", "Wert 3"] },
+    { cells: ["Wert 4", "Wert 5", "Wert 6"], isFragment: true },
   ],
 }: TableSlideProps) {
   return (
@@ -21,7 +21,10 @@ export default function TableSlide({
         </thead>
         <tbody>
           {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className={row.isFragment ? 'fragment' : undefined}>
+            <tr
+              key={rowIndex}
+              className={row.isFragment ? "fragment" : undefined}
+            >
               {row.cells.map((cell, cellIndex) => (
                 <td key={cellIndex}>{cell}</td>
               ))}

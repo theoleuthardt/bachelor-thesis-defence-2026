@@ -1,16 +1,18 @@
-import TitleSlide from './slides/TitleSlide';
-import SectionHeaderSlide from './slides/SectionHeaderSlide';
-import ClosingSlide from './slides/ClosingSlide';
-import BulletSlide from './slides/BulletSlide';
-import StatsSlide from './slides/StatsSlide';
-import CodeSlide from './slides/CodeSlide';
-import ImageSlide from './slides/ImageSlide';
-import QuoteSlide from './slides/QuoteSlide';
-import PipelineSlide from './slides/PipelineSlide';
-import KeyValueSlide from './slides/KeyValueSlide';
-import TableSlide from './slides/TableSlide';
-import TakeawaysSlide from './slides/TakeawaysSlide';
-import ComparisonSlide from './slides/ComparisonSlide';
+import {
+  TitleSlide,
+  SectionHeaderSlide,
+  ClosingSlide,
+  BulletSlide,
+  StatsSlide,
+  CodeSlide,
+  ImageSlide,
+  QuoteSlide,
+  PipelineSlide,
+  KeyValueSlide,
+  TableSlide,
+  TakeawaysSlide,
+  ComparisonSlide,
+} from "./slides/";
 
 export default function Slides() {
   return (
@@ -27,9 +29,21 @@ export default function Slides() {
       <StatsSlide
         title="Web alltagskritisch, aber nicht für alle"
         stats={[
-          { value: '1,3 Mrd.', label: 'Menschen mit Behinderung', source: 'WHO 2022' },
-          { value: '95,9 %', label: 'Top-Webseiten verstoßen gegen WCAG', source: 'WebAIM 2024' },
-          { value: '2016/2102', label: 'EU-Richtlinie verpflichtet öffentliche Stellen', source: 'seit 2021' },
+          {
+            value: "1,3 Mrd.",
+            label: "Menschen mit Behinderung",
+            source: "WHO 2022",
+          },
+          {
+            value: "95,9 %",
+            label: "Top-Webseiten verstoßen gegen WCAG",
+            source: "WebAIM 2024",
+          },
+          {
+            value: "2016/2102",
+            label: "EU-Richtlinie verpflichtet öffentliche Stellen",
+            source: "seit 2021",
+          },
         ]}
         footer="WCAG 2.2 (W3C, Dez. 2024) als Standard — Diskrepanz zwischen Anspruch und Realität"
         notes="WHO 2022 16 Prozent der Weltbevölkerung. WebAIM Million Report 95,9 Prozent. EU-Richtlinie 2016/2102 verbindlich seit 2021."
@@ -40,35 +54,35 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'Häufigste Fehler (WebAIM 2024)',
+            text: "Häufigste Fehler (WebAIM 2024)",
             subitems: [
-              '81 % unzureichende Textkontraste',
-              '54,5 % fehlende Alternativtexte',
-              '48,6 % fehlende Formular-Labels',
-              '44,6 % leere Links, 28,2 % leere Buttons',
+              "81 % unzureichende Textkontraste",
+              "54,5 % fehlende Alternativtexte",
+              "48,6 % fehlende Formular-Labels",
+              "44,6 % leere Links, 28,2 % leere Buttons",
             ],
           },
           {
-            text: 'Screen Reader Survey #10',
+            text: "Screen Reader Survey #10",
             subitems: [
-              '1539 Antworten, problematischste Barrieren',
-              'CAPTCHAs, Menüs, Links, Tastatur, Formulare',
-              '85,9 % sehen zugänglichere Webseiten als Hebel',
+              "1539 Antworten, problematischste Barrieren",
+              "CAPTCHAs, Menüs, Links, Tastatur, Formulare",
+              "85,9 % sehen zugänglichere Webseiten als Hebel",
             ],
           },
           {
-            text: 'Relevanz Bundesdruckerei',
+            text: "Relevanz Bundesdruckerei",
             subitems: [
-              'EU-Richtlinie 2016/2102 + BFSG',
-              'DSGVO verbietet Cloud-Übertragung Bürgerdaten',
-              'Lokale In-Browser-KI zwingend',
+              "EU-Richtlinie 2016/2102 + BFSG",
+              "DSGVO verbietet Cloud-Übertragung Bürgerdaten",
+              "Lokale In-Browser-KI zwingend",
             ],
           },
           {
-            text: 'Yu et al. (2025)',
+            text: "Yu et al. (2025)",
             subitems: [
-              'Selbst konforme Seiten erschweren Navigation',
-              'Inkonsistente Überschriften, schlechte Beschriftungen',
+              "Selbst konforme Seiten erschweren Navigation",
+              "Inkonsistente Überschriften, schlechte Beschriftungen",
             ],
           },
         ]}
@@ -80,32 +94,32 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'Sehbehinderte und blinde Nutzer',
+            text: "Sehbehinderte und blinde Nutzer",
             subitems: [
-              'Screenreader benötigen klare Hierarchien',
-              'Moderne dynamische Webseiten überfordern sie',
-              'CAPTCHAs, komplexe Formulare (Yu et al. 2025)',
+              "Screenreader benötigen klare Hierarchien",
+              "Moderne dynamische Webseiten überfordern sie",
+              "CAPTCHAs, komplexe Formulare (Yu et al. 2025)",
             ],
           },
           {
-            text: 'Motorisch eingeschränkte Nutzer',
+            text: "Motorisch eingeschränkte Nutzer",
             subitems: [
-              'Parkinson, Zerebralparese, Dyspraxie',
-              'Maus und Tastatur als Hürde (Cossovich 2023)',
+              "Parkinson, Zerebralparese, Dyspraxie",
+              "Maus und Tastatur als Hürde (Cossovich 2023)",
             ],
           },
           {
-            text: 'Lösungsansatz Sprachsteuerung via LLM',
+            text: "Lösungsansatz Sprachsteuerung via LLM",
             subitems: [
-              'Natürliche Sprache steuert Oberflächen (Pucci 2024)',
-              'Aber LLM verarbeitet personenbezogene Daten',
+              "Natürliche Sprache steuert Oberflächen (Pucci 2024)",
+              "Aber LLM verarbeitet personenbezogene Daten",
             ],
           },
           {
-            text: 'Datenschutz-Konflikt',
+            text: "Datenschutz-Konflikt",
             subitems: [
-              'Daten sollten Gerät nicht verlassen (Sousa und Kern 2023)',
-              'Cloud-LLMs verstoßen gegen DSGVO bei Bürgerdaten',
+              "Daten sollten Gerät nicht verlassen (Sousa und Kern 2023)",
+              "Cloud-LLMs verstoßen gegen DSGVO bei Bürgerdaten",
             ],
           },
         ]}
@@ -117,28 +131,47 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'Mind2Web (Deng 2023)',
-            subitems: ['2000+ Aufgaben, 137 Webseiten', 'MindAct 2-stufig', 'Textbasiert, dynamische Zustände ignoriert'],
+            text: "Mind2Web (Deng 2023)",
+            subitems: [
+              "2000+ Aufgaben, 137 Webseiten",
+              "MindAct 2-stufig",
+              "Textbasiert, dynamische Zustände ignoriert",
+            ],
           },
           {
-            text: 'WebVoyager (He 2024)',
-            subitems: ['Screenshots plus HTML', 'Textlastige Seiten überfordern'],
+            text: "WebVoyager (He 2024)",
+            subitems: [
+              "Screenshots plus HTML",
+              "Textlastige Seiten überfordern",
+            ],
           },
           {
-            text: 'SeeAct (Zheng 2024)',
-            subitems: ['GPT-4V plus Grounding-Modul', 'Visuelles Grounding 20 bis 25 pp Lücke'],
+            text: "SeeAct (Zheng 2024)",
+            subitems: [
+              "GPT-4V plus Grounding-Modul",
+              "Visuelles Grounding 20 bis 25 pp Lücke",
+            ],
           },
           {
-            text: 'AutoWebGLM (Lai 2024)',
-            subitems: ['ChatGLM3-6B plus RL', 'Iterationsschleifen nicht robust'],
+            text: "AutoWebGLM (Lai 2024)",
+            subitems: [
+              "ChatGLM3-6B plus RL",
+              "Iterationsschleifen nicht robust",
+            ],
           },
           {
-            text: 'WebRL und WebChallenger',
-            subitems: ['WebRL Llama 4,8 auf 42,4 Prozent', 'WebChallenger PageMem 56,3 Prozent WebArena'],
+            text: "WebRL und WebChallenger",
+            subitems: [
+              "WebRL Llama 4,8 auf 42,4 Prozent",
+              "WebChallenger PageMem 56,3 Prozent WebArena",
+            ],
           },
           {
-            text: 'Gemeinsamkeit',
-            subitems: ['DOM-Upload plus Cloud-Inferenz', 'Barrierefreiheit nie Designziel'],
+            text: "Gemeinsamkeit",
+            subitems: [
+              "DOM-Upload plus Cloud-Inferenz",
+              "Barrierefreiheit nie Designziel",
+            ],
           },
         ]}
         notes="Sechs Cloud-Web-Agenten mit jeweiligen Limitationen. Alle haben DSGVO-Problem durch Cloud-Upload. Barrierefreiheit in keiner Arbeit primäres Designziel."
@@ -149,35 +182,35 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'Zerhoudi und Granitzer (2026)',
+            text: "Zerhoudi und Granitzer (2026)",
             subitems: [
-              'Probabilistisches Modell plus SLM Phi 2,7B',
-              'WebLLM WebGPU IndexedDB',
-              '18 Probanden Session 6,8 auf 5,2',
-              'Nur Suchassistenz keine Aktionsplanung',
+              "Probabilistisches Modell plus SLM Phi 2,7B",
+              "WebLLM WebGPU IndexedDB",
+              "18 Probanden Session 6,8 auf 5,2",
+              "Nur Suchassistenz keine Aktionsplanung",
             ],
           },
           {
-            text: 'Browser-Use (2024)',
+            text: "Browser-Use (2024)",
             subitems: [
-              'Python Framework mit Playwright',
-              'Nicht im Browser eingebettet',
-              'Token-Kosten Latenz Halluzinationen',
+              "Python Framework mit Playwright",
+              "Nicht im Browser eingebettet",
+              "Token-Kosten Latenz Halluzinationen",
             ],
           },
           {
-            text: 'Firefox Voice (Cambre 2021)',
+            text: "Firefox Voice (Cambre 2021)",
             subitems: [
-              'Firefox Extension Sprachsteuerung',
-              'Cloud-ASR vordefinierte Intents',
-              '12000 Nutzer keine LLMs',
+              "Firefox Extension Sprachsteuerung",
+              "Cloud-ASR vordefinierte Intents",
+              "12000 Nutzer keine LLMs",
             ],
           },
           {
-            text: 'Forschungslücke',
+            text: "Forschungslücke",
             subitems: [
-              'Keine Arbeit kombiniert alle vier Kriterien',
-              'Lokal plus browserbasiert plus sprachgesteuert plus barrierearm',
+              "Keine Arbeit kombiniert alle vier Kriterien",
+              "Lokal plus browserbasiert plus sprachgesteuert plus barrierearm",
             ],
           },
         ]}
@@ -192,11 +225,34 @@ export default function Slides() {
 
       <TableSlide
         title="NFA Zielerreichung"
-        headers={['NFA', 'Anforderung', 'Status', 'Messwert']}
+        headers={["NFA", "Anforderung", "Status", "Messwert"]}
         rows={[
-          { cells: ['NFA-1', '100 % lokale Ausführung', 'Erfüllt', 'Keine externen Anfragen'] },
-          { cells: ['NFA-11', 'Latenz unter 10 s', 'Klar verfehlt', 'bis 78,3 s gemessen'], isFragment: true },
-          { cells: ['NFA-12', 'RAM unter 2,0 GB', 'Knapp verfehlt', 'rund 3 GB'], isFragment: true },
+          {
+            cells: [
+              "NFA-1",
+              "100 % lokale Ausführung",
+              "Erfüllt",
+              "Keine externen Anfragen",
+            ],
+          },
+          {
+            cells: [
+              "NFA-11",
+              "Latenz unter 10 s",
+              "Klar verfehlt",
+              "bis 78,3 s gemessen",
+            ],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "NFA-12",
+              "RAM unter 2,0 GB",
+              "Knapp verfehlt",
+              "rund 3 GB",
+            ],
+            isFragment: true,
+          },
         ]}
       />
 
@@ -207,36 +263,36 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'MV3-Restriktionen',
+            text: "MV3-Restriktionen",
             subitems: [
-              'Service Worker hat keinen DOM-Zugriff',
-              'Kurzer Lebenszyklus bei Inaktivität',
-              'Keine langlebige WASM-Ausführung',
+              "Service Worker hat keinen DOM-Zugriff",
+              "Kurzer Lebenszyklus bei Inaktivität",
+              "Keine langlebige WASM-Ausführung",
             ],
           },
           {
-            text: 'wxt.config.ts',
+            text: "wxt.config.ts",
             subitems: [
-              'Permissions offscreen activeTab storage',
-              'host_permissions huggingface.co',
-              'CSP wasm-unsafe-eval Hotkey Ctrl+Shift+Space',
+              "Permissions offscreen activeTab storage",
+              "host_permissions huggingface.co",
+              "CSP wasm-unsafe-eval Hotkey Ctrl+Shift+Space",
             ],
           },
           {
-            text: 'Popup und Background',
+            text: "Popup und Background",
             subitems: [
-              'React Popup 280 px mit ARIA',
-              'Background als Orchestrator mit FSM',
-              '7 Zustaende in browser.storage.local',
+              "React Popup 280 px mit ARIA",
+              "Background als Orchestrator mit FSM",
+              "7 Zustaende in browser.storage.local",
             ],
           },
           {
-            text: 'Content und Offscreen',
+            text: "Content und Offscreen",
             subitems: [
-              'Content Script auf all_urls bei document_start',
-              'DOM-Extraktion max 100 Elemente',
-              'Offscreen Host fuer wllama und ONNX',
-              '5. Kontext permission.html fuer Mikrofon',
+              "Content Script auf all_urls bei document_start",
+              "DOM-Extraktion max 100 Elemente",
+              "Offscreen Host fuer wllama und ONNX",
+              "5. Kontext permission.html fuer Mikrofon",
             ],
           },
         ]}
@@ -256,35 +312,35 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'createMessageRouter (5.2)',
+            text: "createMessageRouter (5.2)",
             subitems: [
-              'Typ-sicheres Dispatching',
-              'In allen Kontexten identisch',
-              'Jede Antwort als Promise.resolve',
+              "Typ-sicheres Dispatching",
+              "In allen Kontexten identisch",
+              "Jede Antwort als Promise.resolve",
             ],
           },
           {
-            text: 'Zustandsautomat state.ts',
+            text: "Zustandsautomat state.ts",
             subitems: [
-              'transitionTo plus persistState',
-              'broadcastStatus als STATUS_UPDATE',
-              'Generation-Zaehler als Cancellation',
+              "transitionTo plus persistState",
+              "broadcastStatus als STATUS_UPDATE",
+              "Generation-Zaehler als Cancellation",
             ],
           },
           {
-            text: 'Lazy-Initialisierung (5.3)',
+            text: "Lazy-Initialisierung (5.3)",
             subitems: [
-              'offscreenDocumentCreating-Flag',
-              'waitForOffscreenCreation gegen Rennen',
-              'reasons WORKERS und USER_MEDIA',
+              "offscreenDocumentCreating-Flag",
+              "waitForOffscreenCreation gegen Rennen",
+              "reasons WORKERS und USER_MEDIA",
             ],
           },
           {
-            text: 'Berechtigungs-Tab',
+            text: "Berechtigungs-Tab",
             subitems: [
-              'isMicPermissionError erkennt NotAllowedError',
-              'openPermissionTab oeffnet permission.html',
-              'Gemeinsamer Ursprung gilt fuer Offscreen',
+              "isMicPermissionError erkennt NotAllowedError",
+              "openPermissionTab oeffnet permission.html",
+              "Gemeinsamer Ursprung gilt fuer Offscreen",
             ],
           },
         ]}
@@ -296,9 +352,9 @@ export default function Slides() {
       <PipelineSlide
         title="Pipeline Überblick"
         stages={[
-          { label: 'Audio', detail: 'getUserMedia 16 kHz PCM' },
-          { label: 'Parakeet ASR', detail: 'TDT 0.6B v3 int8 ONNX' },
-          { label: 'DOM-Reduktion', detail: 'selectTopElements 6 bis 50' },
+          { label: "Audio", detail: "getUserMedia 16 kHz PCM" },
+          { label: "Parakeet ASR", detail: "TDT 0.6B v3 int8 ONNX" },
+          { label: "DOM-Reduktion", detail: "selectTopElements 6 bis 50" },
         ]}
         caption="Stufe 1 und 2 der Pipeline"
         notes="Pipeline Stufe 1 Audioaufnahme und Stufe 2 Parakeet ASR. Audio wird zu 16 kHz PCM konvertiert. Parakeet TDT 0.6B v3 multilingual int8 ONNX."
@@ -307,9 +363,9 @@ export default function Slides() {
       <PipelineSlide
         title="Pipeline Überblick"
         stages={[
-          { label: 'Qwen2.5 GBNF', detail: '1.5B Q4_K_M 4096 ctx' },
-          { label: 'Validierung', detail: 'validate coerce' },
-          { label: 'Ausführung', detail: 'execute im Content Script' },
+          { label: "Qwen2.5 GBNF", detail: "1.5B Q4_K_M 4096 ctx" },
+          { label: "Validierung", detail: "validate coerce" },
+          { label: "Ausführung", detail: "execute im Content Script" },
         ]}
         caption="Stufe 3 bis 5 der Pipeline"
         notes="Pipeline Stufe 3 Qwen2.5 1.5B Q4_K_M mit GBNF. Stufe 4 Validierung mit coerceType. Stufe 5 Ausfuehrung im Content Script."
@@ -320,36 +376,36 @@ export default function Slides() {
         columns={2}
         bullets={[
           {
-            text: 'GBNF-Grammatik',
+            text: "GBNF-Grammatik",
             subitems: [
-              'Erzwingt JSON auf Token-Ebene',
-              'Dynamisch pro offered-Element',
-              'Modell kann nur angebotene Selektoren',
-              'Bis 3 Aktionen pro Plan',
+              "Erzwingt JSON auf Token-Ebene",
+              "Dynamisch pro offered-Element",
+              "Modell kann nur angebotene Selektoren",
+              "Bis 3 Aktionen pro Plan",
             ],
           },
           {
-            text: 'Systemprompt 8 Anweisungen',
+            text: "Systemprompt 8 Anweisungen",
             subitems: [
-              'actionHintFor weist fill select click zu',
-              'Nur textartige Inputs erhalten fill',
-              'Schritt 5 nur erster Schritt planen',
+              "actionHintFor weist fill select click zu",
+              "Nur textartige Inputs erhalten fill",
+              "Schritt 5 nur erster Schritt planen",
             ],
           },
           {
-            text: 'validatePlannedActions (5.9)',
+            text: "validatePlannedActions (5.9)",
             subitems: [
-              'Map Selektoren auf Elemente',
-              'Erfundene Selektoren werden erkannt',
-              'Zaehler dropped unknownSelector typeMismatch',
+              "Map Selektoren auf Elemente",
+              "Erfundene Selektoren werden erkannt",
+              "Zaehler dropped unknownSelector typeMismatch",
             ],
           },
           {
-            text: 'coerceType und done-Forcing',
+            text: "coerceType und done-Forcing",
             subitems: [
-              'fill auf select wird zu select',
-              'fill auf nicht fuellbar abgelehnt',
-              'done false bei truncation loest Replan aus',
+              "fill auf select wird zu select",
+              "fill auf nicht fuellbar abgelehnt",
+              "done false bei truncation loest Replan aus",
             ],
           },
         ]}
@@ -419,34 +475,34 @@ function coerceType(action, el) {
         columns={2}
         bullets={[
           {
-            text: 'Ablauf in der Praxis',
+            text: "Ablauf in der Praxis",
             subitems: [
-              'Hotkey Ctrl+Shift+Space startet Aufnahme',
-              'Parallele ASR und DOM-Extraktion',
-              'Status recording bis ready',
+              "Hotkey Ctrl+Shift+Space startet Aufnahme",
+              "Parallele ASR und DOM-Extraktion",
+              "Status recording bis ready",
             ],
           },
           {
-            text: 'Truncate at First DOM Change (5.10)',
+            text: "Truncate at First DOM Change (5.10)",
             subitems: [
-              'click als einzige DOM-aendernde Aktion',
-              'Plan danach abgeschnitten',
-              'DOM neu eingelesen verhindert blinde Klicks',
+              "click als einzige DOM-aendernde Aktion",
+              "Plan danach abgeschnitten",
+              "DOM neu eingelesen verhindert blinde Klicks",
             ],
           },
           {
-            text: 'DOM-Stabilisierung (5.16)',
+            text: "DOM-Stabilisierung (5.16)",
             subitems: [
-              'MutationObserver auf document.body',
-              '250 ms Leerlauf 1500 ms Hard-Timeout',
+              "MutationObserver auf document.body",
+              "250 ms Leerlauf 1500 ms Hard-Timeout",
             ],
           },
           {
-            text: 'Konvergenzsicherungen',
+            text: "Konvergenzsicherungen",
             subitems: [
-              'Generation-Zaehler verwirft veraltete Ergebnisse',
-              'planSignature bricht bei Wiederholung ab',
-              'MAX_REPLAN 5 Watchdog 60 s AbortController',
+              "Generation-Zaehler verwirft veraltete Ergebnisse",
+              "planSignature bricht bei Wiederholung ab",
+              "MAX_REPLAN 5 Watchdog 60 s AbortController",
             ],
           },
         ]}
@@ -488,35 +544,35 @@ function coerceType(action, el) {
         columns={2}
         bullets={[
           {
-            text: 'Regression aus 5.3.6',
+            text: "Regression aus 5.3.6",
             subitems: [
-              'fillableBonus 0,5 auf 1000 angehoben',
-              'Keyword-Anker vor echtem Eingabefeld gewaehlt',
-              'Zwei verschränkte Fehlermodi',
+              "fillableBonus 0,5 auf 1000 angehoben",
+              "Keyword-Anker vor echtem Eingabefeld gewaehlt",
+              "Zwei verschränkte Fehlermodi",
             ],
           },
           {
-            text: 'Dreistufige Gegenmaßnahme',
+            text: "Dreistufige Gegenmaßnahme",
             subitems: [
-              '1 buildFallback deterministisch',
-              '2 fillableBonus auf 1000',
-              '3 Systemprompt geschärft',
+              "1 buildFallback deterministisch",
+              "2 fillableBonus auf 1000",
+              "3 Systemprompt geschärft",
             ],
           },
           {
-            text: 'Telemetrie-Effekt',
+            text: "Telemetrie-Effekt",
             subitems: [
-              'Replan-Iterationen bis 5 auf 1',
-              'Pipeline-Dauer 156 s auf 118 s',
-              'Im TP1-Test Fallback nie ausgeloest',
+              "Replan-Iterationen bis 5 auf 1",
+              "Pipeline-Dauer 156 s auf 118 s",
+              "Im TP1-Test Fallback nie ausgeloest",
             ],
           },
           {
-            text: 'DOM-Interaktion',
+            text: "DOM-Interaktion",
             subitems: [
-              'buildSelector id name data-lava-idx',
-              'setNativeValue Prototyp-Deskriptor',
-              'InputEvent plus change fuer React Vue Svelte',
+              "buildSelector id name data-lava-idx",
+              "setNativeValue Prototyp-Deskriptor",
+              "InputEvent plus change fuer React Vue Svelte",
             ],
           },
         ]}
@@ -529,47 +585,91 @@ function coerceType(action, el) {
         title="Nutzertest Profil TP1"
         subtitle="Formativer Einzelfalltest nach Nielsen 2000"
         items={[
-          { label: 'Diagnose', value: 'Netzhautdegeneration 5 bis 10 cm Abstand' },
-          { label: 'Assistive Technologien', value: 'Bildschirmlupe 500 bis 800 Prozent plus Screenreader' },
-          { label: 'Hardware', value: 'Windows 11 i5-1245U 16 GB Chrome 150' },
-          { label: 'Eingabe', value: 'Hotkey Ctrl+Shift+Space' },
-          { label: 'Bewertung', value: 'Dreistufig erfolgreich teilweise fehlgeschlagen' },
-          { label: 'Aufgaben', value: 'Zeiterfassung Google Confluence Amazon' },
+          {
+            label: "Diagnose",
+            value: "Netzhautdegeneration 5 bis 10 cm Abstand",
+          },
+          {
+            label: "Assistive Technologien",
+            value: "Bildschirmlupe 500 bis 800 Prozent plus Screenreader",
+          },
+          { label: "Hardware", value: "Windows 11 i5-1245U 16 GB Chrome 150" },
+          { label: "Eingabe", value: "Hotkey Ctrl+Shift+Space" },
+          {
+            label: "Bewertung",
+            value: "Dreistufig erfolgreich teilweise fehlgeschlagen",
+          },
+          {
+            label: "Aufgaben",
+            value: "Zeiterfassung Google Confluence Amazon",
+          },
         ]}
         notes="TP1 Netzhautdegeneration Bildschirmlupe 500 bis 800 Prozent. Formativer Einzelfalltest nach Nielsen. Triangulation Beobachtung Interview Telemetrie."
       />
 
       <TableSlide
         title="Aufgabenergebnisse (Tabelle 12)"
-        headers={['Aufgabe', 'Ergebnis', 'Versuche', 'Beobachtung']}
+        headers={["Aufgabe", "Ergebnis", "Versuche", "Beobachtung"]}
         rows={[
-          { cells: ['Google-Suche', 'Erfolgreich', '1', 'Klick auf Bilder'] },
-          { cells: ['Confluence-Login', 'Teilweise', '3', 'Suche statt Login'], isFragment: true },
-          { cells: ['Amazon', 'Teilweise', '2', 'Produkt statt Such-Button'], isFragment: true },
-          { cells: ['Zeiterfassung', 'Fehlgeschlagen', '3', 'Endlosschleife Modell-Panic'], isFragment: true },
+          { cells: ["Google-Suche", "Erfolgreich", "1", "Klick auf Bilder"] },
+          {
+            cells: ["Confluence-Login", "Teilweise", "3", "Suche statt Login"],
+            isFragment: true,
+          },
+          {
+            cells: ["Amazon", "Teilweise", "2", "Produkt statt Such-Button"],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "Zeiterfassung",
+              "Fehlgeschlagen",
+              "3",
+              "Endlosschleife Modell-Panic",
+            ],
+            isFragment: true,
+          },
         ]}
       />
 
       <TableSlide
         title="Telemetrie subjektiv vs. gemessen"
-        headers={['Aufgabe', 'Geschätzt', 'Gemessen', 'NFA-11']}
+        headers={["Aufgabe", "Geschätzt", "Gemessen", "NFA-11"]}
         rows={[
-          { cells: ['Zeiterfassung', 'ca. 10 s', '74,4 s / 72,2 s', 'Nein'] },
-          { cells: ['Google', 'nicht beziffert', '70,4 s / 13,4 s', 'Nein'], isFragment: true },
-          { cells: ['Confluence', 'ca. 10 s', '17,2 bis 20,7 s', 'Nein'], isFragment: true },
-          { cells: ['Amazon', 'über 10 s', '73,8 s / 78,3 s', 'Nein'], isFragment: true },
+          { cells: ["Zeiterfassung", "ca. 10 s", "74,4 s / 72,2 s", "Nein"] },
+          {
+            cells: ["Google", "nicht beziffert", "70,4 s / 13,4 s", "Nein"],
+            isFragment: true,
+          },
+          {
+            cells: ["Confluence", "ca. 10 s", "17,2 bis 20,7 s", "Nein"],
+            isFragment: true,
+          },
+          {
+            cells: ["Amazon", "über 10 s", "73,8 s / 78,3 s", "Nein"],
+            isFragment: true,
+          },
         ]}
       />
 
       <KeyValueSlide
         title="Kernergebnisse und Interview"
         items={[
-          { label: 'Spanne', value: '13,4 bis 78,3 s NFA-11 nie eingehalten' },
-          { label: 'Replan-Iterationen', value: 'meist 1 vereinzelt 2 Cap nicht erreicht' },
-          { label: 'Fallback', value: 'Nie ausgeloest Fehler in Planqualitaet' },
-          { label: 'Subjektive Wahrnehmung', value: 'TP1 schätzt ca. 10 s kognitive Entlastung' },
-          { label: 'Bedienbarkeit', value: '4 von 5 Feedback 5 von 5' },
-          { label: 'Vertrauen', value: '2 von 5 Erleichterung 3 von 5' },
+          { label: "Spanne", value: "13,4 bis 78,3 s NFA-11 nie eingehalten" },
+          {
+            label: "Replan-Iterationen",
+            value: "meist 1 vereinzelt 2 Cap nicht erreicht",
+          },
+          {
+            label: "Fallback",
+            value: "Nie ausgeloest Fehler in Planqualitaet",
+          },
+          {
+            label: "Subjektive Wahrnehmung",
+            value: "TP1 schätzt ca. 10 s kognitive Entlastung",
+          },
+          { label: "Bedienbarkeit", value: "4 von 5 Feedback 5 von 5" },
+          { label: "Vertrauen", value: "2 von 5 Erleichterung 3 von 5" },
         ]}
         notes="Kernergebnisse. Spanne 13,4 bis 78,3 Sekunden. Fallback nie ausgeloest. Subjektive Wahrnehmung deutlich kürzer. Interview Bedienbarkeit 4 Feedback 5 Vertrauen 2."
       />
@@ -579,34 +679,34 @@ function coerceType(action, el) {
         columns={2}
         bullets={[
           {
-            text: 'Positiv',
+            text: "Positiv",
             subitems: [
-              'Transkript-Darstellung als Rueckmeldung',
-              'Status-Sichtbarkeit ueber Farbgebung',
-              'Kognitive Entlastung durch Sprachsteuerung',
+              "Transkript-Darstellung als Rueckmeldung",
+              "Status-Sichtbarkeit ueber Farbgebung",
+              "Kognitive Entlastung durch Sprachsteuerung",
             ],
           },
           {
-            text: 'Kritisch',
+            text: "Kritisch",
             subitems: [
-              'Dauer zu lang Aktionsplanung dominiert',
-              'Vertrauen in Aktionen niedrig',
-              'Nutzen wenn Qualitaet ausreicht',
+              "Dauer zu lang Aktionsplanung dominiert",
+              "Vertrauen in Aktionen niedrig",
+              "Nutzen wenn Qualitaet ausreicht",
             ],
           },
           {
-            text: 'TP1-Vorschlaege',
+            text: "TP1-Vorschlaege",
             subitems: [
-              'Automatisches Aufnahmebeenden',
-              'Adressdaten mit Zahlen-Buchstaben-Trennung',
+              "Automatisches Aufnahmebeenden",
+              "Adressdaten mit Zahlen-Buchstaben-Trennung",
             ],
           },
           {
-            text: 'Beobachtungen',
+            text: "Beobachtungen",
             subitems: [
-              'Berechtigungsseite versehentlich abgelehnt',
-              'Laptop underpowered',
-              'Keine sehbeeinträchtigungs-spezifischen UX-Probleme',
+              "Berechtigungsseite versehentlich abgelehnt",
+              "Laptop underpowered",
+              "Keine sehbeeinträchtigungs-spezifischen UX-Probleme",
             ],
           },
         ]}
@@ -619,12 +719,14 @@ function coerceType(action, el) {
         title="Erfolge und Herausforderungen"
         items={[
           {
-            title: 'Architektur und Datenschutz erfuellt',
-            description: 'NFA-1 100 Prozent lokal und MV3-Konformitaet erreicht. GBNF verhindert JSON-Syntax-Fehler. Deterministischer Fallback faengt Modellfehler ab 156 auf 118 s.',
+            title: "Architektur und Datenschutz erfuellt",
+            description:
+              "NFA-1 100 Prozent lokal und MV3-Konformitaet erreicht. GBNF verhindert JSON-Syntax-Fehler. Deterministischer Fallback faengt Modellfehler ab 156 auf 118 s.",
           },
           {
-            title: 'Performanz und Modellgrenzen',
-            description: '13,4 bis 78,3 s pro Schritt NFA-11 verfehlt. 1,5B-Modell erzeugt Selektor-Halluzinationen. Fehlende Vision-Tokens visuelle Ueberdeckungen unsichtbar. Vertrauen 2 von 5.',
+            title: "Performanz und Modellgrenzen",
+            description:
+              "13,4 bis 78,3 s pro Schritt NFA-11 verfehlt. 1,5B-Modell erzeugt Selektor-Halluzinationen. Fehlende Vision-Tokens visuelle Ueberdeckungen unsichtbar. Vertrauen 2 von 5.",
           },
         ]}
       />
@@ -633,16 +735,19 @@ function coerceType(action, el) {
         title="Lessons Learned"
         items={[
           {
-            title: 'Fehlende Vision-Tokens',
-            description: 'Reines Text-DOM liefert keine Information ueber visuelle Ueberdeckungen. Loesung lokale VLM sobald WebGPU Speicher bietet.',
+            title: "Fehlende Vision-Tokens",
+            description:
+              "Reines Text-DOM liefert keine Information ueber visuelle Ueberdeckungen. Loesung lokale VLM sobald WebGPU Speicher bietet.",
           },
           {
-            title: 'Modellgroesse 1,5B Parameter',
-            description: 'Selektor-Halluzinationen durch Fallback geloest. Semantische Fehlwahl unter mehreren validen Kandidaten bleibt bestehen.',
+            title: "Modellgroesse 1,5B Parameter",
+            description:
+              "Selektor-Halluzinationen durch Fallback geloest. Semantische Fehlwahl unter mehreren validen Kandidaten bleibt bestehen.",
           },
           {
-            title: 'Inferenz-Latenz CPU WASM',
-            description: 'Ueber 1 Minute pro komplexem Schritt. Typ-A durch GBNF geloest Typ-C durch Truncation plus DOM-Stabilisierung.',
+            title: "Inferenz-Latenz CPU WASM",
+            description:
+              "Ueber 1 Minute pro komplexem Schritt. Typ-A durch GBNF geloest Typ-C durch Truncation plus DOM-Stabilisierung.",
           },
         ]}
       />
@@ -651,10 +756,23 @@ function coerceType(action, el) {
         title="Fazit"
         subtitle="Forschungsfrage bejaht Machbarkeit bewiesen"
         items={[
-          { label: 'Proof-of-Concept', value: 'Sprachsteuerung ohne Cloud-Zwang realisierbar' },
-          { label: 'Kombination zwingend', value: 'Kleine In-Browser-KI plus regelbasierte Fallbacks' },
-          { label: 'Praxistauglichkeit', value: 'Prototypenstadium 1 von 4 erfolgreich Vertrauen 2 von 5' },
-          { label: 'Beitrag', value: 'Erste Loesung lokal barrierearm browserbasiert sprachgesteuert' },
+          {
+            label: "Proof-of-Concept",
+            value: "Sprachsteuerung ohne Cloud-Zwang realisierbar",
+          },
+          {
+            label: "Kombination zwingend",
+            value: "Kleine In-Browser-KI plus regelbasierte Fallbacks",
+          },
+          {
+            label: "Praxistauglichkeit",
+            value: "Prototypenstadium 1 von 4 erfolgreich Vertrauen 2 von 5",
+          },
+          {
+            label: "Beitrag",
+            value:
+              "Erste Loesung lokal barrierearm browserbasiert sprachgesteuert",
+          },
         ]}
         notes="Fazit Forschungsfrage bejaht. Proof-of-Concept gezeigt. Kombination aus In-Browser-KI und Fallbacks zwingend. Prototypenstadium nicht final geloest."
       />
@@ -664,34 +782,34 @@ function coerceType(action, el) {
         columns={2}
         bullets={[
           {
-            text: 'WebGPU-Integration',
+            text: "WebGPU-Integration",
             subitems: [
-              'Ablösung WASM CPU Engpass',
-              'Direkte GPU-Beschleunigung im Browser',
-              'Speedup Faktor 5 bis 10 Prognose',
+              "Ablösung WASM CPU Engpass",
+              "Direkte GPU-Beschleunigung im Browser",
+              "Speedup Faktor 5 bis 10 Prognose",
             ],
           },
           {
-            text: 'Lokale VLM',
+            text: "Lokale VLM",
             subitems: [
-              'Multimodale Modelle fuer Screenshots',
-              'Erkennt visuelle Ueberdeckungen',
-              'Setzt WebGPU-Speicher voraus',
+              "Multimodale Modelle fuer Screenshots",
+              "Erkennt visuelle Ueberdeckungen",
+              "Setzt WebGPU-Speicher voraus",
             ],
           },
           {
-            text: 'Standardisierung',
+            text: "Standardisierung",
             subitems: [
-              'Chrome Built-in AI Prompt API',
-              'Native In-Browser-LLM-Schnittstellen',
+              "Chrome Built-in AI Prompt API",
+              "Native In-Browser-LLM-Schnittstellen",
             ],
           },
           {
-            text: 'Open-Source und Tests',
+            text: "Open-Source und Tests",
             subitems: [
-              'Weiterentwicklung auf GitHub',
-              'Aufnahmebeenden Zahlen-Transkription',
-              'Groessere Testreihe mit Zielgruppe',
+              "Weiterentwicklung auf GitHub",
+              "Aufnahmebeenden Zahlen-Transkription",
+              "Groessere Testreihe mit Zielgruppe",
             ],
           },
         ]}

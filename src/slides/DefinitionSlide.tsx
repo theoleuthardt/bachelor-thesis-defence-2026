@@ -1,10 +1,10 @@
-import type { DefinitionSlideProps } from '../types';
+import type { DefinitionSlideProps } from "../types";
 
 export default function DefinitionSlide({
-  title = 'Definition',
-  formalName = 'Begriff',
-  description = 'Beschreibung oder Erklärung des Begriffs.',
-  formula = '$$Beispiel-Formel$$',
+  title = "Definition",
+  formalName = "Begriff",
+  description = "Beschreibung oder Erklärung des Begriffs.",
+  formula = "$$Beispiel-Formel$$",
 }: DefinitionSlideProps) {
   return (
     <section>
@@ -13,11 +13,11 @@ export default function DefinitionSlide({
         <p>
           <strong>{formalName}</strong>
         </p>
-        <p className="small-text" style={{ marginTop: '0.3em' }}>
+        <p className="small-text" style={{ marginTop: "0.3em" }}>
           {description}
         </p>
       </div>
-      <div className="formula-box fragment" style={{ marginTop: '0.8em' }}>
+      <div className="formula-box fragment" style={{ marginTop: "0.8em" }}>
         {formula}
       </div>
       <aside className="notes"></aside>

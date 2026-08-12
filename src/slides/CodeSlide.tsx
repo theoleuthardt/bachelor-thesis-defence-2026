@@ -1,29 +1,55 @@
-import { Highlight } from 'prism-react-renderer';
-import type { PrismTheme } from 'prism-react-renderer';
-import type { CodeSlideProps } from '../types';
+import { Highlight } from "prism-react-renderer";
+import type { PrismTheme } from "prism-react-renderer";
+import type { CodeSlideProps } from "../types";
 
 const lightTheme: PrismTheme = {
   plain: {
-    color: '#030044',
-    backgroundColor: '#f4f6fb',
+    color: "#030044",
+    backgroundColor: "#f4f6fb",
   },
   styles: [
-    { types: ['comment', 'prolog', 'doctype', 'cdata'], style: { color: '#878787', fontStyle: 'italic' } },
-    { types: ['punctuation'], style: { color: '#575757' } },
-    { types: ['property', 'tag', 'boolean', 'number', 'constant', 'symbol', 'deleted'], style: { color: '#1033A2' } },
-    { types: ['selector', 'attr-name', 'string', 'char', 'inserted', 'builtin'], style: { color: '#00543C' } },
-    { types: ['operator', 'entity', 'url', 'variable'], style: { color: '#575757' } },
-    { types: ['atrule', 'attr-value', 'keyword'], style: { color: '#296EF5', fontWeight: 'bold' } },
-    { types: ['function', 'class-name'], style: { color: '#1033A2', fontWeight: 'bold' } },
-    { types: ['regex', 'important'], style: { color: '#E60037' } },
+    {
+      types: ["comment", "prolog", "doctype", "cdata"],
+      style: { color: "#878787", fontStyle: "italic" },
+    },
+    { types: ["punctuation"], style: { color: "#575757" } },
+    {
+      types: [
+        "property",
+        "tag",
+        "boolean",
+        "number",
+        "constant",
+        "symbol",
+        "deleted",
+      ],
+      style: { color: "#1033A2" },
+    },
+    {
+      types: ["selector", "attr-name", "string", "char", "inserted", "builtin"],
+      style: { color: "#00543C" },
+    },
+    {
+      types: ["operator", "entity", "url", "variable"],
+      style: { color: "#575757" },
+    },
+    {
+      types: ["atrule", "attr-value", "keyword"],
+      style: { color: "#296EF5", fontWeight: "bold" },
+    },
+    {
+      types: ["function", "class-name"],
+      style: { color: "#1033A2", fontWeight: "bold" },
+    },
+    { types: ["regex", "important"], style: { color: "#E60037" } },
   ],
 };
 
 export default function CodeSlide({
-  title = 'Code',
+  title = "Code",
   caption,
-  code = '// Beispiel\nconst x = 42;',
-  language = 'typescript',
+  code = "// Beispiel\nconst x = 42;",
+  language = "typescript",
   highlightLines = [],
   notes,
 }: CodeSlideProps) {
@@ -33,7 +59,10 @@ export default function CodeSlide({
       {caption && <p className="small-text slide-subtitle">{caption}</p>}
       <Highlight theme={lightTheme} code={code.trim()} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={`${className} code-block code-block-light`} style={{ ...style }}>
+          <pre
+            className={`${className} code-block code-block-light`}
+            style={{ ...style }}
+          >
             {tokens.map((line, i) => {
               const lineProps = getLineProps({ line });
               const isHl = highlightLines.includes(i + 1);
@@ -41,9 +70,11 @@ export default function CodeSlide({
                 <div
                   key={i}
                   {...lineProps}
-                  className={`${lineProps.className} ${isHl ? 'code-line-hl-light' : ''}`}
+                  className={`${lineProps.className} ${isHl ? "code-line-hl-light" : ""}`}
                 >
-                  <span className="code-line-number code-line-number-light">{i + 1}</span>
+                  <span className="code-line-number code-line-number-light">
+                    {i + 1}
+                  </span>
                   <span className="code-line-content">
                     {line.map((token, key) => (
                       <span key={key} {...getTokenProps({ token })} />
@@ -55,7 +86,7 @@ export default function CodeSlide({
           </pre>
         )}
       </Highlight>
-      <aside className="notes">{notes ?? ''}</aside>
+      <aside className="notes">{notes ?? ""}</aside>
     </section>
   );
 }

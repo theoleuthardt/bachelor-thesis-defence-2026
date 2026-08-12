@@ -1,7 +1,7 @@
 export interface LogoProps {
   src: string;
   alt: string;
-  position?: 'top-left' | 'top-right';
+  position?: "top-left" | "top-right";
   width?: number;
 }
 
