@@ -46,6 +46,11 @@ tasks:
     cmds:
       - rm -rf dist node_modules/.vite
 
+  format:
+    desc: Format all code files with prettier
+    cmds:
+      - npx prettier . --write
+
   lint:
     desc: Run ESLint over the project
     cmds:
@@ -64,6 +69,7 @@ tasks:
   check:
     desc: Run lint and typecheck as pre-commit gate
     cmds:
+      - task:format
       - task:lint
       - task:typecheck
 
