@@ -79,7 +79,6 @@ The configuration lives in `src/App.tsx`:
 | ------------- | ----------------------------------- |
 | `→` / `Space` | Next slide / fragment               |
 | `←`           | Previous slide                      |
-| `↓` / `↑`     | Vertical navigation (backup slides) |
 | `s`           | Speaker notes                       |
 | `f`           | Fullscreen                          |
 | `Esc`         | Slide overview                      |
