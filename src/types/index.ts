@@ -98,9 +98,29 @@ export interface RevealDeck {
   destroy: () => void;
 }
 
+export interface Reference {
+  id: string;
+  label: string;
+}
+
+export interface SlideReferencesProps {
+  references?: Reference[];
+}
+
+import type { ReactNode } from "react";
+
+export interface Reference {
+  id: string;
+  label: string;
+}
+
+export interface SlideReferencesProps {
+  references?: Reference[];
+}
+
 export interface BulletItem {
-  text: string;
-  subitems?: string[];
+  text: ReactNode;
+  subitems?: ReactNode[];
 }
 
 export interface BulletSlideProps {
@@ -109,11 +129,12 @@ export interface BulletSlideProps {
   bullets?: BulletItem[];
   columns?: 1 | 2;
   notes?: string;
+  references?: Reference[];
 }
 
 export interface StatItem {
   value: string;
-  label: string;
+  label: ReactNode;
   source?: string;
 }
 
@@ -122,6 +143,7 @@ export interface StatsSlideProps {
   stats?: StatItem[];
   footer?: string;
   notes?: string;
+  references?: Reference[];
 }
 
 export interface CodeSlideProps {
@@ -131,6 +153,7 @@ export interface CodeSlideProps {
   language?: string;
   highlightLines?: number[];
   notes?: string;
+  references?: Reference[];
 }
 
 export interface ImageSlideProps {
@@ -138,16 +161,34 @@ export interface ImageSlideProps {
   subtitle?: string;
   imageSrc?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   bullets?: string[];
   showPlaceholder?: boolean;
   notes?: string;
+  imageClassName?: string;
+  references?: Reference[];
+}
+
+export interface DualImageSlideProps {
+  title?: string;
+  subtitle?: string;
+  leftSrc?: string;
+  leftAlt?: string;
+  rightSrc?: string;
+  rightAlt?: string;
+  leftLabel?: string;
+  rightLabel?: string;
+  notes?: string;
+  references?: Reference[];
 }
 
 export interface QuoteSlideProps {
   title?: string;
-  quote?: string;
+  quote?: ReactNode;
   attribution?: string;
   notes?: string;
+  references?: Reference[];
 }
 
 export interface PipelineStage {
@@ -160,6 +201,7 @@ export interface PipelineSlideProps {
   stages?: PipelineStage[];
   caption?: string;
   notes?: string;
+  references?: Reference[];
 }
 
 export interface KeyValueItem {
@@ -173,4 +215,5 @@ export interface KeyValueSlideProps {
   items?: KeyValueItem[];
   footer?: string;
   notes?: string;
+  references?: Reference[];
 }

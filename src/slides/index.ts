@@ -16,3 +16,5 @@ export { default as ImageSlide } from "./ImageSlide";
 export { default as QuoteSlide } from "./QuoteSlide";
 export { default as PipelineSlide } from "./PipelineSlide";
 export { default as KeyValueSlide } from "./KeyValueSlide";
+export { default as DualImageSlide } from "./DualImageSlide";
+export { default as TocSlide } from "./TocSlide";
