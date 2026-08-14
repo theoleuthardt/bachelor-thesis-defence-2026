@@ -101,12 +101,53 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 4em;
 }
 
 .title-slide h1 {
   margin-bottom: 0.25em;
   position: relative;
   z-index: 1;
+}
+
+.title-spacer {
+  height: 0;
+  width: 100%;
+  position: relative;
+}
+
+.section-spacer {
+  height: 0;
+  width: 100%;
+  position: relative;
+}
+
+@media print {
+  .title-spacer {
+    display: block !important;
+    height: 3em !important;
+  }
+
+  .section-spacer {
+    display: block !important;
+    height: 2.5em !important;
+  }
+}
+
+.print-pdf-mode .slide-logo {
+  max-height: 35px !important;
+  width: auto !important;
+  top: 0.1em !important;
+}
+
+.print-pdf-mode .title-spacer {
+  height: 3em !important;
+  display: block !important;
+}
+
+.print-pdf-mode .section-spacer {
+  height: 2.5em !important;
+  display: block !important;
 }
 
 .title-slide .subtitle {
@@ -172,22 +213,18 @@
   padding: 0;
   margin: 0 auto;
   max-width: 680px;
-  counter-reset: toc;
 }
 
 .reveal ol.toc-list li {
   padding: 0.15em 0.5em;
   border-radius: 4px;
-  counter-increment: toc;
   transition: background 0.2s ease;
 }
 
-.reveal ol.toc-list li::before {
-  content: counter(toc) ". ";
+.reveal ol.toc-list .toc-number {
   color: var(--accent-blue);
-  font-weight: 600;
-  min-width: 1.8em;
-  display: inline-block;
+  font-weight: 700;
+  margin-right: 0.4em;
 }
 
 .reveal ol.toc-list li.fragment.visible.current-fragment {
@@ -421,7 +458,7 @@
 
 .slide-logo {
   position: absolute;
-  top: 1em;
+  top: 0.5em;
   z-index: 10;
   user-select: none;
   pointer-events: none;
@@ -457,6 +494,79 @@
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.slide-references {
+  position: absolute;
+  bottom: 0.2em;
+  right: 1em;
+  z-index: 20;
+  text-align: right;
+  pointer-events: none;
+  max-width: 70%;
+}
+
+.slide-references-toggle {
+  pointer-events: auto;
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border: none;
+  border-radius: 4px;
+  padding: 0.15em 0.5em;
+  font-size: 0.5em;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.slide-references-toggle:hover {
+  opacity: 1;
+}
+
+.slide-references-list {
+  display: none;
+  list-style: none !important;
+  padding: 0.5em 0.8em !important;
+  margin: 0 0 0.4em 0 !important;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.45em;
+  line-height: 1.5;
+  max-height: 320px;
+  overflow-y: auto;
+  pointer-events: auto;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(3, 0, 68, 0.1);
+}
+
+.slide-references-visible {
+  pointer-events: auto;
+}
+
+.slide-references-visible .slide-references-list {
+  display: block;
+}
+
+.slide-references-list li {
+  color: var(--text-secondary);
+  margin-bottom: 0.2em;
+}
+
+.slide-ref-id {
+  color: var(--accent-blue);
+  font-weight: 700;
+  margin-right: 0.3em;
+}
+
+.ref-mark {
+  font-size: 0.7em;
+  color: var(--accent-blue);
+  font-weight: 600;
+  vertical-align: super;
+  line-height: 0;
 }
 
 /* ────────────────────────────────────────────────────────────────
@@ -541,6 +651,10 @@
   border-radius: 6px;
   padding: 0.8em 1em;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.2s ease;
 }
 
@@ -560,7 +674,7 @@
 .stat-label {
   font-size: 0.85em;
   color: var(--text-primary);
-  margin-top: 0.25em;
+  margin-top: 0.9em;
   line-height: 1.25;
   font-weight: 500;
 }
@@ -568,7 +682,7 @@
 .stat-source {
   font-size: 0.65em;
   color: var(--text-muted);
-  margin-top: 0.3em;
+  margin-top: 1em;
   font-style: italic;
 }
 
@@ -634,19 +748,61 @@
 /* ────────────────────────────────────────────────────────────────
    ImageSlide
 ──────────────────────────────────────────────────────────────── */
+.image-slide {
+  justify-content: flex-start !important;
+  padding-top: 0.5em;
+}
+
+.image-slide-title {
+  margin-bottom: 0.3em;
+  margin-top: 0;
+}
+
 .image-center {
   display: flex;
   justify-content: center;
-  margin-top: 0.3em;
+  margin-top: 0.8em;
 }
 
 .slide-image {
-  max-height: 460px;
-  max-width: 90%;
+  max-height: 580px;
+  max-width: 96%;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background-color: var(--bg-secondary);
   box-shadow: 0 2px 8px rgba(3, 0, 68, 0.1);
+}
+
+.image-large {
+  max-height: 600px;
+  max-width: 98%;
+}
+
+.dual-image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8em;
+  width: 100%;
+}
+
+.dual-image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 1 48%;
+}
+
+.dual-image {
+  max-height: 540px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.dual-image-label {
+  margin-top: 0.3em;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
 }
 
 .image-placeholder {
@@ -823,4 +979,121 @@
 .comparison-card .small-text {
   font-size: 0.75em;
   line-height: 1.35;
+}
+
+@media print {
+  .slide-references {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    max-width: 100% !important;
+    margin-top: 1em !important;
+    text-align: left !important;
+    page-break-inside: avoid;
+  }
+
+  .slide-references-list {
+    display: block !important;
+    position: relative !important;
+    max-height: none !important;
+    overflow: visible !important;
+    page-break-inside: avoid;
+  }
+
+  .slide-references-toggle {
+    display: none !important;
+  }
+
+  .reveal .slides section {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4 {
+    overflow: visible !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   Print-PDF mode overrides
+   Reveal.js sets html.reveal-print on <html> during ?print-pdf export.
+   It wraps each <section> in a .pdf-page div and positions the
+   section absolutely via inline top/left/width. Crucially the
+   section keeps position:absolute and does NOT receive a height,
+   so height:100% collapses and justify-content:center is useless.
+
+   Fix: give the section a fixed pixel height matching the Reveal.js
+   slide height (700px from App.tsx config) so the flex column layout
+   and vertical centering work again. slides.css is imported after
+   reveal.css so equal-specificity !important rules declared here win.
+   ──────────────────────────────────────────────────────────────── */
+html.reveal-print .reveal .slides section {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 700px !important;
+  overflow: visible !important;
+}
+
+html.reveal-print .reveal .slides section.image-slide {
+  justify-content: flex-start !important;
+  padding-top: 0.5em !important;
+}
+
+html.reveal-print .reveal .slides section.title-slide {
+  padding-top: 4em;
+}
+
+html.reveal-print .reveal .slides section .fragment {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.reveal-print .reveal .slides section .fragment.disabled,
+html.reveal-print .reveal .slides section .fragment:not(.visible) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.reveal-print .slide-references {
+  display: none !important;
+}
+
+html.reveal-print .slide-references-toggle {
+  display: none !important;
+}
+
+html.reveal-print .reveal .code-block {
+  max-height: none !important;
+  overflow: visible !important;
+  page-break-inside: avoid;
+}
+
+html.reveal-print .reveal img.slide-image {
+  max-height: 580px !important;
+  page-break-inside: avoid;
+}
+
+html.reveal-print .reveal table {
+  page-break-inside: avoid;
+}
+
+html.reveal-print .stat-card.current-fragment,
+html.reveal-print .kv-row.current-fragment,
+html.reveal-print .pipeline-stage.current-fragment,
+html.reveal-print .toc-list li.fragment.visible.current-fragment {
+  transform: none !important;
+  box-shadow: none !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+html.reveal-print .toc-list li.fragment.visible.current-fragment {
+  background-color: rgba(41, 110, 245, 0.07) !important;
 }

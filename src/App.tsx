@@ -1,7 +1,17 @@
 import { useEffect, useRef } from "react";
 import type { RevealDeck } from "./types";
+import Reveal from "reveal.js";
+import type { RevealPlugin } from "reveal.js";
+import Notes from "reveal.js/plugin/notes";
 import "./styles/slides.css";
 import Slides from "./Slides";
+
+type RevealConstructor = new (
+  el: HTMLElement,
+  opts: object,
+) => RevealDeck & {
+  addPlugin: (plugin: RevealPlugin) => void;
+};
 
 function App() {
   const deckRef = useRef<RevealDeck | null>(null);
@@ -9,32 +19,38 @@ function App() {
   useEffect(() => {
     if (deckRef.current) return;
 
+    const isPrintPdf = new URLSearchParams(window.location.search).has("print-pdf");
+    if (isPrintPdf) {
+      document.documentElement.classList.add("print-pdf-mode");
+    }
+
     const initReveal = async () => {
       try {
-        const RevealModule = await import("reveal.js");
-        const Reveal = RevealModule.default as unknown as new (
-          el: HTMLElement,
-          opts: object,
-        ) => RevealDeck;
-
         const revealElement = document.querySelector(".reveal") as HTMLElement;
         if (!revealElement) return;
 
-        const deck = new Reveal(revealElement, {
-          hash: true,
-          transition: "slide",
-          transitionSpeed: "default",
-          backgroundTransition: "fade",
-          center: true,
-          width: 1200,
-          height: 700,
-          margin: 0.02,
-          minScale: 0.1,
-          maxScale: 2.0,
-          slideNumber: "c/t",
-          fragments: true,
-          fragmentInURL: false,
-        });
+        const isPrintPdf = new URLSearchParams(window.location.search).has("print-pdf");
+
+        const deck = new (Reveal as unknown as RevealConstructor)(
+          revealElement,
+          {
+            hash: true,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            center: true,
+            width: 1200,
+            height: 700,
+            margin: 0.02,
+            minScale: 0.1,
+            maxScale: 2.0,
+            slideNumber: "c/t",
+            fragments: true,
+            fragmentInURL: false,
+            pdfSeparateFragments: !isPrintPdf ? true : false,
+            plugins: [Notes()],
+          },
+        );
 
         deckRef.current = deck;
         await deck.initialize();
