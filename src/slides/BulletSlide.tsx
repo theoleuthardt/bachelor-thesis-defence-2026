@@ -1,3 +1,5 @@
+import Icon from "../components/icons";
+import References from "../components/References";
 import type { BulletSlideProps } from "../types";
 
 export default function BulletSlide({
@@ -8,13 +10,17 @@ export default function BulletSlide({
     { text: "Zweiter Punkt" },
   ],
   columns = 1,
+  variant = "list",
   notes,
+  references,
 }: BulletSlideProps) {
   const isTwoCol = columns === 2 && bullets.length > 1;
   const half = Math.ceil(bullets.length / 2);
   const cols = isTwoCol
     ? [bullets.slice(0, half), bullets.slice(half)]
     : [bullets];
+  const listClass =
+    variant === "icon" ? "bullet-list bullet-list-icon" : "bullet-list";
 
   return (
     <section>
@@ -25,9 +31,14 @@ export default function BulletSlide({
         style={{ marginTop: "0.3em" }}
       >
         {cols.map((col, ci) => (
-          <ul key={ci} className="bullet-list">
+          <ul key={ci} className={listClass}>
             {col.map((b, i) => (
               <li key={i} className="fragment">
+                {variant === "icon" && b.icon && (
+                  <span className="icon-badge icon-badge-sm bullet-icon">
+                    <Icon name={b.icon} />
+                  </span>
+                )}
                 <span className="bullet-text">{b.text}</span>
                 {b.subitems && b.subitems.length > 0 && (
                   <ul className="sub-bullets">
@@ -41,6 +52,7 @@ export default function BulletSlide({
           </ul>
         ))}
       </div>
+      <References references={references} />
       <aside className="notes">{notes ?? ""}</aside>
     </section>
   );

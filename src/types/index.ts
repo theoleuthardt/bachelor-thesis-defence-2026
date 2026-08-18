@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export interface LogoProps {
   src: string;
   alt: string;
@@ -22,14 +24,38 @@ export interface SectionHeaderSlideProps {
   subtitle?: string;
 }
 
+export type IconName =
+  | "eye"
+  | "keyboard"
+  | "shield"
+  | "layers"
+  | "globe"
+  | "cpu"
+  | "mic"
+  | "waves"
+  | "filter"
+  | "checkCircle"
+  | "alertTriangle"
+  | "scissors"
+  | "lifeBuoy"
+  | "target"
+  | "award"
+  | "rocket"
+  | "gitBranch"
+  | "wrench"
+  | "repeat"
+  | "scale";
+
 export interface ContentSlideProps {
   title?: string;
   content?: string;
-  boxes?: Array<{ title: string; description: string }>;
+  boxes?: Array<{ title: string; description: string; icon?: IconName }>;
+  notes?: string;
+  references?: Reference[];
 }
 
 export interface CardItem {
-  icon: string;
+  icon: IconName;
   title: string;
   description: string;
 }
@@ -38,6 +64,9 @@ export interface CardsSlideProps {
   title?: string;
   cards?: CardItem[];
   concludingRemark?: string;
+  columns?: 2 | 3;
+  notes?: string;
+  references?: Reference[];
 }
 
 export interface DefinitionSlideProps {
@@ -45,6 +74,8 @@ export interface DefinitionSlideProps {
   formalName?: string;
   description?: string;
   formula?: string;
+  notes?: string;
+  references?: Reference[];
 }
 
 export interface VisualSlideProps {
@@ -57,11 +88,15 @@ export interface VisualSlideProps {
 export interface ComparisonItem {
   title: string;
   description: string;
+  icon?: IconName;
 }
 
 export interface ComparisonSlideProps {
   title?: string;
   items?: ComparisonItem[];
+  layout?: "cards" | "split";
+  footer?: string;
+  notes?: string;
 }
 
 export interface TableRow {
@@ -73,16 +108,21 @@ export interface TableSlideProps {
   title?: string;
   headers?: string[];
   rows?: TableRow[];
+  notes?: string;
+  references?: Reference[];
 }
 
 export interface TakeawayItem {
   title: string;
   description: string;
+  icon?: IconName;
 }
 
 export interface TakeawaysSlideProps {
   title?: string;
   items?: TakeawayItem[];
+  variant?: "numbered" | "funnel";
+  notes?: string;
 }
 
 export interface ClosingSlideProps {
@@ -107,20 +147,26 @@ export interface SlideReferencesProps {
   references?: Reference[];
 }
 
-import type { ReactNode } from "react";
-
-export interface Reference {
-  id: string;
+export interface LogoGridItem {
+  src: string;
   label: string;
+  alt?: string;
 }
 
-export interface SlideReferencesProps {
+export interface LogoGridSlideProps {
+  title?: string;
+  subtitle?: string;
+  logos?: LogoGridItem[];
+  columns?: 2 | 3 | 4;
+  footer?: string;
+  notes?: string;
   references?: Reference[];
 }
 
 export interface BulletItem {
   text: ReactNode;
   subitems?: ReactNode[];
+  icon?: IconName;
 }
 
 export interface BulletSlideProps {
@@ -128,6 +174,7 @@ export interface BulletSlideProps {
   subtitle?: string;
   bullets?: BulletItem[];
   columns?: 1 | 2;
+  variant?: "list" | "icon";
   notes?: string;
   references?: Reference[];
 }
@@ -194,6 +241,7 @@ export interface QuoteSlideProps {
 export interface PipelineStage {
   label: string;
   detail?: string;
+  icon?: IconName;
 }
 
 export interface PipelineSlideProps {
@@ -204,9 +252,57 @@ export interface PipelineSlideProps {
   references?: Reference[];
 }
 
+export interface QuadrantPoint {
+  label: string;
+  x: number;
+  y: number;
+  variant?: "default" | "target";
+}
+
+export interface QuadrantSlideProps {
+  title?: string;
+  subtitle?: string;
+  xAxisLabels?: [string, string];
+  yAxisLabels?: [string, string];
+  points?: QuadrantPoint[];
+  caption?: string;
+  notes?: string;
+  references?: Reference[];
+}
+
+export interface BadgeGridGroup {
+  label: string;
+  items: string[];
+}
+
+export interface BadgeGridSlideProps {
+  title?: string;
+  subtitle?: string;
+  groups?: BadgeGridGroup[];
+  tone?: "blue" | "red";
+  footer?: string;
+  notes?: string;
+  references?: Reference[];
+}
+
+export interface StateNode {
+  label: string;
+}
+
+export interface StateMachineSlideProps {
+  title?: string;
+  subtitle?: string;
+  entry?: string;
+  states?: StateNode[];
+  caption?: string;
+  notes?: string;
+  references?: Reference[];
+}
+
 export interface KeyValueItem {
   label: string;
-  value: string;
+  value: ReactNode;
+  status?: "success" | "danger";
 }
 
 export interface KeyValueSlideProps {

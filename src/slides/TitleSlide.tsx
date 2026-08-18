@@ -16,6 +16,7 @@ export default function TitleSlide({
         position="top-right"
         width={180}
       />
+      <div className="title-spacer" />
       <h1>
         {title.split("\n").map((line, i) => (
           <span key={i}>

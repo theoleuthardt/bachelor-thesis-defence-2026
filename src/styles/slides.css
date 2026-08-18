@@ -264,6 +264,12 @@
   gap: 0.5em;
 }
 
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5em;
+}
+
 .card {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-light);
@@ -276,11 +282,64 @@
   margin-bottom: 0.15em;
 }
 
-.card-icon {
-  font-size: 1.4em;
-  margin-bottom: 0.1em;
+.logo-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.8em 0.6em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 5.2em;
+}
+
+.logo-card-img {
+  max-height: 2.4em;
+  max-width: 75%;
+  object-fit: contain;
+  margin-bottom: 0.45em;
+}
+
+.logo-card-label {
+  font-size: 0.68em;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--accent-blue-light);
   color: var(--accent-blue);
-  font-family: serif;
+  flex-shrink: 0;
+}
+
+.icon-badge svg {
+  width: 52%;
+  height: 52%;
+}
+
+.icon-badge-lg {
+  display: flex;
+  width: 2.3em;
+  height: 2.3em;
+  margin: 0 auto 0.3em;
+}
+
+.icon-badge-md {
+  display: flex;
+  width: 1.9em;
+  height: 1.9em;
+  margin: 0 auto 0.25em;
+}
+
+.icon-badge-sm {
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .reveal table {
@@ -361,6 +420,40 @@
   color: var(--accent-red);
 }
 
+/* ────────────────────────────────────────────────────────────────
+   BadgeGridSlide
+──────────────────────────────────────────────────────────────── */
+.badge-grid-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin-top: 0.5em;
+  width: 100%;
+  max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.badge-grid-group-label {
+  margin-bottom: 0.3em !important;
+  text-align: center;
+  color: var(--text-muted) !important;
+  font-style: italic;
+}
+
+.badge-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4em;
+}
+
+.badge-grid .badge {
+  border-radius: 999px;
+  font-size: 0.62em;
+  padding: 0.3em 0.7em;
+}
+
 .closing-slide {
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -428,32 +521,13 @@
   padding: 0;
   margin: 0.25em auto;
   max-width: 900px;
-  counter-reset: oq;
 }
 
 .open-questions li {
-  counter-increment: oq;
   margin-bottom: 0.35em;
   padding-left: 2em;
   position: relative;
   line-height: 1.3;
-}
-
-.open-questions li::before {
-  content: counter(oq);
-  position: absolute;
-  left: 0;
-  top: 0.05em;
-  background-color: var(--accent-blue-light);
-  color: var(--accent-blue);
-  font-weight: 700;
-  font-size: 0.75em;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .slide-logo {
@@ -600,6 +674,27 @@
 .bullet-list .bullet-text {
   color: var(--text-primary);
   font-weight: 500;
+}
+
+.bullet-list-icon > li {
+  padding-left: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.bullet-list-icon > li::before {
+  content: none;
+}
+
+.bullet-list-icon .bullet-icon {
+  margin-right: 0.5em;
+  margin-top: 0.05em;
+}
+
+.bullet-list-icon .sub-bullets {
+  flex-basis: 100%;
+  margin-left: 2.4em;
 }
 
 .bullet-grid {
@@ -833,17 +928,33 @@
 }
 
 .quote-block {
+  position: relative;
   background-color: var(--bg-secondary);
   border-left: 4px solid var(--accent-blue);
   border-radius: 0 8px 8px 0;
-  padding: 1.1em 1.5em;
+  padding: 1.1em 1.5em 1.1em 2.3em;
   margin: 0.6em auto;
   max-width: 920px;
   text-align: left;
   box-shadow: 0 2px 8px rgba(3, 0, 68, 0.08);
 }
 
+.quote-block::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.02em;
+  left: 0.28em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.2em;
+  line-height: 1;
+  color: var(--accent-blue-mid);
+  opacity: 0.4;
+  z-index: 0;
+}
+
 .quote-text {
+  position: relative;
+  z-index: 1;
   font-size: 1.08em !important;
   font-style: italic;
   line-height: 1.5 !important;
@@ -852,6 +963,8 @@
 }
 
 .quote-attribution {
+  position: relative;
+  z-index: 1;
   margin-top: 0.5em !important;
   font-size: 0.8em;
   color: var(--accent-blue);
@@ -859,57 +972,202 @@
 }
 
 /* ────────────────────────────────────────────────────────────────
-   PipelineSlide
+   PipelineSlide (icon nodes on a connecting track, single row,
+   never wraps regardless of label length)
 ──────────────────────────────────────────────────────────────── */
 .pipeline {
+  position: relative;
   display: flex;
-  align-items: stretch;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0;
-  margin: 0.4em auto;
-  max-width: 1100px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 980px;
+  margin: 2.2em auto 0;
+  padding: 0 0.5em;
 }
 
-.pipeline-stage {
+.pipeline::before {
+  content: "";
+  position: absolute;
+  top: 1.15em;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background-color: var(--accent-blue-mid);
+  z-index: 0;
+}
+
+.pipeline::after {
+  content: "";
+  position: absolute;
+  top: calc(1.15em - 5px);
+  right: calc(6% - 1px);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid var(--accent-blue-mid);
+  z-index: 0;
+}
+
+.pipeline-node {
+  position: relative;
+  z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0;
-}
-
-.pipeline-stage-label {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  border-left: 3px solid var(--accent-blue);
-  border-radius: 8px;
-  padding: 0.5em 0.8em;
-  font-size: 0.85em;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-align: center;
-  min-width: 100px;
+  width: 17%;
   transition: transform 0.2s ease;
 }
 
-.pipeline-stage.current-fragment .pipeline-stage-label {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(41, 110, 245, 0.18);
+.pipeline-node.current-fragment {
+  transform: translateY(-3px);
 }
 
-.pipeline-stage-detail {
-  font-size: 0.65em;
-  font-weight: 400;
+.pipeline-node .icon-badge-lg {
+  margin: 0 auto 0.5em;
+  box-shadow: 0 0 0 6px var(--bg-primary);
+}
+
+.pipeline-node.current-fragment .icon-badge-lg {
+  background-color: var(--accent-blue);
+  color: var(--bg-primary);
+}
+
+.pipeline-node-label {
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   QuadrantSlide (2×2 positioning matrix)
+──────────────────────────────────────────────────────────────── */
+.quadrant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.3em;
+}
+
+.quadrant-y-label {
+  font-size: 0.6em;
   color: var(--text-muted);
-  display: block;
-  margin-top: 0.15em;
   font-style: italic;
 }
 
-.pipeline-arrow {
-  font-size: 1.2em;
+.quadrant-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+
+.quadrant-x-label {
+  font-size: 0.6em;
+  color: var(--text-muted);
+  font-style: italic;
+  width: 90px;
+  text-align: center;
+}
+
+.quadrant-plot {
+  position: relative;
+  width: 660px;
+  height: 350px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  margin: 0.5em 0;
+}
+
+.quadrant-cross-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: var(--border-light);
+}
+
+.quadrant-cross-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: var(--border-light);
+}
+
+.quadrant-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  padding: 0.35em 0.7em;
+  font-size: 0.62em;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(3, 0, 68, 0.1);
+}
+
+.quadrant-point-target {
+  background-color: transparent;
+  border: 2px dashed var(--accent-blue);
   color: var(--accent-blue);
-  margin: 0 0.3em;
+  padding: 0.85em 1.1em;
+  font-size: 0.65em;
   font-weight: 700;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   StateMachineSlide (cyclical state ring)
+──────────────────────────────────────────────────────────────── */
+.fsm-entry {
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.2em !important;
+}
+
+.fsm-diagram {
+  position: relative;
+  width: 640px;
+  height: 380px;
+  margin: 0.8em auto 0;
+}
+
+.fsm-ring {
+  position: absolute;
+  inset: 40px 70px;
+  border: 2px dashed var(--accent-blue-mid);
+  border-radius: 50%;
+}
+
+.fsm-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-blue-mid);
+  font-size: 3.2em;
+  display: flex;
+}
+
+.fsm-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border-radius: 999px;
+  padding: 0.5em 0.9em;
+  font-size: 0.78em;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 0 0 6px var(--bg-primary);
 }
 
 /* ────────────────────────────────────────────────────────────────
@@ -940,6 +1198,22 @@
   background-color: var(--accent-blue-light);
 }
 
+.kv-row-success {
+  border-left-color: var(--accent-green);
+}
+
+.kv-row-success .kv-label {
+  color: var(--accent-green);
+}
+
+.kv-row-danger {
+  border-left-color: var(--accent-red);
+}
+
+.kv-row-danger .kv-label {
+  color: var(--accent-red);
+}
+
 .kv-label {
   font-weight: 600;
   color: var(--accent-blue);
@@ -965,6 +1239,27 @@
   margin: 0.3em auto;
 }
 
+.reveal .comparison-grid-2 {
+  max-width: 900px;
+  margin: 1em auto 0;
+}
+
+.comparison-grid-2 .comparison-card {
+  padding: 1.4em 1.6em;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.comparison-grid-2 .comparison-card-header h4 {
+  font-size: 1.05em;
+}
+
+.comparison-grid-2 .comparison-card .small-text {
+  font-size: 0.85em;
+}
+
 .comparison-card {
   padding: 0.6em 0.9em;
   border-left: 3px solid var(--accent-blue);
@@ -979,6 +1274,218 @@
 .comparison-card .small-text {
   font-size: 0.75em;
   line-height: 1.35;
+}
+
+.comparison-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+.comparison-card-header h4 {
+  margin-bottom: 0;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ComparisonSlide split layout (two tinted panels, no card borders)
+──────────────────────────────────────────────────────────────── */
+.comparison-split {
+  display: flex;
+  width: 100%;
+  max-width: 1080px;
+  min-height: 340px;
+  margin: 0.6em auto 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.comparison-split-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.6em 2em;
+}
+
+.comparison-split-panel:first-child {
+  background-color: var(--accent-blue-light);
+  border-right: 2px solid var(--accent-blue);
+}
+
+.comparison-split-panel:last-child {
+  background-color: #fde2e7;
+}
+
+.comparison-split-panel .icon-badge-lg {
+  background-color: var(--bg-primary);
+}
+
+.comparison-split-panel:last-child .icon-badge-lg {
+  color: var(--accent-red);
+}
+
+.comparison-split-panel h4 {
+  font-size: 1.05em;
+  margin-top: 0.2em;
+}
+
+.comparison-split-panel .small-text {
+  font-size: 0.85em;
+  margin-top: 0.3em;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   TakeawaysSlide badge (icon or number)
+──────────────────────────────────────────────────────────────── */
+.oq-badge {
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-weight: 700;
+  font-size: 0.75em;
+}
+
+.oq-badge-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: var(--accent-blue-light);
+  color: var(--accent-blue);
+}
+
+/* ────────────────────────────────────────────────────────────────
+   TakeawaysSlide funnel variant (centered defense-in-depth stack)
+──────────────────────────────────────────────────────────────── */
+.defense-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3em;
+  margin-top: 0.3em;
+  width: 100%;
+}
+
+.defense-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 0.35em 1em;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.defense-layer:nth-child(1) {
+  max-width: 480px;
+}
+
+.defense-layer:nth-child(2) {
+  max-width: 620px;
+}
+
+.defense-layer:nth-child(3) {
+  max-width: 760px;
+}
+
+.defense-layer:nth-child(4) {
+  max-width: 900px;
+  background-color: var(--accent-blue-light);
+  border-color: var(--accent-blue-mid);
+}
+
+.defense-layer .icon-badge-md {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 auto 0.1em;
+}
+
+.defense-layer-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.85em;
+}
+
+.defense-layer-desc {
+  font-size: 0.72em;
+  color: var(--text-secondary);
+  margin-top: 0.1em;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   Meter (range bar with optional threshold marker)
+──────────────────────────────────────────────────────────────── */
+.meter {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: 0.3em;
+}
+
+.meter-track {
+  position: relative;
+  flex: 1;
+  height: 0.4em;
+  background-color: var(--border-light);
+  border-radius: 999px;
+  min-width: 180px;
+}
+
+.meter-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: var(--accent-blue);
+  border-radius: 999px;
+}
+
+.meter-fill-warn {
+  background-color: var(--accent-red);
+}
+
+.meter-threshold {
+  position: absolute;
+  top: -0.25em;
+  bottom: -0.25em;
+  width: 2px;
+  background-color: var(--accent-red);
+}
+
+.meter-threshold-label {
+  font-size: 0.6em;
+  color: var(--accent-red);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   RatingDots
+──────────────────────────────────────────────────────────────── */
+.rating-dots {
+  display: inline-flex;
+  gap: 0.25em;
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
+
+.rating-dot {
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background-color: var(--border-light);
+  display: inline-block;
+}
+
+.rating-dot-filled {
+  background-color: var(--accent-blue);
 }
 
 @media print {
@@ -1087,7 +1594,7 @@ html.reveal-print .reveal table {
 
 html.reveal-print .stat-card.current-fragment,
 html.reveal-print .kv-row.current-fragment,
-html.reveal-print .pipeline-stage.current-fragment,
+html.reveal-print .pipeline-node.current-fragment,
 html.reveal-print .toc-list li.fragment.visible.current-fragment {
   transform: none !important;
   box-shadow: none !important;
@@ -1096,4 +1603,9 @@ html.reveal-print .toc-list li.fragment.visible.current-fragment {
 
 html.reveal-print .toc-list li.fragment.visible.current-fragment {
   background-color: rgba(41, 110, 245, 0.07) !important;
+}
+
+html.reveal-print .pipeline-node.current-fragment .icon-badge-lg {
+  background-color: var(--accent-blue-light) !important;
+  color: var(--accent-blue) !important;
 }

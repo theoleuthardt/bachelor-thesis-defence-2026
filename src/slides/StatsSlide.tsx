@@ -1,3 +1,4 @@
+import References from "../components/References";
 import type { StatsSlideProps } from "../types";
 
 export default function StatsSlide({
@@ -12,6 +13,7 @@ export default function StatsSlide({
   ],
   footer,
   notes,
+  references,
 }: StatsSlideProps) {
   return (
     <section>
@@ -26,6 +28,7 @@ export default function StatsSlide({
         ))}
       </div>
       {footer && <p className="fragment slide-footer">{footer}</p>}
+      <References references={references} />
       <aside className="notes">{notes ?? ""}</aside>
     </section>
   );

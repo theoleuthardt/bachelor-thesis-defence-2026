@@ -18,3 +18,7 @@ export { default as PipelineSlide } from "./PipelineSlide";
 export { default as KeyValueSlide } from "./KeyValueSlide";
 export { default as DualImageSlide } from "./DualImageSlide";
 export { default as TocSlide } from "./TocSlide";
+export { default as QuadrantSlide } from "./QuadrantSlide";
+export { default as StateMachineSlide } from "./StateMachineSlide";
+export { default as BadgeGridSlide } from "./BadgeGridSlide";
+export { default as LogoGridSlide } from "./LogoGridSlide";

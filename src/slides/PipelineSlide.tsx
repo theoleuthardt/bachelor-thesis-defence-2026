@@ -1,3 +1,5 @@
+import Icon from "../components/icons";
+import References from "../components/References";
 import type { PipelineSlideProps } from "../types";
 
 export default function PipelineSlide({
@@ -10,22 +12,23 @@ export default function PipelineSlide({
   ],
   caption,
   notes,
+  references,
 }: PipelineSlideProps) {
   return (
     <section>
       <h3>{title}</h3>
-      <div className="pipeline" style={{ marginTop: "0.6em" }}>
+      <div className="pipeline">
         {stages.map((s, i) => (
-          <div key={i} className="pipeline-stage fragment">
-            <div className="pipeline-stage-label">{s.label}</div>
-            {s.detail && (
-              <div className="pipeline-stage-detail">{s.detail}</div>
-            )}
-            {i < stages.length - 1 && <div className="pipeline-arrow">→</div>}
+          <div key={i} className="pipeline-node fragment">
+            <div className="icon-badge icon-badge-lg">
+              {s.icon && <Icon name={s.icon} />}
+            </div>
+            <div className="pipeline-node-label">{s.label}</div>
           </div>
         ))}
       </div>
       {caption && <p className="fragment slide-footer">{caption}</p>}
+      <References references={references} />
       <aside className="notes">{notes ?? ""}</aside>
     </section>
   );

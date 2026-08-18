@@ -1,3 +1,4 @@
+import References from "../components/References";
 import type { KeyValueSlideProps } from "../types";
 
 export default function KeyValueSlide({
@@ -9,6 +10,7 @@ export default function KeyValueSlide({
   ],
   footer,
   notes,
+  references,
 }: KeyValueSlideProps) {
   return (
     <section>
@@ -16,13 +18,17 @@ export default function KeyValueSlide({
       {subtitle && <p className="small-text slide-subtitle">{subtitle}</p>}
       <div className="kv-list" style={{ marginTop: "0.3em" }}>
         {items.map((it, i) => (
-          <div key={i} className="kv-row fragment">
+          <div
+            key={i}
+            className={`kv-row fragment ${it.status ? `kv-row-${it.status}` : ""}`}
+          >
             <span className="kv-label">{it.label}</span>
             <span className="kv-value">{it.value}</span>
           </div>
         ))}
       </div>
       {footer && <p className="fragment slide-footer">{footer}</p>}
+      <References references={references} />
       <aside className="notes">{notes ?? ""}</aside>
     </section>
   );

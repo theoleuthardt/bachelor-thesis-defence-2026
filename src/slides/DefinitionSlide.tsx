@@ -1,3 +1,4 @@
+import References from "../components/References";
 import type { DefinitionSlideProps } from "../types";
 
 export default function DefinitionSlide({
@@ -5,6 +6,8 @@ export default function DefinitionSlide({
   formalName = "Begriff",
   description = "Beschreibung oder Erklärung des Begriffs.",
   formula = "$$Beispiel-Formel$$",
+  notes,
+  references,
 }: DefinitionSlideProps) {
   return (
     <section>
@@ -20,7 +23,8 @@ export default function DefinitionSlide({
       <div className="formula-box fragment" style={{ marginTop: "0.8em" }}>
         {formula}
       </div>
-      <aside className="notes"></aside>
+      <References references={references} />
+      <aside className="notes">{notes ?? ""}</aside>
     </section>
   );
 }

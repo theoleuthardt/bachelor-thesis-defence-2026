@@ -1,3 +1,4 @@
+import References from "../components/References";
 import type { TableSlideProps } from "../types";
 
 export default function TableSlide({
@@ -7,6 +8,8 @@ export default function TableSlide({
     { cells: ["Wert 1", "Wert 2", "Wert 3"] },
     { cells: ["Wert 4", "Wert 5", "Wert 6"], isFragment: true },
   ],
+  notes,
+  references,
 }: TableSlideProps) {
   return (
     <section>
@@ -32,7 +35,8 @@ export default function TableSlide({
           ))}
         </tbody>
       </table>
-      <aside className="notes"></aside>
+      <References references={references} />
+      <aside className="notes">{notes ?? ""}</aside>
     </section>
   );
 }

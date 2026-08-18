@@ -1,3 +1,4 @@
+import References from "../components/References";
 import type { QuoteSlideProps } from "../types";
 
 export default function QuoteSlide({
@@ -5,6 +6,7 @@ export default function QuoteSlide({
   quote = "Zitat oder Frage.",
   attribution,
   notes,
+  references,
 }: QuoteSlideProps) {
   return (
     <section className="quote-slide">
@@ -15,6 +17,7 @@ export default function QuoteSlide({
           <footer className="quote-attribution">{attribution}</footer>
         )}
       </blockquote>
+      <References references={references} />
       <aside className="notes">{notes ?? ""}</aside>
     </section>
   );

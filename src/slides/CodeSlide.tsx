@@ -1,4 +1,5 @@
 import { Highlight } from "prism-react-renderer";
+import References from "../components/References";
 import type { PrismTheme } from "prism-react-renderer";
 import type { CodeSlideProps } from "../types";
 
@@ -52,6 +53,7 @@ export default function CodeSlide({
   language = "typescript",
   highlightLines = [],
   notes,
+  references,
 }: CodeSlideProps) {
   return (
     <section>
@@ -86,6 +88,7 @@ export default function CodeSlide({
           </pre>
         )}
       </Highlight>
+      <References references={references} />
       <aside className="notes">{notes ?? ""}</aside>
     </section>
   );

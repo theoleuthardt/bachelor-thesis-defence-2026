@@ -37,7 +37,7 @@ export default function VisualSlide({
         {boxes.map((box, index) => (
           <div key={index} className="box">
             <p className="small-text">
-              <strong>{box.label}</strong> — {box.description}
+              <strong>{box.label}</strong> {box.description}
             </p>
           </div>
         ))}

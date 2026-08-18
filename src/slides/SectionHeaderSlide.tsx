@@ -15,6 +15,7 @@ export default function SectionHeaderSlide({
         position="top-right"
         width={230}
       />
+      <div className="section-spacer" />
       <span className="section-number">{number}</span>
       <h2>{title}</h2>
       {subtitle && <p className="section-subtitle">{subtitle}</p>}

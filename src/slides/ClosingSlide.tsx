@@ -17,6 +17,7 @@ export default function ClosingSlide({
         position="top-right"
         width={230}
       />
+      <div className="section-spacer" />
       <div className="closing-content">
         <h2 className="closing-title">{title}</h2>
         <p className="closing-message">{message}</p>

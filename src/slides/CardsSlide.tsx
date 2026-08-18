@@ -1,33 +1,43 @@
+import Icon from "../components/icons";
+import References from "../components/References";
 import type { CardsSlideProps } from "../types";
 
 export default function CardsSlide({
   title = "Drei zentrale Aspekte",
   cards = [
     {
-      icon: "★",
+      icon: "target",
       title: "Aspekt 1",
       description: "Beschreibung des ersten Aspekts.",
     },
     {
-      icon: "◆",
+      icon: "layers",
       title: "Aspekt 2",
       description: "Beschreibung des zweiten Aspekts.",
     },
     {
-      icon: "●",
+      icon: "award",
       title: "Aspekt 3",
       description: "Beschreibung des dritten Aspekts.",
     },
   ],
   concludingRemark = "Optionaler abschließender Gedanke.",
+  columns = 3,
+  notes,
+  references,
 }: CardsSlideProps) {
   return (
     <section>
       <h3>{title}</h3>
-      <div className="grid-3" style={{ marginTop: "0.6em" }}>
+      <div
+        className={columns === 2 ? "grid-2" : "grid-3"}
+        style={{ marginTop: "0.6em" }}
+      >
         {cards.map((card, index) => (
           <div key={index} className="card fragment">
-            <div className="card-icon">{card.icon}</div>
+            <div className="icon-badge icon-badge-lg">
+              <Icon name={card.icon} />
+            </div>
             <h4>{card.title}</h4>
             <p className="small-text">{card.description}</p>
           </div>
@@ -43,7 +53,8 @@ export default function CardsSlide({
       >
         {concludingRemark}
       </p>
-      <aside className="notes"></aside>
+      <References references={references} />
+      <aside className="notes">{notes ?? ""}</aside>
     </section>
   );
 }
