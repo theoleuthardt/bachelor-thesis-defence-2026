@@ -93,6 +93,11 @@ tasks:
     cmds:
       - open "{{.URL}}?print-pdf"
 
+  reveal:pdf:export:
+    desc: "Export the presentation to PDF from the terminal (use: task reveal:pdf:export OUT=deck.pdf)"
+    cmds:
+      - node scripts/export-pdf.mjs {{if .OUT}}--out={{.OUT}}{{end}}
+
   reveal:first:
     desc: Open directly at slide 1
     cmds:
