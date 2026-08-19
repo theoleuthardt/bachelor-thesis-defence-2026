@@ -20,6 +20,8 @@ import {
   StateMachineSlide,
   BadgeGridSlide,
   LogoGridSlide,
+  ImageGridSlide,
+  VideoSlide,
 } from "./slides/";
 import Meter from "./components/Meter";
 import RatingDots from "./components/RatingDots";
@@ -292,12 +294,12 @@ export default function Slides() {
         columns={4}
         logos={[
           { src: "/logos/chrome.svg", label: "Manifest V3" },
-          { src: "/logos/nvidia.svg", label: "Parakeet-TDT" },
           { src: "/logos/wxt.svg", label: "WXT" },
           { src: "/logos/vite.svg", label: "Vite" },
           { src: "/logos/typescript.svg", label: "TypeScript" },
           { src: "/logos/react.svg", label: "React 19" },
           { src: "/logos/onnx.svg", label: "ONNX Runtime Web" },
+          { src: "/logos/nvidia.svg", label: "Parakeet-TDT" },
           { src: "/logos/llamacpp.svg", label: "wllama / llama.cpp" },
         ]}
         notes="WXT vereinheitlicht Vite Build Auto-Imports Hot-Module-Replacement Chrome und Firefox. TypeScript und React 19 fürs Popup. Parakeet-TDT von NVIDIA für die Spracherkennung, über ONNX Runtime Web im Browser ausgeführt. wllama WebAssembly-Anbindung an llama.cpp für Qwen GGUF. Playwright und Puppeteer bewusst nicht gewählt, zusätzliche Berechtigungen Prozesse Kollision mit assistiven Technologien."
@@ -462,6 +464,46 @@ export default function Slides() {
           },
         ]}
         notes="Nur Google erfolgreich. Confluence Login statt Suche. Amazon Produkt statt Suchknopf. Zeiterfassung Endlosschleife. Hauptfehler Selektor-Disambiguierung."
+      />
+
+      <ImageGridSlide
+        title="Popup-Zustände"
+        columns={3}
+        bordered
+        images={[
+          { src: "/demo-screenshots-gifs/extension-popup-download-view.png", alt: "Popup Download-Ansicht" },
+          { src: "/demo-screenshots-gifs/extension-popup-idle.png", alt: "Popup Ready-Zustand" },
+          { src: "/demo-screenshots-gifs/extension-popup-record.png", alt: "Popup Recording-Zustand" },
+          { src: "/demo-screenshots-gifs/extension-popup-planning.png", alt: "Popup Planning-Zustand" },
+          { src: "/demo-screenshots-gifs/extension-popup-no-speech-detected.png", alt: "Popup keine Sprache erkannt" },
+        ]}
+        notes="Download-Ansicht beim Erststart. Ready-Zustand. Recording während Aufnahme. Planning während LLM-Aktionsplanung. Kein-Sprache-erkannt als Fehlerfall. Aufnahme verwerfen als Nutzerkontrolle."
+      />
+
+      <VideoSlide
+        title="Popup nach Abschluss"
+        src="/demo-screenshots-gifs/extension-popup-finished-cropped.mov"
+        bordered
+        large
+        notes="Popup nach Abschluss der Aufgabe, Aktionsprotokoll sichtbar. Manuell starten per Klick auf Play."
+      />
+
+      <VideoSlide
+        title="Erfolgreicher Testlauf"
+        src="/demo-screenshots-gifs/happy_case_video.mov"
+        notes="Happy Case erfolgreicher Durchlauf. Manuell starten per Klick auf Play."
+      />
+
+      <VideoSlide
+        title="Fehlgeschlagener Testlauf"
+        src="/demo-screenshots-gifs/bad_case_video.mov"
+        notes="Bad Case Fehlerfall mit Replan und Endlosschleife. Manuell starten per Klick auf Play."
+      />
+
+      <VideoSlide
+        title="Amazon-Testfall: Kindle-Suche"
+        src="/demo-screenshots-gifs/amazon-testcase-kindle.mov"
+        notes="Amazon Testfall Kindle-Suche Produkt statt Suchknopf. Manuell starten per Klick auf Play, Video ist ueber 1 Minute lang, ggf. vorspulen."
       />
 
       <TableSlide

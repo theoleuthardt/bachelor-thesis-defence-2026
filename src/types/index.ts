@@ -147,6 +147,28 @@ export interface SlideReferencesProps {
   references?: Reference[];
 }
 
+export interface VideoSlideProps {
+  title?: string;
+  src: string;
+  bordered?: boolean;
+  large?: boolean;
+  notes?: string;
+}
+
+export interface ImageGridItem {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
+export interface ImageGridSlideProps {
+  title?: string;
+  images?: ImageGridItem[];
+  columns?: 1 | 2 | 3;
+  bordered?: boolean;
+  notes?: string;
+}
+
 export interface LogoGridItem {
   src: string;
   label: string;

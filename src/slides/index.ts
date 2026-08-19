@@ -22,3 +22,5 @@ export { default as QuadrantSlide } from "./QuadrantSlide";
 export { default as StateMachineSlide } from "./StateMachineSlide";
 export { default as BadgeGridSlide } from "./BadgeGridSlide";
 export { default as LogoGridSlide } from "./LogoGridSlide";
+export { default as ImageGridSlide } from "./ImageGridSlide";
+export { default as VideoSlide } from "./VideoSlide";
