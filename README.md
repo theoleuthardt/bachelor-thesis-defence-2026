@@ -6,7 +6,7 @@ the defended prototype in [local-accessible-voice-agent](https://github.com/theo
 
 ## Topic
 
-**Title:** Natural Language Web Interaction — A local LLM-based agent for low-barrier website usage <br>
+**Title:** Natural Language Web Interaction: A local LLM-based agent for low-barrier website usage <br>
 **Candidate:** Theo Leuthardt <br>
 **Company:** Bundesdruckerei GmbH <br>
 **University:** HWR Berlin <br>
@@ -22,67 +22,84 @@ the defended prototype in [local-accessible-voice-agent](https://github.com/theo
 - **prism-react-renderer** for syntax highlighting on code slides
 - **Inter** typeface
 
-## Quick start
+## Task runner
 
-### Installation
+All commands run through [Taskfile.yml](Taskfile.yml) ([go-task](https://taskfile.dev)). Install go-task once (`brew install go-task` on macOS), then
+run `task --list` at any point to see every task with its description.
 
-```bash
-npm install
-```
+### Setup
+
+| Task      | Description                                                            | Example        |
+| --------- | ---------------------------------------------------------------------- | -------------- |
+| `install` | Install all dependencies                                               | `task install` |
+| `reset`   | Delete `node_modules` and `package-lock.json`, reinstall clean         | `task reset`   |
+| `start`   | Fresh setup: install, then lint + typecheck, then start the dev server | `task start`   |
 
 ### Development
 
-```bash
-npm run dev
-```
+| Task       | Description                                                                           | Example         |
+| ---------- | ------------------------------------------------------------------------------------- | --------------- |
+| `dev`      | Start the Vite dev server on port 5173                                                | `task dev`      |
+| `dev:open` | Open the browser at the dev server URL (run alongside `task dev` in another terminal) | `task dev:open` |
+| `dev:host` | Start the dev server exposed on the local network                                     | `task dev:host` |
 
-Open your browser at `http://localhost:5173` (or the port shown in your terminal).
+### Build & preview
 
-### Build
+| Task           | Description                                            | Example             |
+| -------------- | ------------------------------------------------------ | ------------------- |
+| `build`        | Type-check and create the production build in `dist/`  | `task build`        |
+| `preview`      | Serve the production build locally                     | `task preview`      |
+| `preview:open` | Serve the production build and open the browser        | `task preview:open` |
+| `clean`        | Remove build artifacts (`dist/`, `node_modules/.vite`) | `task clean`        |
 
-```bash
-npm run build
-```
+### Code quality
 
-The built files will be in the `dist/` directory.
+| Task        | Description                                         | Example          |
+| ----------- | --------------------------------------------------- | ---------------- |
+| `format`    | Format all files with Prettier                      | `task format`    |
+| `lint`      | Run ESLint over the project                         | `task lint`      |
+| `lint:fix`  | Run ESLint with `--fix`                             | `task lint:fix`  |
+| `typecheck` | TypeScript type-check only, no build output         | `task typecheck` |
+| `check`     | Run format, lint and typecheck as a pre-commit gate | `task check`     |
+| `ci`        | Full pipeline: install, lint, typecheck, build      | `task ci`        |
 
-### Preview build
+### Reveal.js helpers
 
-```bash
-npm run preview
-```
+| Task                | Description                                                                                                                                                                | Example                                                           |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `reveal:help`       | Print all Reveal.js keyboard shortcuts                                                                                                                                     | `task reveal:help`                                                |
+| `reveal:overview`   | Open the slide overview (grid view of all slides)                                                                                                                          | `task reveal:overview`                                            |
+| `reveal:notes`      | Open the speaker-notes pop-up window                                                                                                                                       | `task reveal:notes`                                               |
+| `reveal:first`      | Open the deck directly at slide 1                                                                                                                                          | `task reveal:first`                                               |
+| `reveal:jump`       | Open a specific slide number, pass `N=<number>`                                                                                                                            | `task reveal:jump N=5`                                            |
+| `reveal:pdf`        | Open the browser's manual print-to-PDF mode (File → Print)                                                                                                                 | `task reveal:pdf`                                                 |
+| `reveal:pdf:export` | Export the deck to PDF from the terminal, no browser dialog needed. Writes to `docs/pdf-export/presentation.pdf` by default, or pass `OUT=<filename>` for a different name | `task reveal:pdf:export`<br>`task reveal:pdf:export OUT=deck.pdf` |
 
-### Type check
-
-```bash
-npm run build   # tsc -b && vite build
-```
-
-### Lint
-
-```bash
-npm run lint
-```
+`reveal:pdf:export` starts a temporary dev server if none is already running on port
+5173, loads the deck in `?print-pdf` mode, waits for fonts and images to settle, and
+prints it with Chromium's native PDF engine via Playwright.
 
 ## Reveal.js configuration
 
 The configuration lives in `src/App.tsx`:
 
-- `transition: 'slide'` · `transitionSpeed: 'default'` · `backgroundTransition: 'fade'`
+- `hash: true` · `transition: 'slide'` · `transitionSpeed: 'default'` · `backgroundTransition: 'fade'`
 - `center: true` · `width: 1200` · `height: 700` · `margin: 0.02`
 - `slideNumber: 'c/t'` · `fragments: true` · `fragmentInURL: false`
 - `minScale: 0.1` · `maxScale: 2.0`
+- Plugins: `Notes` (speaker notes via the `s` key)
 
 ## Keyboard shortcuts
 
-| Key           | Action                              |
-| ------------- | ----------------------------------- |
-| `→` / `Space` | Next slide / fragment               |
-| `←`           | Previous slide                      |
-| `s`           | Speaker notes                       |
-| `f`           | Fullscreen                          |
-| `Esc`         | Slide overview                      |
-| `?`           | Show all shortcuts                  |
+| Key           | Action                         |
+| ------------- | ------------------------------ |
+| `→` / `Space` | Next slide / fragment          |
+| `←`           | Previous slide                 |
+| `s`           | Speaker notes                  |
+| `r`           | Toggle references on the slide |
+| `f`           | Fullscreen                     |
+| `Esc`         | Slide overview                 |
+| `?`           | Show all shortcuts             |
 
 ## Dependencies
 
@@ -93,3 +110,5 @@ The configuration lives in `src/App.tsx`:
 - `vite` — build tool
 - `typescript` — type checking
 - `eslint` — linting
+- `prettier` — code formatting
+- `playwright` — headless Chromium for the PDF export script
