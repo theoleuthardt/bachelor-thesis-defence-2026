@@ -33,7 +33,7 @@ export default function ContentSlide({
         ))}
       </div>
       <References references={references} />
-      <aside className="notes">{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>{notes ?? ""}</aside>
     </section>
   );
 }

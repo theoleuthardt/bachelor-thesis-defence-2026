@@ -36,7 +36,7 @@ export default function TableSlide({
         </tbody>
       </table>
       <References references={references} />
-      <aside className="notes">{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>{notes ?? ""}</aside>
     </section>
   );
 }

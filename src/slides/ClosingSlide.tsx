@@ -36,7 +36,7 @@ export default function ClosingSlide({
           </div>
         </div>
       </div>
-      <aside className="notes">Thank the audience and open the floor.</aside>
+      <aside className="notes" data-markdown>{`- Danke sagen, kurz durchatmen\n- Fachgespräch eröffnen, für Rückfragen bereit sein`}</aside>
     </section>
   );
 }

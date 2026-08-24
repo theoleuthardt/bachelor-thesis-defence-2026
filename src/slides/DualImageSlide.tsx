@@ -52,7 +52,7 @@ export default function DualImageSlide({
         </div>
       </div>
       <References references={references} />
-      <aside className="notes">{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>{notes ?? ""}</aside>
     </section>
   );
 }

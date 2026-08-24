@@ -29,7 +29,7 @@ export default function KeyValueSlide({
       </div>
       {footer && <p className="fragment slide-footer">{footer}</p>}
       <References references={references} />
-      <aside className="notes">{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>{notes ?? ""}</aside>
     </section>
   );
 }

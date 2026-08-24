@@ -28,7 +28,7 @@ export default function ImageGridSlide({
           </figure>
         ))}
       </div>
-      <aside className="notes">{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>{notes ?? ""}</aside>
     </section>
   );
 }
