@@ -69,9 +69,9 @@ tasks:
   check:
     desc: Run lint and typecheck as pre-commit gate
     cmds:
-      - task:format
-      - task:lint
-      - task:typecheck
+      - task: format
+      - task: lint
+      - task: typecheck
 
   reveal:help:
     desc: Print all Reveal.js keyboard shortcuts
@@ -114,9 +114,9 @@ tasks:
   start:
     desc: Fresh setup with install, typecheck, lint, then start dev server
     cmds:
-      - task:install
-      - task:check
-      - task:dev
+      - task: install
+      - task: check
+      - task: dev
 
   install:
     desc: Install all dependencies
@@ -132,7 +132,7 @@ tasks:
   ci:
     desc: Full CI pipeline with install, lint, typecheck, build
     cmds:
-      - task:install
-      - task:lint
-      - task:typecheck
-      - task:build
+      - task: install
+      - task: lint
+      - task: typecheck
+      - task: build
