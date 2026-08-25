@@ -12,7 +12,7 @@ const OUT = path.join(
   OUT_DIR,
   process.argv.find((a) => a.startsWith("--out="))?.split("=")[1] ??
     process.env.OUT ??
-    "presentation.pdf",
+    "Verteidigung_Theo_Leuthardt_01092026.pdf",
 );
 
 async function isServerUp() {
