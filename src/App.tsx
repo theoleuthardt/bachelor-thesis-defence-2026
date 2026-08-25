@@ -19,7 +19,9 @@ function App() {
   useEffect(() => {
     if (deckRef.current) return;
 
-    const isPrintPdf = new URLSearchParams(window.location.search).has("print-pdf");
+    const isPrintPdf = new URLSearchParams(window.location.search).has(
+      "print-pdf",
+    );
     if (isPrintPdf) {
       document.documentElement.classList.add("print-pdf-mode");
     }
@@ -29,7 +31,9 @@ function App() {
         const revealElement = document.querySelector(".reveal") as HTMLElement;
         if (!revealElement) return;
 
-        const isPrintPdf = new URLSearchParams(window.location.search).has("print-pdf");
+        const isPrintPdf = new URLSearchParams(window.location.search).has(
+          "print-pdf",
+        );
 
         const deck = new (Reveal as unknown as RevealConstructor)(
           revealElement,
