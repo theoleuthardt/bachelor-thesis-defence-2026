@@ -270,6 +270,29 @@ export interface PipelineSlideProps {
   title?: string;
   stages?: PipelineStage[];
   caption?: string;
+  highlightFrom?: number;
+  notes?: string;
+  references?: Reference[];
+}
+
+export interface FlowNode {
+  icon: IconName;
+  label: string;
+  caption?: string;
+  sideLabels?: {
+    top?: string;
+    bottom?: string;
+  };
+}
+
+export interface PromptFlowSlideProps {
+  title?: string;
+  subtitle?: string;
+  inputs?: FlowNode[];
+  mergeLabel?: string;
+  mergeIcon?: IconName;
+  mergeCaption?: string;
+  stages?: FlowNode[];
   notes?: string;
   references?: Reference[];
 }

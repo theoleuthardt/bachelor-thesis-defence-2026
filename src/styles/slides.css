@@ -15,6 +15,7 @@
   --accent-red: #e60037;
   --accent-green: #00543c;
   --accent-warn: #ffc200;
+  --accent-amber-dark: #a86300;
   --accent-gray-mid: #575757;
   --border-light: #dadada;
 }
@@ -1109,6 +1110,257 @@
   color: var(--text-primary);
   text-align: center;
   line-height: 1.25;
+}
+
+.pipeline-highlight-trigger {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.pipeline-highlight-box {
+  position: absolute;
+  top: -0.5em;
+  bottom: -0.35em;
+  border: 5px solid var(--accent-red);
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.pipeline:has(.pipeline-highlight-trigger.visible) .pipeline-highlight-box {
+  opacity: 1;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   PromptFlowSlide (merge diagram into grammar constrained pipeline)
+──────────────────────────────────────────────────────────────── */
+.merge-diagram {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.4em;
+  width: 100%;
+  max-width: 1130px;
+  margin: 0.8em auto 0;
+  font-size: 1.03em;
+}
+
+.merge-diagram > * {
+  min-width: 0;
+}
+
+.merge-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.3em;
+}
+
+.merge-inputs-box {
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.6em 1.3em 0.6em 0.9em;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.merge-inputs-box:has(.merge-input-node.visible) {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-light);
+}
+
+.merge-input-node {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.merge-input-node .icon-badge-md {
+  flex-shrink: 0;
+}
+
+.merge-input-label {
+  font-size: 0.72em;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  line-height: 1.15;
+  max-width: 6.5em;
+}
+
+.merge-arrows {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.32em;
+  flex-shrink: 0;
+}
+
+.merge-arrow {
+  min-height: 1.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-blue-mid);
+  font-size: 0.95em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.merge-target {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  padding: 0.4em 1.15em;
+  background-color: var(--accent-blue-light);
+  border-radius: 6px;
+  color: var(--accent-blue);
+}
+
+.merge-target svg {
+  width: 1.3em;
+  height: 1.3em;
+  flex-shrink: 0;
+}
+
+.merge-target-label {
+  font-size: 0.78em;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.merge-target-caption {
+  font-size: 0.52em;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent-blue);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.merge-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-blue-mid);
+  font-size: 0.95em;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0.05em;
+}
+
+.planning-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.2em 0.7em;
+  margin: 0;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.planning-box:has(.planning-step.visible) {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-light);
+}
+
+.planning-step-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.planning-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.planning-step .icon-badge-sm {
+  margin: 0 auto 0.08em;
+}
+
+.planning-step-label {
+  font-size: 0.7em;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.05;
+  max-width: 6.5em;
+  overflow-wrap: break-word;
+}
+
+.planning-step-caption {
+  font-size: 0.54em;
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1;
+  margin-top: 0.02em;
+}
+
+.planning-step-connector {
+  flex-shrink: 0;
+  color: var(--accent-blue-mid);
+  font-size: 0.9em;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0.25em;
+}
+
+.planning-side-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4em;
+}
+
+.planning-side-slot-top {
+  align-items: flex-end;
+  padding-bottom: 0.25em;
+}
+
+.planning-side-slot-bottom {
+  align-items: flex-start;
+  padding-top: 0.25em;
+}
+
+.planning-side-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08em;
+  font-size: 0.5em;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent-amber-dark);
+  line-height: 1.1;
+  max-width: 6em;
+  text-align: center;
+}
+
+.planning-side-arrow {
+  font-size: 1.15em;
+  font-weight: 700;
+  line-height: 0.8;
 }
 
 /* ────────────────────────────────────────────────────────────────

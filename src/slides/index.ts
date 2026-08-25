@@ -24,3 +24,4 @@ export { default as BadgeGridSlide } from "./BadgeGridSlide";
 export { default as LogoGridSlide } from "./LogoGridSlide";
 export { default as ImageGridSlide } from "./ImageGridSlide";
 export { default as VideoSlide } from "./VideoSlide";
+export { default as PromptFlowSlide } from "./PromptFlowSlide";
