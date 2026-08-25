@@ -12,7 +12,7 @@ export default function TocSlide() {
   useEffect(() => {
     const collect = () => {
       const sections = Array.from(
-        document.querySelectorAll(".reveal .slides section")
+        document.querySelectorAll(".reveal .slides section"),
       );
       const found: TocEntry[] = [];
       sections.forEach((sec) => {
@@ -27,7 +27,9 @@ export default function TocSlide() {
       });
       setEntries(found);
     };
-    const isPrintPdf = new URLSearchParams(window.location.search).has("print-pdf");
+    const isPrintPdf = new URLSearchParams(window.location.search).has(
+      "print-pdf",
+    );
     const timer = setTimeout(collect, isPrintPdf ? 2000 : 300);
     return () => clearTimeout(timer);
   }, []);
@@ -35,7 +37,12 @@ export default function TocSlide() {
   return (
     <section>
       <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
-      <Logo src="/HWR.png" alt="Hochschule für Wirtschaft und Recht" position="top-right" width={230} />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <div className="section-spacer" />
       <h2>Agenda</h2>
       <ol className="toc-list">

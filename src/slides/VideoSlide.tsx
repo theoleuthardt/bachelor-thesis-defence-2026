@@ -10,7 +10,9 @@ export default function VideoSlide({
   return (
     <section className="image-grid-slide">
       <h3>{title}</h3>
-      <div className={`image-grid image-grid-1 ${large ? "image-grid-1-large" : ""}`}>
+      <div
+        className={`image-grid image-grid-1 ${large ? "image-grid-1-large" : ""}`}
+      >
         <div className="image-grid-cell">
           <video
             src={src}
@@ -19,7 +21,9 @@ export default function VideoSlide({
           />
         </div>
       </div>
-      <aside className="notes" data-markdown>{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>
+        {notes ?? ""}
+      </aside>
     </section>
   );
 }

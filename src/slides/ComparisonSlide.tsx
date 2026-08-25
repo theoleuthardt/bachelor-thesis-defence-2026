@@ -27,7 +27,9 @@ export default function ComparisonSlide({
           ))}
         </div>
         {footer && <p className="fragment slide-footer">{footer}</p>}
-        <aside className="notes" data-markdown>{notes ?? ""}</aside>
+        <aside className="notes" data-markdown>
+          {notes ?? ""}
+        </aside>
       </section>
     );
   }
@@ -56,7 +58,9 @@ export default function ComparisonSlide({
         ))}
       </div>
       {footer && <p className="fragment slide-footer">{footer}</p>}
-      <aside className="notes" data-markdown>{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>
+        {notes ?? ""}
+      </aside>
     </section>
   );
 }

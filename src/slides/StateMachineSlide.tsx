@@ -42,7 +42,9 @@ export default function StateMachineSlide({
       </div>
       {caption && <p className="fragment slide-footer">{caption}</p>}
       <References references={references} />
-      <aside className="notes" data-markdown>{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>
+        {notes ?? ""}
+      </aside>
     </section>
   );
 }

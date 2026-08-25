@@ -26,7 +26,9 @@ export default function TakeawaysSlide({
             </div>
           ))}
         </div>
-        <aside className="notes" data-markdown>{notes ?? ""}</aside>
+        <aside className="notes" data-markdown>
+          {notes ?? ""}
+        </aside>
       </section>
     );
   }
@@ -46,7 +48,9 @@ export default function TakeawaysSlide({
           </li>
         ))}
       </ol>
-      <aside className="notes" data-markdown>{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>
+        {notes ?? ""}
+      </aside>
     </section>
   );
 }

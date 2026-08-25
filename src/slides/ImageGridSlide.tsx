@@ -12,7 +12,11 @@ export default function ImageGridSlide({
       <h3>{title}</h3>
       <div
         className={`image-grid ${
-          columns === 1 ? "image-grid-1" : columns === 2 ? "image-grid-2" : "image-grid-3"
+          columns === 1
+            ? "image-grid-1"
+            : columns === 2
+              ? "image-grid-2"
+              : "image-grid-3"
         }`}
       >
         {images.map((img, index) => (
@@ -23,12 +27,16 @@ export default function ImageGridSlide({
               className={`image-grid-item ${bordered ? "image-grid-item-border" : ""}`}
             />
             {img.caption && (
-              <figcaption className="image-grid-caption">{img.caption}</figcaption>
+              <figcaption className="image-grid-caption">
+                {img.caption}
+              </figcaption>
             )}
           </figure>
         ))}
       </div>
-      <aside className="notes" data-markdown>{notes ?? ""}</aside>
+      <aside className="notes" data-markdown>
+        {notes ?? ""}
+      </aside>
     </section>
   );
 }
