@@ -56,6 +56,7 @@ export interface ContentSlideProps {
 
 export interface CardItem {
   icon: IconName;
+  iconVisual?: ReactNode;
   title: string;
   description: string;
 }
@@ -64,7 +65,9 @@ export interface CardsSlideProps {
   title?: string;
   cards?: CardItem[];
   concludingRemark?: string;
-  columns?: 2 | 3;
+  columns?: 2 | 3 | 5;
+  minimal?: boolean;
+  centerVertically?: boolean;
   notes?: string;
   references?: Reference[];
 }
@@ -89,10 +92,12 @@ export interface ComparisonItem {
   title: string;
   description: string;
   icon?: IconName;
+  status?: "success" | "danger";
 }
 
 export interface ComparisonSlideProps {
   title?: string;
+  subtitle?: string;
   items?: ComparisonItem[];
   layout?: "cards" | "split";
   footer?: string;
@@ -122,6 +127,7 @@ export interface TakeawaysSlideProps {
   title?: string;
   items?: TakeawayItem[];
   variant?: "numbered" | "funnel";
+  footer?: string;
   notes?: string;
 }
 
@@ -239,15 +245,26 @@ export interface ImageSlideProps {
   references?: Reference[];
 }
 
+export interface DualImageBelowNode {
+  icon: IconName;
+  label: string;
+}
+
 export interface DualImageSlideProps {
   title?: string;
   subtitle?: string;
   leftSrc?: string;
   leftAlt?: string;
+  leftVisual?: ReactNode;
   rightSrc?: string;
   rightAlt?: string;
+  rightVisual?: ReactNode;
   leftLabel?: string;
   rightLabel?: string;
+  belowRow?: DualImageBelowNode[];
+  belowCaption?: string;
+  staggerReveal?: boolean;
+  centerVertically?: boolean;
   notes?: string;
   references?: Reference[];
 }
@@ -339,6 +356,21 @@ export interface StateMachineSlideProps {
   subtitle?: string;
   entry?: string;
   states?: StateNode[];
+  caption?: string;
+  notes?: string;
+  references?: Reference[];
+}
+
+export interface NetworkNode {
+  icon: IconName;
+  label: string;
+}
+
+export interface NetworkDiagramSlideProps {
+  title?: string;
+  subtitle?: string;
+  hub?: NetworkNode;
+  spokes?: NetworkNode[];
   caption?: string;
   notes?: string;
   references?: Reference[];
