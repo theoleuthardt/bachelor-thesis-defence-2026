@@ -7,7 +7,7 @@ vars:
 tasks:
   default:
     cmds:
-      - task --list
+      - task --list-all
     silent: true
 
   dev:
@@ -18,7 +18,8 @@ tasks:
   dev:open:
     desc: Start dev server and open the browser automatically
     cmds:
-      - open {{.URL}}
+      - (sleep 1 && open {{.URL}}) &
+      - npm run dev
 
   dev:host:
     desc: Start dev server exposed on the network
@@ -38,7 +39,7 @@ tasks:
   preview:open:
     desc: Serve the production build and open the browser
     cmds:
-      - open http://localhost:4173
+      - (sleep 1 && open http://localhost:4173) &
       - npm run preview
 
   clean:
