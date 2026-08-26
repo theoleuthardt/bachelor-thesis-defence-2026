@@ -104,10 +104,10 @@ const paths: Record<IconName, React.ReactNode> = {
   ),
   gitBranch: (
     <>
-      <circle cx="6" cy="5" r="2" />
-      <circle cx="6" cy="19" r="2" />
-      <circle cx="18" cy="12" r="2" />
-      <path d="M6 7v10M6 12c0-4 5-4 10-4" />
+      <line x1="6" y1="3" x2="6" y2="15" />
+      <circle cx="18" cy="6" r="3" />
+      <circle cx="6" cy="18" r="3" />
+      <path d="M18 9a9 9 0 0 1-9 9" />
     </>
   ),
   wrench: (
@@ -125,7 +125,7 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M12 3v18M9 21h6M4 7h16" />
       <path d="M4 7l-3 6a3.5 3.5 0 0 0 7 0L4 7Z" />
-      <path d="M20 7l-3 6a3.5 3.5 0 0 0 7 0L20 7Z" />
+      <path d="M20 7l3 6a3.5 3.5 0 0 1-7 0L20 7Z" />
     </>
   ),
 };
