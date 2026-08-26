@@ -1,6 +1,7 @@
 import Icon from "../components/icons";
 import References from "../components/References";
 import type { ContentSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function ContentSlide({
   title = "Folientitel",
@@ -16,7 +17,14 @@ export default function ContentSlide({
   references,
 }: ContentSlideProps) {
   return (
-    <section>
+    <section className="cards-slide">
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       <p>{content}</p>
       <div className="grid-2" style={{ marginTop: "0.7em" }}>

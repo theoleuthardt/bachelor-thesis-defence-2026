@@ -1,6 +1,7 @@
 import Icon from "../components/icons";
 import References from "../components/References";
 import type { StateMachineSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function StateMachineSlide({
   title = "Zustandsautomat",
@@ -17,6 +18,13 @@ export default function StateMachineSlide({
 
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       {subtitle && <p className="small-text slide-subtitle">{subtitle}</p>}
       {entry && <p className="fsm-entry small-text">{entry}</p>}

@@ -1,4 +1,5 @@
 import type { ImageGridSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function ImageGridSlide({
   title = "Abbildungen",
@@ -9,6 +10,13 @@ export default function ImageGridSlide({
 }: ImageGridSlideProps) {
   return (
     <section className="image-grid-slide">
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       <div
         className={`image-grid ${

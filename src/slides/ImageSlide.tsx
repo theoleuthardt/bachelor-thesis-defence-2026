@@ -1,5 +1,6 @@
 import References from "../components/References";
 import type { ImageSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function ImageSlide({
   title = "Abbildung",
@@ -16,6 +17,13 @@ export default function ImageSlide({
 }: ImageSlideProps) {
   return (
     <section className="image-slide">
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       {title && <h3 className="image-slide-title">{title}</h3>}
       {subtitle && <p className="small-text slide-subtitle">{subtitle}</p>}
       <div className="image-center">

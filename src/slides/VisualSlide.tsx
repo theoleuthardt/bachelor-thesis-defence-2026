@@ -1,4 +1,5 @@
 import type { VisualSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function VisualSlide({
   title = "Visueller Inhalt",
@@ -11,6 +12,13 @@ export default function VisualSlide({
 }: VisualSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       <p className="small-text">{subtitle}</p>
       <div

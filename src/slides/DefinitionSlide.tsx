@@ -1,5 +1,6 @@
 import References from "../components/References";
 import type { DefinitionSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function DefinitionSlide({
   title = "Definition",
@@ -11,6 +12,13 @@ export default function DefinitionSlide({
 }: DefinitionSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       <div className="box box-accent">
         <p>

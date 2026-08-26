@@ -1,4 +1,5 @@
 import type { AgendaSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function AgendaSlide({
   items = [
@@ -11,6 +12,13 @@ export default function AgendaSlide({
 }: AgendaSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h2>Agenda</h2>
       <ol className="toc-list">
         {items.map((item, index) => (

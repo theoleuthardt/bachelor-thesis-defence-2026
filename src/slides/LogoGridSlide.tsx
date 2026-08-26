@@ -1,5 +1,6 @@
 import References from "../components/References";
 import type { LogoGridSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function LogoGridSlide({
   title = "Technologien",
@@ -12,6 +13,13 @@ export default function LogoGridSlide({
 }: LogoGridSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       {subtitle && <p className="small-text slide-subtitle">{subtitle}</p>}
       <div

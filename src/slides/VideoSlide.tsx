@@ -1,4 +1,5 @@
 import type { VideoSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function VideoSlide({
   title = "Video",
@@ -9,6 +10,13 @@ export default function VideoSlide({
 }: VideoSlideProps) {
   return (
     <section className="image-grid-slide">
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       <div
         className={`image-grid image-grid-1 ${large ? "image-grid-1-large" : ""}`}

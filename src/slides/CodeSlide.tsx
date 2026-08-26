@@ -2,6 +2,7 @@ import { Highlight } from "prism-react-renderer";
 import References from "../components/References";
 import type { PrismTheme } from "prism-react-renderer";
 import type { CodeSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 const lightTheme: PrismTheme = {
   plain: {
@@ -57,6 +58,13 @@ export default function CodeSlide({
 }: CodeSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       {caption && <p className="small-text slide-subtitle">{caption}</p>}
       <Highlight theme={lightTheme} code={code.trim()} language={language}>

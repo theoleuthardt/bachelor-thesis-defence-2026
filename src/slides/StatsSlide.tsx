@@ -1,5 +1,6 @@
 import References from "../components/References";
 import type { StatsSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function StatsSlide({
   title = "Zahlen, die sprechen",
@@ -17,6 +18,13 @@ export default function StatsSlide({
 }: StatsSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       {title && <h3>{title}</h3>}
       <div className="stats-grid" style={{ marginTop: "0.6em" }}>
         {stats.map((s, i) => (

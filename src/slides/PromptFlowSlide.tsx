@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Icon from "../components/icons";
 import References from "../components/References";
 import type { PromptFlowSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function PromptFlowSlide({
   title = "Prompt-Aufbau",
@@ -19,6 +20,13 @@ export default function PromptFlowSlide({
 
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       {subtitle && <p className="small-text slide-subtitle">{subtitle}</p>}
       <div className="merge-diagram">

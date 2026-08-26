@@ -1,5 +1,6 @@
 import Icon from "../components/icons";
 import type { TakeawaysSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function TakeawaysSlide({
   title = "Kernbotschaften",
@@ -9,18 +10,23 @@ export default function TakeawaysSlide({
     { title: "Dritte Botschaft", description: "Kurze Erläuterung." },
   ],
   variant = "numbered",
+  footer,
   notes,
 }: TakeawaysSlideProps) {
   if (variant === "funnel") {
     return (
       <section>
+        <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+        <Logo
+          src="/HWR.png"
+          alt="Hochschule für Wirtschaft und Recht"
+          position="top-right"
+          width={230}
+        />
         <h3>{title}</h3>
         <div className="defense-stack">
           {items.map((item, index) => (
             <div key={index} className="defense-layer fragment">
-              <div className="icon-badge icon-badge-md">
-                {item.icon && <Icon name={item.icon} />}
-              </div>
               <div className="defense-layer-title">{item.title}</div>
               <div className="defense-layer-desc">{item.description}</div>
             </div>
@@ -35,6 +41,13 @@ export default function TakeawaysSlide({
 
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       <ol className="open-questions">
         {items.map((item, index) => (
@@ -48,6 +61,7 @@ export default function TakeawaysSlide({
           </li>
         ))}
       </ol>
+      {footer && <p className="fragment slide-footer">{footer}</p>}
       <aside className="notes" data-markdown>
         {notes ?? ""}
       </aside>

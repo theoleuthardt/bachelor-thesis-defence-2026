@@ -1,5 +1,6 @@
 import References from "../components/References";
 import type { KeyValueSlideProps } from "../types";
+import Logo from "../components/Logo";
 
 export default function KeyValueSlide({
   title = "Kernpunkte",
@@ -14,6 +15,13 @@ export default function KeyValueSlide({
 }: KeyValueSlideProps) {
   return (
     <section>
+      <Logo src="/BDR.png" alt="Bundesdruckerei GmbH" position="top-left" />
+      <Logo
+        src="/HWR.png"
+        alt="Hochschule für Wirtschaft und Recht"
+        position="top-right"
+        width={230}
+      />
       <h3>{title}</h3>
       {subtitle && <p className="small-text slide-subtitle">{subtitle}</p>}
       <div className="kv-list" style={{ marginTop: "0.3em" }}>
