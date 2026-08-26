@@ -1,0 +1,20 @@
+Reveal.js keyboard shortcuts
+=============================
+
+Navigation
+  N, Space, →, ↓      Next slide / fragment
+  P, ←, ↑             Previous slide / fragment
+  Home                First slide
+  End                 Last slide
+  Page Down           Next slide (skip fragments)
+  Page Up             Previous slide (skip fragments)
+
+Overview & display
+  Esc, O              Toggle slide overview (grid view)
+  F                    Toggle fullscreen
+  S                    Open speaker notes window
+  B, .                Pause presentation (black screen)
+  Alt + click          Zoom into clicked element
+
+Other
+  ?                    Show this help as an on-screen overlay
