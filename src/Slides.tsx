@@ -7,25 +7,36 @@ import {
   CodeSlide,
   ImageSlide,
   DualImageSlide,
+  ComparisonSlide,
   QuoteSlide,
   KeyValueSlide,
   PipelineSlide,
   TableSlide,
-  ComparisonSlide,
   TakeawaysSlide,
   TocSlide,
   CardsSlide,
-  ContentSlide,
   QuadrantSlide,
   StateMachineSlide,
-  BadgeGridSlide,
   LogoGridSlide,
   ImageGridSlide,
   VideoSlide,
+  PromptFlowSlide,
+  NetworkDiagramSlide,
 } from "./slides/";
 import Meter from "./components/Meter";
 import RatingDots from "./components/RatingDots";
 import Ref from "./components/Ref";
+import {
+  LowVisionVisual,
+  MotorImpairmentVisual,
+} from "./components/AccessibilityVisuals";
+import {
+  WatchdogVisual,
+  GenerationCounterVisual,
+  PlanSignatureVisual,
+  RejectedSignatureVisual,
+  IterationCapVisual,
+} from "./components/DiagramAnimations";
 
 export default function Slides() {
   return (
@@ -72,8 +83,10 @@ export default function Slides() {
             source: "seit 2021 verbindlich",
           },
         ]}
-        footer="WCAG 2.2 als Standard. Diskrepanz zwischen Anspruch und Realität"
-        notes="WHO 1,3 Mrd 16 Prozent Weltbevölkerung. WebAIM 95,9 Prozent. EU-Richtlinie seit 2021. Anspruch hinter Realität."
+        footer=""
+        notes={
+          "- 16 % der Weltbevölkerung\n- WCAG: Web Content Accessiblity Guidelines von WWW Consortium"
+        }
         references={[
           {
             id: "1",
@@ -93,27 +106,22 @@ export default function Slides() {
         ]}
       />
 
-      <CardsSlide
+      <DualImageSlide
         title="Zielgruppen und Datenschutzkonflikt"
-        cards={[
-          {
-            icon: "eye",
-            title: "Sehbehinderte Nutzer",
-            description: "Dynamische Seiten überfordern Screenreader.",
-          },
-          {
-            icon: "keyboard",
-            title: "Motorisch eingeschränkte Nutzer",
-            description: "Maus und Tastatur werden zur Hürde.",
-          },
-          {
-            icon: "shield",
-            title: "Datenschutzkonflikt",
-            description: "Sprachdaten dürfen das Gerät nicht verlassen.",
-          },
+        staggerReveal
+        centerVertically
+        leftVisual={<LowVisionVisual />}
+        leftLabel="Sehbehinderte Nutzer"
+        rightVisual={<MotorImpairmentVisual />}
+        rightLabel="Motorisch eingeschränkte Nutzer"
+        belowRow={[
+          { icon: "mic", label: "Sprachaufnahme" },
+          { icon: "alertTriangle", label: "Sensible Sprachdaten" },
         ]}
-        concludingRemark=""
-        notes="Sehbehindert Screenreader klare Hierarchien Navigation. Motorisch Parkinson Zerebralparese Dyspraxie. Sprachsteuerung via LLM verarbeitet personenbezogene Daten. Sousa Kern Daten sollten Gerät nicht verlassen."
+        belowCaption=""
+        notes={
+          "- Motorisch Parkinson Zerebralparese Dyspraxie\n- Sousa Kern Daten bleiben auf Gerät"
+        }
       />
 
       <SectionHeaderSlide number="02" title="Stand der Technik" />
@@ -175,7 +183,9 @@ export default function Slides() {
             ],
           },
         ]}
-        notes="Sechs Cloud-Web-Agenten. Mind2Web begründet Feld. WebVoyager SeeAct GPT-4V. AutoWebGLM 6B. WebRL WebChallenger Architektur. Gemeinsam Barrierefreiheit nie Designziel."
+        notes={
+          "- Mind2Web begründet das Feld\n- WebVoyager 59,1 %\n- WebRL 4,8 auf 42,4 % durch RL\n- WebChallenger PageMem 56,3 % WebArena"
+        }
         references={[
           {
             id: "1",
@@ -211,7 +221,9 @@ export default function Slides() {
           { label: "Firefox Voice", x: 82, y: 82 },
           { label: "Ziel dieser Arbeit", x: 75, y: 25, variant: "target" },
         ]}
-        notes="Zerhoudi SLM 2,7B WebGPU 18 Probanden 36,4 Prozent Akzeptanz nur Suchassistenz keine Aktionsplanung. Browser-Use Python Playwright außerhalb Browser Token-Kosten Halluzinationen. Firefox Voice 12000 Nutzer Cloud-ASR keine LLMs vordefinierte Intents. Lücke lokal browserbasiert sprachgesteuert barrierearm."
+        notes={
+          "- Zerhoudi SLM im Browser, nur Suche\n- Firefox Voice Cloud-ASR, keine LLMs\n- genau diese Lücke schließe ich"
+        }
         references={[
           {
             id: "1",
@@ -233,60 +245,35 @@ export default function Slides() {
 
       <QuoteSlide
         title="Forschungsfrage"
-        quote={<>Wie kann eine Browser-Erweiterung mit niedrigem Installationsaufwand entworfen werden, die Menschen mit einer motorischen oder Sehbehinderung ermöglicht, Webseiten <strong>ausschließlich durch Spracheingabe</strong> zu bedienen, unter der Bedingung, dass alle KI-Komponenten <strong>vollständig lokal im Browser</strong> inferiert werden?</>}
-        notes="Forschungsfrage aus BA Kapitel 3. Betont niedrigen Installationsaufwand beide Zielgruppen und vollstaendig lokale Inferenz."
+        quote={
+          <>
+            Wie kann eine Browser-Erweiterung mit niedrigem Installationsaufwand
+            entworfen werden, die Menschen mit einer motorischen oder
+            Sehbehinderung ermöglicht, Webseiten{" "}
+            <strong>ausschließlich durch Spracheingabe</strong> zu bedienen,
+            unter der Bedingung, dass alle KI-Komponenten{" "}
+            <strong>vollständig lokal im Browser</strong> inferiert werden?
+          </>
+        }
+        notes={
+          "- Forschungsfrage aus BA 3.1.4\n- langsam vorlesen, roter Faden"
+        }
       />
 
       <SectionHeaderSlide number="03" title="Entwurf der Systemarchitektur" />
 
-      <ContentSlide
-        title="Vier MV3-Ausführungskontexte"
-        content="Der Service Worker hat keinen DOM-Zugriff. Manifest V3 zwingt zur Aufteilung."
-        boxes={[
-          {
-            icon: "layers",
-            title: "Popup und Background",
-            description: "Bedienung und Orchestrator mit Zustandsautomat.",
-          },
-          {
-            icon: "globe",
-            title: "Content Script",
-            description: "Liest und bedient das DOM direkt.",
-          },
-          {
-            icon: "cpu",
-            title: "Offscreen Document",
-            description: "Einziger Ort für dauerhafte KI-Inferenz.",
-          },
-          {
-            icon: "mic",
-            title: "Permission-Tab als 5. Kontext",
-            description: "Löst die Mikrofon-Berechtigung separat.",
-          },
+      <NetworkDiagramSlide
+        title="MV3-Architektur der Browser-Erweiterung"
+        hub={{ icon: "cpu", label: "Background" }}
+        spokes={[
+          { icon: "layers", label: "Popup" },
+          { icon: "globe", label: "Content Script" },
+          { icon: "waves", label: "Offscreen Document" },
+          { icon: "mic", label: "Permission-Tab" },
         ]}
-        notes="MV3 zwingt vier Kontexte. Popup React ARIA WCAG AA. Background Orchestrator FSM 7 Zustände browser.storage.local. Content Script DOM-Extraktion max 100 Elemente Aktionsausführung. Offscreen wllama ONNX Runtime Web WebAssembly. Permission-Tab fünfter Kontext gemeinsamer chrome-extension Ursprung isMicPermissionError NotAllowedError."
-      />
-
-      <ImageSlide
-        title="Systemarchitektur"
-        imageSrc="/architecture-overview.png"
-        imageAlt="Systemarchitektur-Übersicht"
-        notes="Abbildung aus BA. Background vermittelt alle Nachrichten. Offscreen hostet Parakeet und wllama."
-      />
-
-      <StateMachineSlide
-        title="Message Router und Zustandsautomat"
-        subtitle="createMessageRouter dispatcht zwischen allen Kontexten"
-        entry="idle → downloading → ready"
-        states={[
-          { label: "Ready" },
-          { label: "Recording" },
-          { label: "Processing" },
-          { label: "Planning" },
-          { label: "Executing" },
-        ]}
-        caption="Generation-Zähler verwirft veraltete Rückkehrer bei Service-Worker-Restarts"
-        notes="createMessageRouter typ-sicheres Dispatching über TypeScript-Generics, identisch in allen Kontexten, jede Antwort als Promise.resolve. FSM 7 Zustände idle bis executing, danach zurück zu ready. transitionTo persistState broadcastStatus STATUS_UPDATE an Popup."
+        notes={
+          "- Background vermittelt als Message Router alle Nachrichten zwischen den Kontexten\n- Service Worker ohne eigenen DOM-Zugriff, aber Orchestrator mit Zustandsautomat\n- Popup React-UI\n- Content Script Zugriff auf die DOM der Website\n- Offscreen einziger Kontext mit dauerhaftem DOM für KI-Inferenz\n- Permission-Tab 5. Kontext, löst die Mikrofon-Berechtigung separat"
+        }
       />
 
       <LogoGridSlide
@@ -302,7 +289,9 @@ export default function Slides() {
           { src: "/logos/nvidia.svg", label: "Parakeet-TDT" },
           { src: "/logos/llamacpp.svg", label: "wllama / llama.cpp" },
         ]}
-        notes="WXT vereinheitlicht Vite Build Auto-Imports Hot-Module-Replacement Chrome und Firefox. TypeScript und React 19 fürs Popup. Parakeet-TDT von NVIDIA für die Spracherkennung, über ONNX Runtime Web im Browser ausgeführt. wllama WebAssembly-Anbindung an llama.cpp für Qwen GGUF. Playwright und Puppeteer bewusst nicht gewählt, zusätzliche Berechtigungen Prozesse Kollision mit assistiven Technologien."
+        notes={
+          "- WXT vereinheitlicht Chrome und Firefox\n- React 19 fürs Popup\n- Parakeet-TDT für ASR\n- wllama für Qwen im GGUF-Format\n- Playwright bewusst nicht gewählt"
+        }
       />
 
       <SectionHeaderSlide number="04" title="Implementierung" />
@@ -332,36 +321,38 @@ export default function Slides() {
             detail: "validate und execute",
           },
         ]}
-        notes="Fünf Stufen. Audio getUserMedia 16kHz. Parakeet int8 ONNX. DOM Reduktion 6 bis 50. Qwen 1.5B GBNF. Validierung im Content Script."
+        highlightFrom={2}
+        notes={
+          "- Validierung im Content Script\n- letzter Klick markiert die nächsten drei Folien"
+        }
       />
 
-      <CardsSlide
-        title="GBNF-Grammatik und Validierung"
-        columns={2}
-        cards={[
+      <PromptFlowSlide
+        title="Ablauf der Aktionsplanung"
+        subtitle=""
+        inputs={[
+          { icon: "globe", label: "DOM-Elemente" },
+          { icon: "mic", label: "Transkript" },
+          { icon: "wrench", label: "Available Actions" },
+        ]}
+        mergeLabel="Systemprompt"
+        mergeIcon="cpu"
+        mergeCaption="Rolle, Kontext, Formatregeln"
+        stages={[
           {
             icon: "filter",
-            title: "GBNF-Grammatik",
-            description: "Erzwingt gültiges JSON auf Token-Ebene",
+            label: "GBNF-Grammatik",
+            sideLabels: { top: "DOM", bottom: "Available Actions" },
           },
-          {
-            icon: "cpu",
-            title: "Systemprompt",
-            description: "Zusammenfassung aller nötigen Informationen für KI",
-          },
+          { icon: "waves", label: "Token-Generierung" },
           {
             icon: "checkCircle",
-            title: "validatePlannedActions",
-            description: "Erkennung/Verwerfung von Halluzinationen",
-          },
-          {
-            icon: "wrench",
-            title: "coerceType",
-            description: "Aktionstypenanpassung, Replan bei Fehlern",
+            label: "Validierung",
           },
         ]}
-        concludingRemark=""
-        notes="GBNF wichtigster Mechanismus, dynamisch pro offered-Element, Modell kann nur angebotene Selektoren. actionHintFor fill select click, nur erster Schritt planen. Map-Lookup Selektoren auf Elemente, Zähler dropped unknownSelector typeMismatch. fill auf select wird zu select, fill auf nicht füllbar abgelehnt, done false bei Truncation löst Replan aus."
+        notes={
+          "- Grammatik erzwingt gültige Selektoren beim Generieren\n- Modell kann nicht halluzinieren"
+        }
       />
 
       <CodeSlide
@@ -387,35 +378,137 @@ export default function Slides() {
   return scored.slice(0, keep).map((s) => s.el);
 }`}
         highlightLines={[11, 12, 13]}
-        notes="selectTopElements aus BA 5.6. fillableBonus 1000 bei Fill-Befehlen. viewportBonus 0,3. Begrenzung 6 bis 50. Regression führte zu Bonus-Erhöhung."
+        notes={
+          "- Codeausschnitt 5.6 aus der BA\n- Bonus-Erhöhung nach einer Regression"
+        }
+      />
+
+      <CodeSlide
+        title="validatePlannedActions (5.9)"
+        caption="Validierung und Typ-Korrektur steuern Replan"
+        language="typescript"
+        code={`export function validatePlannedActions(actions, offered) {
+  const bySelector = new Map();
+  offered.forEach((el) => bySelector.set(normalizeSelector(el.selector), el));
+  const valid = [];
+  let dropped = 0, unknownSelector = 0, typeMismatch = 0;
+
+  for (const action of actions) {
+    const el = bySelector.get(normalizeSelector(action.selector));
+    if (!el) { dropped++; unknownSelector++; continue; }
+    const coerced = coerceType(action, el);
+    if (!coerced) { dropped++; typeMismatch++; continue; }
+    valid.push(coerced);
+  }
+  return { actions: valid, dropped, unknownSelector, typeMismatch };
+}
+
+function coerceType(action, el) {
+  if (action.type === 'select' && el.tag !== 'select') return null;
+  if (action.type === 'fill' && el.tag === 'select') return { ...action, type: 'select' };
+  if (action.type === 'fill' && !isFillableInput(el)) return null;
+  return action;
+}`}
+        highlightLines={[6, 7, 8, 9, 10, 11, 12, 13]}
+        notes={
+          "- coerceType korrigiert oder lehnt ab\n- Zähler steuern den Replan"
+        }
+      />
+
+      <CodeSlide
+        title="buildFallback (5.13)"
+        caption="Deterministischer Fallback nur bei commandImpliesFill"
+        language="typescript"
+        code={`export function buildFallback(
+  transcript: string,
+  offered: DOMElement[]
+): { actions: DOMAction[]; done: boolean } | null {
+  if (!commandImpliesFill(transcript)) return null;
+  const value = extractFillValue(transcript);
+  if (!value) return null;
+  const input = offered.find(isFillableInput);
+  if (!input) return null;
+  const actions: DOMAction[] = [{ type: 'fill', selector: input.selector, value }];
+  const submit = findSubmitButton(offered);
+  if (submit) actions.push({ type: 'click', selector: submit.selector });
+  return { actions, done: !!submit };
+}`}
+        highlightLines={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+        notes={
+          "- Fill-Wert per RegEx\n- ganz ohne LLM\n- Regression 156 auf 118 s"
+        }
+      />
+
+      <CardsSlide
+        title="Absicherungen gegen Endlosschleifen"
+        columns={5}
+        cards={[
+          {
+            icon: "repeat",
+            iconVisual: <GenerationCounterVisual />,
+            title: "Generation-Zähler",
+            description: "",
+          },
+          {
+            icon: "filter",
+            iconVisual: <PlanSignatureVisual />,
+            title: "planSignature",
+            description: "",
+          },
+          {
+            icon: "alertTriangle",
+            iconVisual: <RejectedSignatureVisual />,
+            title: "rejectedSignature",
+            description: "",
+          },
+          {
+            icon: "lifeBuoy",
+            iconVisual: <WatchdogVisual />,
+            title: "Watchdog",
+            description: "",
+          },
+          {
+            icon: "target",
+            iconVisual: <IterationCapVisual />,
+            title: "Iterationsgrenzen",
+            description: "",
+          },
+        ]}
+        concludingRemark=""
+        notes={
+          "- Generation-Zähler: verwirft veraltete Rückkehrer nach einem Neustart\n- planSignature: erkennt identischen Wiederholungsplan, bricht ab\n- rejectedSignature: gleicher Plan zweimal abgelehnt, sofortiger Abbruch\n- Watchdog: 60 Sekunden Timeout gegen ein hängendes Modell\n- Iterationsgrenzen: maximal 5 Replan-Versuche, 2 Validierungs-Versuche\n- ergänzt buildFallback als letzte Sicherung"
+        }
       />
 
       <TakeawaysSlide
-        title="Robustheit Konvergenz und Fallback"
+        title="Robustheitspyramide"
         variant="funnel"
         items={[
           {
             icon: "scissors",
-            title: "Truncate at First DOM Change",
-            description: "Plan endet beim ersten DOM-ändernden Klick.",
+            title: "Abschneidung bei erster DOM-Änderung",
+            description: "",
           },
           {
             icon: "waves",
-            title: "DOM-Stabilisierung",
-            description: "Wartet auf ein ruhiges DOM vor der Planung.",
+            title: "Erkennung und Abwarten bei DOM-Änderungen vor der Planung",
+            description: "",
           },
           {
             icon: "shield",
-            title: "Konvergenzsicherungen",
-            description: "Zähler und Signaturen stoppen Endlosschleifen.",
+            title:
+              "Absicherung gegen Endlosschleifen durch Zähler und Signatur",
+            description: "",
           },
           {
             icon: "lifeBuoy",
-            title: "Deterministischer Fallback",
-            description: "Regelbasierter Notausgang ganz ohne LLM.",
+            title: "Deterministischer Fallback durch Vorabbewertung der DOM",
+            description: "",
           },
         ]}
-        notes="Truncate click als DOM-ändernde Aktion, DOM neu eingelesen gegen blinde Klicks. MutationObserver 250ms Idle 1500ms Hard-Timeout. Generation-Zähler planSignature Watchdog 60s MAX_REPLAN 5. buildFallback bei commandImpliesFill RegEx-Extraktion, fillableBonus 0,5 auf 1000, Dauer 156 auf 118 s."
+        notes={
+          "- MutationObserver wartet auf ruhiges DOM\n- Watchdog 60 s, MAX_REPLAN 5\n- buildFallback ganz ohne LLM\n- Dauer 156 auf 118 s gesenkt"
+        }
       />
 
       <SectionHeaderSlide number="05" title="Evaluation & Ergebnisse" />
@@ -431,7 +524,10 @@ export default function Slides() {
             label: "Assistive Technologien",
             value: "Bildschirmlupe 500 bis 800 Prozent, Screenreader",
           },
-          { label: "Hardware", value: "Windows 11, i5-1245U, 16 GB, Chrome 150" },
+          {
+            label: "Hardware",
+            value: "Windows 11, i5-1245U, 16 GB, Chrome 150",
+          },
           { label: "Eingabe", value: "Hotkey Ctrl+Shift+Space" },
           {
             label: "Methodik",
@@ -442,7 +538,9 @@ export default function Slides() {
             value: "Zeiterfassung, Google, Confluence, Amazon",
           },
         ]}
-        notes="TP1 Netzhautdegeneration Lupe 500 bis 800 Prozent. Formativer Einzelfalltest Nielsen. Triangulation Beobachtung Interview Telemetrie. Warum N=1, falls gefragt: Nielsen 2000 erster Nutzer deckt ca. 31 Prozent der Kernprobleme auf, ideal wären 3 bis 5 aber steilster Erkenntniszuwachs bei N=1. Zielgruppe schwer zugänglich, Rekrutierungsengpass im Bachelorarbeits-Zeitrahmen. Tiefe statt Breite, ein Fall im Detail statt vieler Meinungen. Triangulation über 4 Aufgaben kompensiert, multimethodisch statt statistischer Generalisierung. N=1 nicht generalisierbar aber qualitativ abgesichert."
+        notes={
+          "- formativer Einzelfalltest\n- falls N=1 gefragt Nielsen ca. 31 %\n- bewusst Tiefe statt Breite"
+        }
       />
 
       <TableSlide
@@ -455,7 +553,12 @@ export default function Slides() {
             isFragment: true,
           },
           {
-            cells: ["Amazon-Suche", "Teilweise", "2", "Produkt statt Such-Button"],
+            cells: [
+              "Amazon-Suche",
+              "Teilweise",
+              "2",
+              "Produkt statt Such-Button",
+            ],
             isFragment: true,
           },
           {
@@ -463,72 +566,12 @@ export default function Slides() {
             isFragment: true,
           },
         ]}
-        notes="Nur Google erfolgreich. Confluence Login statt Suche. Amazon Produkt statt Suchknopf. Zeiterfassung Endlosschleife. Hauptfehler Selektor-Disambiguierung."
-      />
-
-      <ImageGridSlide
-        title="Popup-Zustände"
-        columns={3}
-        bordered
-        images={[
-          { src: "/demo-screenshots-gifs/extension-popup-download-view.png", alt: "Popup Download-Ansicht" },
-          { src: "/demo-screenshots-gifs/extension-popup-idle.png", alt: "Popup Ready-Zustand" },
-          { src: "/demo-screenshots-gifs/extension-popup-record.png", alt: "Popup Recording-Zustand" },
-          { src: "/demo-screenshots-gifs/extension-popup-planning.png", alt: "Popup Planning-Zustand" },
-          { src: "/demo-screenshots-gifs/extension-popup-no-speech-detected.png", alt: "Popup keine Sprache erkannt" },
-        ]}
-        notes="Download-Ansicht beim Erststart. Ready-Zustand. Recording während Aufnahme. Planning während LLM-Aktionsplanung. Kein-Sprache-erkannt als Fehlerfall. Aufnahme verwerfen als Nutzerkontrolle."
-      />
-
-      <VideoSlide
-        title="Popup nach Abschluss"
-        src="/demo-screenshots-gifs/extension-popup-finished-cropped.mov"
-        bordered
-        large
-        notes="Popup nach Abschluss der Aufgabe, Aktionsprotokoll sichtbar. Manuell starten per Klick auf Play."
-      />
-
-      <VideoSlide
-        title="Erfolgreicher Testlauf"
-        src="/demo-screenshots-gifs/happy_case_video.mov"
-        notes="Happy Case erfolgreicher Durchlauf. Manuell starten per Klick auf Play."
-      />
-
-      <VideoSlide
-        title="Fehlgeschlagener Testlauf"
-        src="/demo-screenshots-gifs/bad_case_video.mov"
-        notes="Bad Case Fehlerfall mit Replan und Endlosschleife. Manuell starten per Klick auf Play."
-      />
-
-      <VideoSlide
-        title="Amazon-Testfall: Kindle-Suche"
-        src="/demo-screenshots-gifs/amazon-testcase-kindle.mov"
-        notes="Amazon Testfall Kindle-Suche Produkt statt Suchknopf. Manuell starten per Klick auf Play, Video ist ueber 1 Minute lang, ggf. vorspulen."
-      />
-
-      <TableSlide
-        title="Telemetrie subjektiv vs. gemessen"
-        headers={["Aufgabe", "Geschätzt", "Gemessen", "NFA-11"]}
-        rows={[
-          { cells: ["Zeiterfassung", "ca. 10 s", "74,4 s / 72,2 s", "Nein"] },
-          {
-            cells: ["Google", "nicht beziffert", "70,4 s / 13,4 s", "Nein"],
-            isFragment: true,
-          },
-          {
-            cells: ["Confluence", "ca. 10 s", "17,2 bis 20,7 s", "Nein"],
-            isFragment: true,
-          },
-          {
-            cells: ["Amazon", "über 10 s", "73,8 s / 78,3 s", "Nein"],
-            isFragment: true,
-          },
-        ]}
-        notes="Spanne 13,4 bis 78,3 s. NFA-11 unter 10 s nie eingehalten. TP1 schätzt ca. 10 s. Kognitive Entlastung trotz hoher Latenz."
+        notes={"- Hauptfehler Selektor-Disambiguierung"}
       />
 
       <KeyValueSlide
-        title="Kernergebnisse und Interview"
+        title="Kernergebnisse"
+        subtitle="Zeitmessung und Systemverhalten"
         items={[
           {
             label: "Spanne",
@@ -558,6 +601,13 @@ export default function Slides() {
             label: "Subjektive Wahrnehmung",
             value: "TP1 schätzt ca. 10 s, kognitive Entlastung",
           },
+        ]}
+      />
+
+      <KeyValueSlide
+        title="Interview-Bewertung"
+        subtitle="Einschätzung von TP1 nach dem Testlauf"
+        items={[
           {
             label: "Bedienbarkeit",
             value: (
@@ -591,139 +641,78 @@ export default function Slides() {
             ),
           },
         ]}
-        notes="Spanne 13,4 bis 78,3 s. Fallback nie ausgelöst. Subjektive Wahrnehmung deutlich kürzer. Bedienbarkeit 4 Feedback 5 Vertrauen 2."
       />
 
-      <BadgeGridSlide
-        title="Erfüllte Anforderungen"
-        subtitle="17 funktionale und 12 nicht-funktionale Anforderungen"
-        tone="blue"
-        groups={[
-          {
-            label: "Funktionale Anforderungen",
-            items: [
-              "FA-01",
-              "FA-02",
-              "FA-04",
-              "FA-05",
-              "FA-06",
-              "FA-07",
-              "FA-08",
-              "FA-09",
-              "FA-11",
-              "FA-13",
-              "FA-15",
-              "FA-16",
-              "FA-17",
-              "FA-18",
-              "FA-19",
-              "FA-20",
-              "FA-22",
-            ],
-          },
-          {
-            label: "Nicht-funktionale Anforderungen",
-            items: [
-              "NFA-1",
-              "NFA-2",
-              "NFA-3",
-              "NFA-4",
-              "NFA-5",
-              "NFA-6",
-              "NFA-7",
-              "NFA-8",
-              "NFA-10",
-              "NFA-13",
-              "NFA-14",
-              "NFA-16",
-            ],
-          },
-        ]}
-        notes="29 von 35 Anforderungen erfüllt. Audioaufnahme Transkription Aktionsplan DOM-Ausführung UI Statusanzeige Fehlermeldungen. Lokal offline Barrierefreiheit WCAG AA Tastaturbedienbarkeit assistive Technologien Chrome Firefox Ladezeit Modell-Caching."
-      />
-
-      <KeyValueSlide
-        title="Nicht erfüllte Anforderungen"
+      <ComparisonSlide
+        title="Zielerfüllung im Überblick"
+        subtitle="29 von 35 Anforderungen erfüllt"
         items={[
           {
-            status: "danger",
-            label: "NFA-11",
-            value: "Klar verfehlt, Latenz bis 78,3 s statt unter 10 s",
+            status: "success",
+            icon: "checkCircle",
+            title: "Sprachpipeline",
+            description: "Aufnahme, Planung und Ausführung laufen durchgängig",
+          },
+          {
+            status: "success",
+            icon: "checkCircle",
+            title: "Datenschutz und Barrierefreiheit",
+            description: "Vollständig lokal, WCAG AA, tastaturbedienbar",
+          },
+          {
+            status: "success",
+            icon: "checkCircle",
+            title: "Kompatibilität",
+            description: "Chrome und Firefox, Ladezeit unter 30 s",
           },
           {
             status: "danger",
-            label: "NFA-12",
-            value: "Klar verfehlt, RAM rund 3 statt 2 GB",
+            icon: "alertTriangle",
+            title: "NFA-11 Latenz",
+            description: "Klar verfehlt, bis 78,3 s statt unter 10 s",
           },
           {
             status: "danger",
-            label: "FA-12",
-            value: "Nicht durchgängig erfüllt, Selektor-Genauigkeit 2 von 4",
+            icon: "alertTriangle",
+            title: "NFA-12 RAM",
+            description: "Knapp verfehlt, rund 3 statt 2 GB",
           },
           {
             status: "danger",
-            label: "FA-10",
-            value: "Teilweise erfüllt, Replan liefert nicht immer brauchbaren Plan",
-          },
-          {
-            status: "danger",
-            label: "FA-21",
-            value: "Nicht erfüllt, Endlosschleife statt Fehlerstatus",
-          },
-          {
-            status: "danger",
-            label: "FA-03",
-            value: "Nicht erfüllt, Zahlen werden als Wörter transkribiert",
+            icon: "alertTriangle",
+            title: "Selektor-Genauigkeit",
+            description: "FA-12, FA-10, FA-21 nicht durchgängig erfüllt",
           },
         ]}
-        footer="Hauptfehlerquellen: Selektor-Disambiguierung & Latenz"
-        notes="NFA-11 Latenz bis 78,3 s. NFA-12 RAM 3 statt 2 GB, eventuell durch andere Laptop-Prozesse. FA-12 Selektor-Genauigkeit 2 von 4, Login-Klick und Produktauswahl falsch. FA-10 Replan reagiert aber nicht immer brauchbar. FA-21 Zeiterfassung Endlosschleife statt Fehlerstatus oder Alternative. FA-03 Ziffernfolgen als ausgeschriebene Wörter erkannt."
+        footer=""
+        notes={"- FA-03 Zahlen werden als Wörter erkannt"}
       />
 
-      <KeyValueSlide
+      <TakeawaysSlide
         title="Limitationen"
+        variant="numbered"
         items={[
           {
-            label: "Stichprobe",
-            value: "n=1, keine Kontrollgruppe",
+            title: "Stichprobe",
+            description: "n=1, keine Kontrollgruppe",
           },
           {
-            label: "Browser",
-            value: "Nur Chrome getestet, Safari offen",
+            title: "Browser",
+            description: "Nur Chrome getestet, Firefox & Safari offen",
           },
           {
-            label: "Funktionsumfang",
-            value: "Scroll nicht umgesetzt",
+            title: "Funktionsumfang",
+            description: "Scroll nicht umgesetzt",
           },
           {
-            label: "Feedback-Kanal",
-            value: "Keine Sprachausgabe",
+            title: "Feedback-Kanal",
+            description: "Keine Sprachausgabe, Screenreader benötigt aktuell",
           },
         ]}
-        footer="Trotzdem gut angekommen: Transkript-Darstellung und Status-Farben."
-        notes="n=1 keine Kontrollgruppe. Nur Chrome getestet Safari offen. Scroll nicht umgesetzt. Keine Sprachausgabe. Positiv trotzdem Transkript-Darstellung Status-Sichtbarkeit kognitive Entlastung."
+        footer=""
       />
 
       <SectionHeaderSlide number="06" title="Fazit & Ausblick" />
-
-      <ComparisonSlide
-        title="Erfolge und Herausforderungen"
-        layout="split"
-        items={[
-          {
-            icon: "checkCircle",
-            title: "Architektur und Datenschutz erfüllt",
-            description: "",
-          },
-          {
-            icon: "alertTriangle",
-            title: "Performanz und Modellgrenzen",
-            description: "",
-          },
-        ]}
-        footer="Bewusster Kompromiss. Datenschutz und Offline vs. Leistungsfähigkeit kleiner Modelle."
-        notes="NFA-1 100 Prozent lokal MV3-Konformität. GBNF verhindert JSON-Syntax-Fehler. Deterministischer Fallback faengt Modellfehler ab, Pipeline-Dauer 156 auf 118 s. 13,4 bis 78,3 s pro Schritt NFA-11 verfehlt. 1,5B-Modell Selektor-Halluzinationen, Vertrauen 2 von 5, semantische Fehlwahl unter validen Kandidaten bleibt."
-      />
 
       <CardsSlide
         title="Fazit"
@@ -731,62 +720,62 @@ export default function Slides() {
           {
             icon: "target",
             title: "Forschungsfrage bejaht",
-            description: "Lokale Kette aus ASR, Planung und DOM-Interaktion funktioniert.",
+            description:
+              "Lokale Kette aus ASR, Planung und DOM-Interaktion funktioniert.",
           },
           {
             icon: "scale",
             title: "Bewusster Kompromiss",
-            description: "Cloud-Modelle liefern mehr Kontext, aber weniger Datenschutz.",
+            description:
+              "Cloud-Modelle liefern mehr Kontext, aber weniger Datenschutz.",
           },
           {
             icon: "award",
-            title: "Beitrag zur Teilhabe",
-            description: "Barrierearme Sprachsteuerung, vollständig lokal umgesetzt.",
+            title: "Beitrag zum digitalen Teilhabe",
+            description:
+              "Barrierearme Sprachsteuerung, vollständig lokal umgesetzt.",
           },
         ]}
-        concludingRemark="Prototypenstadium, nicht final gelöst. 1 von 4 Aufgaben erfolgreich, Vertrauen 2 von 5."
-        notes="Forschungsfrage grundsätzlich bejaht, lokale Kette aus ASR Aktionsplanung DOM-Interaktion funktioniert, Machbarkeit ohne Cloud bewiesen. Praxistauglichkeit eingeschränkt, nur 1 von 4 Aufgaben erfolgreich, Fehlerquellen DOM-Selektor-Auswahl und Latenz. Antwortzeit und Ausführungsgenauigkeit noch nicht für selbstständige Bedienung ausreichend, Vertrauen 2 von 5. Nachvollziehbar dass bisherige Lösungen Cloud und größere Modelle nutzen, mehr Kontext und Rechenleistung. Datenschutz und Offline-Vorteile als Kompromiss mit geringerer Leistungsfähigkeit kleiner Modelle. Trotzdem Beitrag zur digitalen Teilhabe bei gewahrtem Datenschutz."
+        concludingRemark=""
+        notes={"- nur Prototypenstadium\n- 1 von 4 Aufgaben erfolgreich"}
       />
 
-      <BulletSlide
+      <CardsSlide
         title="Ausblick"
-        columns={2}
-        variant="icon"
-        bullets={[
+        columns={3}
+        minimal
+        centerVertically
+        cards={[
           {
             icon: "gitBranch",
-            text: "Open-Source auf GitHub",
-            subitems: [
-              "Weiterentwicklung nach Fertigstellung",
-              "Bestehende Probleme künftig behoben",
-            ],
+            title: "Open-Source auf GitHub",
+            description: "",
           },
           {
             icon: "cpu",
-            text: "Bessere Aktionsplanung",
-            subitems: [
-              "DOM-Selektor-Auswahl des Modells verbessern",
-              "NFA-11 Latenz-Ziel erreichen",
-            ],
+            title: "Bessere Aktionsplanung",
+            description: "",
           },
           {
             icon: "mic",
-            text: "Aufnahme und Transkription",
-            subitems: [
-              "Automatisches Beenden nach Stimme absenken",
-              "Verbesserte Transkription von Zahlen",
-            ],
+            title: "Aufnahme und Transkription",
+            description: "",
           },
           {
             icon: "checkCircle",
-            text: "Größere Testreihe",
-            subitems: [
-              "Mehr Teilnehmer aus der Zielgruppe",
-              "Mehr Feedback durch Open-Source-Tests",
-            ],
+            title: "Größere Testgruppe durch Foren und Open Source",
+            description: "",
+          },
+          {
+            icon: "repeat",
+            title: "Validierungsexperiment für deterministischen Ansatz",
+            description: "",
           },
         ]}
-        notes="Open-Source auf GitHub nach Fertigstellung dieser Arbeit, bestehende Probleme und nicht erfüllte Anforderungen künftig behoben. Verbesserung der Aktionsplanung und DOM-Selektor-Auswahl des lokalen Modells. Automatisches Beenden der Aufnahme nach Absenken der Stimme. Verbesserte Transkription von Zahlen. Erreichen von NFA-11 für geringe Wartezeit und bessere Performance. Über Open-Source Tests mit größerer Teilnehmerzahl für mehr Feedback von Menschen der Zielgruppe."
+        concludingRemark=""
+        notes={
+          "- Open-Source: Weiterentwicklung nach Fertigstellung, bestehende Probleme künftig behoben\n- Aktionsplanung: DOM-Selektor-Auswahl verbessern, NFA-11 Latenz-Ziel erreichen\n- Aufnahme/Transkription: automatisches Beenden nach Stimme absenken, verbesserte Zahlenerkennung\n- Testreihe: mehr Teilnehmer aus der Zielgruppe, mehr Feedback durch Open-Source-Tests in größeren Foren\n- Validierungsexperiment: prüfen, ob ein komplett deterministischer Ansatz ohne LLM in der Planung robuster wäre"
+        }
       />
 
       <ClosingSlide
@@ -798,7 +787,7 @@ export default function Slides() {
       />
 
       <BulletSlide
-        title="Backup WCAG-Verstöße im Detail"
+        title="WCAG-Verstöße im Detail"
         columns={2}
         variant="list"
         bullets={[
@@ -828,7 +817,6 @@ export default function Slides() {
             ],
           },
         ]}
-        notes="81 Prozent Kontraste. 54,5 Prozent Alt-Texte. Screen Reader Survey 1539 Antworten. 85,9 Prozent sehen Webseiten als Hebel."
         references={[
           {
             id: "1",
@@ -836,110 +824,128 @@ export default function Slides() {
           },
           {
             id: "2",
-            label: "[WebAIM, 2024a] WebAIM (2024a). Screen Reader User Survey #10 Results.",
+            label:
+              "[WebAIM, 2024a] WebAIM (2024a). Screen Reader User Survey #10 Results.",
           },
         ]}
       />
 
       <TableSlide
-        title="Backup Funktionale Anforderungen"
+        title="Funktionale Anforderungen"
         headers={["ID", "Beschreibung", "Priorität"]}
         rows={[
-          { cells: ["FA-01", "Audioaufnahme über Mikrofon nach Berechtigung", "Muss"] },
-          { cells: ["FA-02", "Lokale Transkription ohne Cloud", "Muss"], isFragment: true },
-          { cells: ["FA-06", "Transkript an lokales LLM übergeben", "Muss"], isFragment: true },
-          { cells: ["FA-07", "LLM generiert strukturierten Aktionsplan", "Muss"], isFragment: true },
-          { cells: ["FA-11", "Aktionsplan sequentiell ausführen", "Muss"], isFragment: true },
-          { cells: ["FA-16", "UI für Aufnahme und Status", "Muss"], isFragment: true },
+          {
+            cells: [
+              "FA-01",
+              "Audioaufnahme über Mikrofon nach Berechtigung",
+              "Muss",
+            ],
+          },
+          {
+            cells: ["FA-02", "Lokale Transkription ohne Cloud", "Muss"],
+            isFragment: true,
+          },
+          {
+            cells: ["FA-06", "Transkript an lokales LLM übergeben", "Muss"],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "FA-07",
+              "LLM generiert strukturierten Aktionsplan",
+              "Muss",
+            ],
+            isFragment: true,
+          },
+          {
+            cells: ["FA-11", "Aktionsplan sequentiell ausführen", "Muss"],
+            isFragment: true,
+          },
+          {
+            cells: ["FA-16", "UI für Aufnahme und Status", "Muss"],
+            isFragment: true,
+          },
         ]}
-        notes="Auszug FA-Liste. Muss-Anforderungen. Vollständige Liste in BA Kapitel 3.2."
+        notes={"- nur Auszug, Muss-Anforderungen\n- vollständige Liste BA 3.2"}
       />
 
       <TableSlide
-        title="Backup Nicht-funktionale Anforderungen"
+        title="Nicht-funktionale Anforderungen"
         headers={["ID", "Anforderung", "Priorität"]}
         rows={[
           { cells: ["NFA-1", "Alle Daten lokal verarbeitet", "Muss"] },
-          { cells: ["NFA-2", "Offline nach initialem Download", "Muss"], isFragment: true },
-          { cells: ["NFA-3", "Farbkontraste WCAG AA", "Muss"], isFragment: true },
-          { cells: ["NFA-6", "Kompatibilität mit assistiven Technologien", "Muss"], isFragment: true },
+          {
+            cells: ["NFA-2", "Offline nach initialem Download", "Muss"],
+            isFragment: true,
+          },
+          {
+            cells: ["NFA-3", "Farbkontraste WCAG AA", "Muss"],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "NFA-6",
+              "Kompatibilität mit assistiven Technologien",
+              "Muss",
+            ],
+            isFragment: true,
+          },
           { cells: ["NFA-11", "Latenz unter 10 s", "Soll"], isFragment: true },
-          { cells: ["NFA-14", "Modelle im Browser-Cache persistiert", "Muss"], isFragment: true },
+          {
+            cells: ["NFA-14", "Modelle im Browser-Cache persistiert", "Muss"],
+            isFragment: true,
+          },
         ]}
-        notes="Auszug NFA-Liste. Muss und Soll. Vollständige Liste in BA Kapitel 3.2."
+        notes={
+          "- Auszug Muss und Soll\n- vollständige Liste BA 3.2\n- NFA-11 NFA-12 fallen später auf"
+        }
       />
 
       <ImageSlide
-        title="Backup Aktivitätsdiagramm"
+        title="Aktivitätsdiagramm"
         imageSrc="/interaction-concept-activity-diagram.png"
         imageAlt="Aktivitätsdiagramm"
         imageClassName="image-large"
-        notes="Aktivitätsdiagramm aus BA. Vollständiger Ablauf vom Popup-Öffnen bis ready."
+        notes={"- Abbildung aus der BA\n- kompletter Ablauf bis ready"}
       />
 
       <DualImageSlide
-        title="Backup Sequenzdiagramm"
+        title="Sequenzdiagramm"
         leftSrc="/interaction-concept-sequence-diagram-part-1.png"
         leftAlt="Sequenzdiagramm Teil 1"
         rightSrc="/interaction-concept-sequence-diagram-part-2.png"
         rightAlt="Sequenzdiagramm Teil 2"
-        notes="Sequenzdiagramm aus BA in zwei Teilen. Nachrichtenfluss zwischen Kontexten."
+        notes={"- Abbildung aus der BA"}
+      />
+
+      <ImageSlide
+        title="Systemarchitektur"
+        imageSrc="/architecture-overview.png"
+        imageAlt="Systemarchitektur-Übersicht"
+        notes={
+          "- Abbildung aus der Bachelorarbeit\n- Offscreen hostet Parakeet und wllama"
+        }
+      />
+
+      <StateMachineSlide
+        title="Message Router und Zustandsautomat"
+        subtitle="createMessageRouter dispatcht zwischen allen Kontexten"
+        entry="idle → downloading → ready"
+        states={[
+          { label: "Ready" },
+          { label: "Recording" },
+          { label: "Processing" },
+          { label: "Planning" },
+          { label: "Executing" },
+        ]}
+        caption=""
+        notes={
+          "- persistState in browser.storage.local\n- broadcastStatus sendet STATUS_UPDATE\n- Generation-Zähler gegen Race-Conditions"
+        }
       />
 
       <CodeSlide
-        title="Backup validatePlannedActions (5.9)"
-        caption="Validierung und Typ-Korrektur steuern Replan"
-        language="typescript"
-        code={`export function validatePlannedActions(actions, offered) {
-  const bySelector = new Map();
-  offered.forEach((el) => bySelector.set(normalizeSelector(el.selector), el));
-  const valid = [];
-  let dropped = 0, unknownSelector = 0, typeMismatch = 0;
-
-  for (const action of actions) {
-    const el = bySelector.get(normalizeSelector(action.selector));
-    if (!el) { dropped++; unknownSelector++; continue; }
-    const coerced = coerceType(action, el);
-    if (!coerced) { dropped++; typeMismatch++; continue; }
-    valid.push(coerced);
-  }
-  return { actions: valid, dropped, unknownSelector, typeMismatch };
-}
-
-function coerceType(action, el) {
-  if (action.type === 'select' && el.tag !== 'select') return null;
-  if (action.type === 'fill' && el.tag === 'select') return { ...action, type: 'select' };
-  if (action.type === 'fill' && !isFillableInput(el)) return null;
-  return action;
-}`}
-        highlightLines={[6, 7, 8, 9, 10, 11, 12, 13]}
-        notes="Map von Selektoren auf Elemente. coerceType korrigiert fill auf select. Lehnt nicht füllbare ab. Zähler steuern Replan."
-      />
-
-      <CodeSlide
-        title="Backup buildFallback (5.13)"
-        caption="Deterministischer Fallback nur bei commandImpliesFill"
-        language="typescript"
-        code={`export function buildFallback(
-  transcript: string,
-  offered: DOMElement[]
-): { actions: DOMAction[]; done: boolean } | null {
-  if (!commandImpliesFill(transcript)) return null;
-  const value = extractFillValue(transcript);
-  if (!value) return null;
-  const input = offered.find(isFillableInput);
-  if (!input) return null;
-  const actions: DOMAction[] = [{ type: 'fill', selector: input.selector, value }];
-  const submit = findSubmitButton(offered);
-  if (submit) actions.push({ type: 'click', selector: submit.selector });
-  return { actions, done: !!submit };
-}`}
-        highlightLines={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-        notes="Nur bei commandImpliesFill. Extrahiert Fill-Wert per RegEx. Oberstes füllbares Eingabefeld plus Submit. Kein LLM."
-      />
-
-      <CodeSlide
-        title="Backup setNativeValue (5.12)"
+        title="setNativeValue (5.12)"
         caption="Framework-kompatibler Wert-Setter für React Vue Svelte"
         language="typescript"
         code={`function setNativeValue(
@@ -955,11 +961,11 @@ function coerceType(action, el) {
   else el.value = value;
 }`}
         highlightLines={[7, 8, 9]}
-        notes="Reaktive Frameworks ignorieren naives .value. Setter aus Prototyp-Deskriptor. InputEvent und change danach."
+        notes={"- InputEvent und change danach"}
       />
 
       <BulletSlide
-        title="Backup wxt.config.ts und Permission-Tab"
+        title="wxt.config.ts und Permission-Tab"
         columns={2}
         variant="list"
         bullets={[
@@ -987,25 +993,131 @@ function coerceType(action, el) {
             ],
           },
         ]}
-        notes="WXT Config. Permissions. CSP wasm-unsafe-eval. Hotkey. Permission-Tab als fünfter Kontext gemeinsamer Ursprung."
       />
 
       <TableSlide
-        title="Backup Vollständige NFA-Zielerfüllung"
+        title="Vollständige NFA-Zielerfüllung"
         headers={["NFA", "Anforderung", "Status", "Messwert"]}
         rows={[
-          { cells: ["NFA-1", "100 % lokale Ausführung", "Erfüllt", "Keine externen Anfragen"] },
-          { cells: ["NFA-2", "Offline nach Download", "Erfüllt", "Alle Funktionen offline"], isFragment: true },
-          { cells: ["NFA-3", "Farbkontraste WCAG AA", "Erfüllt", "4,7 bis 15,4 zu 1"], isFragment: true },
-          { cells: ["NFA-11", "Latenz unter 10 s", "Klar verfehlt", "bis 78,3 s"], isFragment: true },
-          { cells: ["NFA-12", "RAM unter 2 GB", "Knapp verfehlt", "rund 3 GB"], isFragment: true },
-          { cells: ["NFA-14", "Modell-Caching", "Erfüllt", "Keine erneuten Downloads"], isFragment: true },
+          {
+            cells: [
+              "NFA-1",
+              "100 % lokale Ausführung",
+              "Erfüllt",
+              "Keine externen Anfragen",
+            ],
+          },
+          {
+            cells: [
+              "NFA-2",
+              "Offline nach Download",
+              "Erfüllt",
+              "Alle Funktionen offline",
+            ],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "NFA-3",
+              "Farbkontraste WCAG AA",
+              "Erfüllt",
+              "4,7 bis 15,4 zu 1",
+            ],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "NFA-11",
+              "Latenz unter 10 s",
+              "Klar verfehlt",
+              "bis 78,3 s",
+            ],
+            isFragment: true,
+          },
+          {
+            cells: ["NFA-12", "RAM unter 2 GB", "Knapp verfehlt", "rund 3 GB"],
+            isFragment: true,
+          },
+          {
+            cells: [
+              "NFA-14",
+              "Modell-Caching",
+              "Erfüllt",
+              "Keine erneuten Downloads",
+            ],
+            isFragment: true,
+          },
         ]}
-        notes="NFA-1 bis NFA-3 erfüllt. NFA-11 klar verfehlt. NFA-12 knapp verfehlt. NFA-14 erfüllt. Vollständige Matrix in BA Kapitel 6.2."
+        notes={"- vollständige Matrix BA 6.2"}
+      />
+
+      <ImageGridSlide
+        title="Popup-Zustände"
+        columns={3}
+        bordered
+        images={[
+          {
+            src: "/demo-screenshots-gifs/extension-popup-download-view.png",
+            alt: "Popup Download-Ansicht",
+          },
+          {
+            src: "/demo-screenshots-gifs/extension-popup-idle.png",
+            alt: "Popup Ready-Zustand",
+          },
+          {
+            src: "/demo-screenshots-gifs/extension-popup-record.png",
+            alt: "Popup Recording-Zustand",
+          },
+          {
+            src: "/demo-screenshots-gifs/extension-popup-planning.png",
+            alt: "Popup Planning-Zustand",
+          },
+          {
+            src: "/demo-screenshots-gifs/extension-popup-no-speech-detected.png",
+            alt: "Popup keine Sprache erkannt",
+          },
+        ]}
+        notes={
+          "- Download-Ansicht erscheint beim allerersten Start\n- Ready-Zustand danach Ausgangspunkt für jede Aufnahme\n- Recording während der Aufnahme mit visuellem Feedback\n- Planning während die KI im Hintergrund den Aktionsplan erzeugt\n- Kein-Sprache-erkannt als expliziter Fehlerfall statt stillem Hängen\n- Nutzer kann Aufnahme jederzeit verwerfen, bleibt in Kontrolle"
+        }
+      />
+
+      <VideoSlide
+        title="Popup nach Abschluss"
+        src="/demo-screenshots-gifs/extension-popup-finished-cropped.mov"
+        bordered
+        large
+        notes={
+          "- Aktionsprotokoll mit allen ausgeführten Schritten sichtbar\n- manuell starten, Klick auf Play"
+        }
+      />
+
+      <VideoSlide
+        title="Erfolgreicher Testlauf"
+        src="/demo-screenshots-gifs/happy_case_video.mov"
+        notes={
+          "- Happy Case, kompletter erfolgreicher Durchlauf\n- manuell starten, Klick auf Play"
+        }
+      />
+
+      <VideoSlide
+        title="Fehlgeschlagener Testlauf"
+        src="/demo-screenshots-gifs/bad_case_video.mov"
+        notes={
+          "- Bad Case mit Replan und anschließender Endlosschleife\n- zeigt genau das Zeiterfassungs-Problem aus der Tabelle\n- manuell starten, Klick auf Play"
+        }
+      />
+
+      <VideoSlide
+        title="Amazon-Testfall Kindle-Suche"
+        src="/demo-screenshots-gifs/amazon-testcase-kindle.mov"
+        notes={
+          "- zeigt den Amazon-Testfall, Klick auf Produkt statt Suchknopf\n- Video über eine Minute lang, bei Zeitdruck vorspulen\n- manuell starten, Klick auf Play"
+        }
       />
 
       <BulletSlide
-        title="Backup Qualitative Erkenntnisse TP1"
+        title="Qualitative Erkenntnisse TP1"
         columns={2}
         variant="list"
         bullets={[
@@ -1040,11 +1152,10 @@ function coerceType(action, el) {
             ],
           },
         ]}
-        notes="Positiv Transkript Status Farbgebung. Kritisch Dauer Vertrauen. Vorschläge automatisches Aufnahmebeenden. Keine sehbeeinträchtigungsspezifischen UX Probleme."
       />
 
       <BulletSlide
-        title="Backup Bundesdruckerei-Kontext"
+        title="Bundesdruckerei-Kontext"
         columns={2}
         variant="list"
         bullets={[
@@ -1077,7 +1188,6 @@ function coerceType(action, el) {
             ],
           },
         ]}
-        notes="EU-Richtlinie 2016/2102. BFSG ab 2025. DSGVO Bürgerdaten. BDR Identitätsnachweis eGovernment. Lokale KI zwingend."
       />
     </>
   );
