@@ -85,7 +85,7 @@ export default function Slides() {
         ]}
         footer=""
         notes={
-          "- 16 % der Weltbevölkerung\n- WCAG: Web Content Accessiblity Guidelines von WWW Consortium"
+          "- Web zentrale Infrastruktur für Bank Termine Behörden\n- WHO 2022 Bericht für Jahr 2021, 1,3 Mrd Menschen, 16 % der Weltbevölkerung\n- Umweltbarrieren mitgezählt reale Zahl noch höher\n- unzugängliche Systeme verstärken Benachteiligung\n- WCAG seit Version 2.2 etablierter Standard\n- WebAIM 2024, 95,9 % Verstöße\n- EU-Richtlinie 2016/2102 seit 2021 verbindlich für öffentliche Stellen\n- Barrieren sind Normalfall nicht Randphänomen"
         }
         references={[
           {
@@ -120,7 +120,7 @@ export default function Slides() {
         ]}
         belowCaption=""
         notes={
-          "- Motorisch Parkinson Zerebralparese Dyspraxie\n- Sousa Kern Daten bleiben auf Gerät"
+          "- zwei Zielgruppen Sehbehinderung und motorische Einschränkung\n- Screenreader Hauptwerkzeug, größte Hürden CAPTCHA kaputte Elemente unklare Links fehlende Tastaturzugänglichkeit\n- motorisch Parkinson Zerebralparese Dyspraxie schränken Feinmotorik ein\n- Lösungsansatz Sprachsteuerung über LLMs\n- zweites Problem personenbezogene Daten bei Logindaten und Formularen\n- Sousa Kern 2023, DSGVO, Daten bleiben auf Gerät\n- Sprachsteuerung umgeht physische Interaktion mit Maus Tastatur Bildschirm"
         }
       />
 
@@ -184,7 +184,7 @@ export default function Slides() {
           },
         ]}
         notes={
-          "- Mind2Web begründet das Feld\n- WebVoyager 59,1 %\n- WebRL 4,8 auf 42,4 % durch RL\n- WebChallenger PageMem 56,3 % WebArena"
+          "- Mind2Web Deng 2023 begründet das Feld, 2000+ Aufgaben, 137 Webseiten, textbasiert\n- WebVoyager SeeAct visuelle Wahrnehmung, Cloud GPT-4V, Grounding-Lücke 20 bis 25 pp\n- AutoWebGLM 2024, offenes 6B Modell, Iterationsschleifen nicht robust\n- WebRL 4,8 auf 42,4 % durch RL, WebChallenger PageMem 56,3 % WebArena\n- Architektur schlägt reine Modellgröße\n- Gemeinsamkeit, Barrierefreiheit nie Designziel, keine Sprachsteuerung, Cloud-Abhängigkeit"
         }
         references={[
           {
@@ -222,7 +222,7 @@ export default function Slides() {
           { label: "Ziel dieser Arbeit", x: 75, y: 25, variant: "target" },
         ]}
         notes={
-          "- Zerhoudi SLM im Browser, nur Suche\n- Firefox Voice Cloud-ASR, keine LLMs\n- genau diese Lücke schließe ich"
+          "- Browser-Use Playwright, außerhalb des Browsers, hohe Tokenkosten und Latenz\n- Zerhoudi Granitzer 2026, WebGPU im Browser, nur Suchassistenz\n- Session-Länge 6,8 auf 5,2, Akzeptanzrate 36,4 %\n- Firefox Voice 12.000 Nutzer, Cloud-ASR, feste Intents, keine LLMs\n- genau diese Lücke schließe ich"
         }
         references={[
           {
@@ -256,7 +256,7 @@ export default function Slides() {
           </>
         }
         notes={
-          "- Forschungsfrage aus BA 3.1.4\n- langsam vorlesen, roter Faden"
+          "- Forschungsfrage aus BA 3.1.4\n- langsam vorlesen, roter Faden\n- drei Bedingungen, niedriger Installationsaufwand, Sprachsteuerung, vollständig lokale KI"
         }
       />
 
@@ -272,7 +272,7 @@ export default function Slides() {
           { icon: "mic", label: "Permission-Tab" },
         ]}
         notes={
-          "- Background vermittelt als Message Router alle Nachrichten zwischen den Kontexten\n- Service Worker ohne eigenen DOM-Zugriff, aber Orchestrator mit Zustandsautomat\n- Popup React-UI\n- Content Script Zugriff auf die DOM der Website\n- Offscreen einziger Kontext mit dauerhaftem DOM für KI-Inferenz\n- Permission-Tab 5. Kontext, löst die Mikrofon-Berechtigung separat"
+          "- Background vermittelt als Message Router alle Nachrichten zwischen den Kontexten\n- Service Worker ohne eigenen DOM-Zugriff, aber Orchestrator mit Zustandsautomat\n- Popup React-UI\n- Content Script Zugriff auf die DOM der Website\n- Offscreen einziger Kontext mit dauerhaftem DOM für KI-Inferenz\n- Permission-Tab 5. Kontext, löst die Mikrofon-Berechtigung separat\n- Aufteilung erfüllt zusammen NFA-1 und NFA-2, lokale und offlinefähige Ausführung"
         }
       />
 
@@ -323,7 +323,7 @@ export default function Slides() {
         ]}
         highlightFrom={2}
         notes={
-          "- Validierung im Content Script\n- letzter Klick markiert die nächsten drei Folien"
+          "- getUserMedia im Offscreen Document nimmt Mikrofonstream auf\n- Parakeet-TDT 0,6B multilingual, int8, über ONNX Runtime Web\n- DOM wird parallel zur Transkription ausgelesen und reduziert\n- kompaktes Sprachmodell im Browser erzeugt strukturierten Aktionsplan\n- Validierung im Content Script gegen tatsächliches DOM\n- letzter Klick markiert die nächsten drei Folien, DOM-Reduktion Aktionsplanung Validierung\n- dort am meisten Entwicklungszeit investiert"
         }
       />
 
@@ -351,7 +351,7 @@ export default function Slides() {
           },
         ]}
         notes={
-          "- Grammatik erzwingt gültige Selektoren beim Generieren\n- Modell kann nicht halluzinieren"
+          "- drei Eingaben, DOM-Elemente, Transkript, Available Actions, klicken ausfüllen auswählen\n- GBNF-Grammatik dynamisch aus angebotenen DOM-Elementen generiert\n- Grammatik erzwingt gültige Selektoren beim Generieren, Modell kann nicht halluzinieren\n- actionHintFor ergänzt fill select click je DOM-Zeile\n- Validierung trotzdem nötig, Grammatik sichert nur Syntax nicht Inhalt"
         }
       />
 
@@ -379,7 +379,7 @@ export default function Slides() {
 }`}
         highlightLines={[11, 12, 13]}
         notes={
-          "- Codeausschnitt 5.6 aus der BA\n- Bonus-Erhöhung nach einer Regression"
+          "- Codeausschnitt 5.6 aus der BA\n- drei Score-Komponenten, Keyword-Score, Viewport-Bonus 0,3, Fillable-Bonus\n- Fillable-Bonus war 0,5, jetzt 1000, nach der Regression erhöht\n- MIN_DOM_ELEMENTS 6, MAX_DOM_ELEMENTS 50"
         }
       />
 
@@ -411,7 +411,7 @@ function coerceType(action, el) {
 }`}
         highlightLines={[6, 7, 8, 9, 10, 11, 12, 13]}
         notes={
-          "- coerceType korrigiert oder lehnt ab\n- Zähler steuern den Replan"
+          "- Map von Selektoren gegen angebotenes DOM\n- unknownSelector wenn Selektor nicht existiert\n- coerceType Beispiel, fill auf select wird select, fill auf nicht ausfüllbar abgelehnt\n- Zähler dropped unknownSelector typeMismatch steuern den Replan\n- erfundene Aktion strukturell abgefangen vor Ausführung im Browser"
         }
       />
 
@@ -435,7 +435,7 @@ function coerceType(action, el) {
 }`}
         highlightLines={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
         notes={
-          "- Fill-Wert per RegEx\n- ganz ohne LLM\n- Regression 156 auf 118 s"
+          "- greift nur bei Fill-Befehl und nicht verwertbarem Modellplan\n- Fill-Wert per RegEx aus dem Transkript, ganz ohne LLM\n- oberstes ausfüllbares Feld plus bestbewerteter Submit-Button\n- Regression 156 auf 118 s Pipeline-Dauer\n- Nutzerin merkt vom Fallback nichts"
         }
       />
 
@@ -476,7 +476,7 @@ function coerceType(action, el) {
         ]}
         concludingRemark=""
         notes={
-          "- Generation-Zähler: verwirft veraltete Rückkehrer nach einem Neustart\n- planSignature: erkennt identischen Wiederholungsplan, bricht ab\n- rejectedSignature: gleicher Plan zweimal abgelehnt, sofortiger Abbruch\n- Watchdog: 60 Sekunden Timeout gegen ein hängendes Modell\n- Iterationsgrenzen: maximal 5 Replan-Versuche, 2 Validierungs-Versuche\n- ergänzt buildFallback als letzte Sicherung"
+          "- Generation-Zähler: verwirft veraltete Rückkehrer nach einem Neustart\n- planSignature: erkennt identischen Wiederholungsplan, bricht ab\n- rejectedSignature: gleicher Plan zweimal abgelehnt, sofortiger Abbruch\n- Watchdog: 60 Sekunden Timeout gegen ein hängendes Modell\n- Iterationsgrenzen: maximal 5 Replan-Versuche, 2 Validierungs-Versuche\n- ergänzt buildFallback als letzte Sicherung\n- jeder Mechanismus greift an anderer Stelle, zusammen ein mehrstufiges Sicherheitsnetz"
         }
       />
 
@@ -507,7 +507,7 @@ function coerceType(action, el) {
           },
         ]}
         notes={
-          "- MutationObserver wartet auf ruhiges DOM\n- Watchdog 60 s, MAX_REPLAN 5\n- buildFallback ganz ohne LLM\n- Dauer 156 auf 118 s gesenkt"
+          "- gestaffelte Reihenfolge von unten nach oben\n- zuerst Abschneidung nach erster DOM-verändernder Aktion\n- MutationObserver wartet 250 ms auf ruhiges DOM\n- danach die Endlosschleifen-Sicherungen von der letzten Folie\n- zuletzt buildFallback ganz ohne LLM\n- nächste Ebene greift erst wenn vorherige versagt\n- Dauer 156 auf 118 s gesenkt"
         }
       />
 
@@ -539,7 +539,7 @@ function coerceType(action, el) {
           },
         ]}
         notes={
-          "- formativer Einzelfalltest\n- falls N=1 gefragt Nielsen ca. 31 %\n- bewusst Tiefe statt Breite"
+          "- formativer Einzelfalltest, bewusst Tiefe statt Breite\n- Triangulation aus Beobachtung, Interview, Telemetrie\n- vier Aufgaben decken unterschiedliche Interaktionsmuster ab, Text, Suche, Login, Produktsuche\n- Rekrutierung schwierig wegen spezifischer Beeinträchtigung\n- falls N=1 gefragt, Nielsen ca. 31 %"
         }
       />
 
@@ -566,7 +566,9 @@ function coerceType(action, el) {
             isFragment: true,
           },
         ]}
-        notes={"- Hauptfehler Selektor-Disambiguierung"}
+        notes={
+          "- Google Suche erfolgreich, trotz Zwischenklick auf ein Bild\n- Confluence Login, zweiter Versuch öffnet Suche statt Login-Button\n- Amazon zufälliges Produkt zuerst, zweiter Versuch rettet das Ergebnis\n- Zeiterfassung Endlosschleife, gleicher nicht existierender Selektor\n- drei von vier Aufgaben brauchen mehr als einen Versuch\n- Hauptfehler Selektor- und Element-Disambiguierung, nicht die Spracherkennung"
+        }
       />
 
       <KeyValueSlide
@@ -602,6 +604,9 @@ function coerceType(action, el) {
             value: "TP1 schätzt ca. 10 s, kognitive Entlastung",
           },
         ]}
+        notes={
+          "- Spanne 13,4 bis 78,3 s, NFA-11 nie eingehalten\n- Replan-Iterationen meist 1, vereinzelt 2, Cap von 5 nie erreicht\n- Fallback nie ausgelöst, Modell liefert immer irgendeinen Plan\n- Lücke liegt an Rechenzeit der Modellinferenz, nicht an Wiederholungen\n- subjektiv ca. 10 s geschätzt, objektiv bis zum Achtfachen gemessen"
+        }
       />
 
       <KeyValueSlide
@@ -641,6 +646,9 @@ function coerceType(action, el) {
             ),
           },
         ]}
+        notes={
+          "- Bedienbarkeit 4 von 5\n- Feedback 5 von 5, Transkript-Anzeige und Statusfarben kommen gut an\n- Erleichterung 3 von 5\n- Vertrauen 2 von 5, kritischster Wert im Interview"
+        }
       />
 
       <ComparisonSlide
@@ -685,7 +693,9 @@ function coerceType(action, el) {
           },
         ]}
         footer=""
-        notes={"- FA-03 Zahlen werden als Wörter erkannt"}
+        notes={
+          "- 29 von 35 Anforderungen erfüllt\n- Sprachpipeline durchgängig, Datenschutz und Barrierefreiheit vollständig\n- Chrome und Firefox, Ladezeit deutlich unter 30 s\n- NFA-11 Latenz klar verfehlt, bis 78,3 s\n- NFA-12 RAM knapp verfehlt, rund 3 statt 2 GB\n- Selektor-Genauigkeit nicht durchgängig erfüllt\n- FA-03 Zahlen werden als Wörter erkannt\n- Muster, funktionale Kernanforderungen erfüllt, Performance größte Baustelle"
+        }
       />
 
       <TakeawaysSlide
@@ -710,6 +720,9 @@ function coerceType(action, el) {
           },
         ]}
         footer=""
+        notes={
+          "- Stichprobe n=1, keine Kontrollgruppe\n- fast nur Chrome getestet, wenige Male Firefox aus Zeitgründen\n- Scroll-Aktion aus Zeitgründen nicht umgesetzt\n- keine Sprachausgabe, Screenreader während Verarbeitung nötig"
+        }
       />
 
       <SectionHeaderSlide number="06" title="Fazit & Ausblick" />
@@ -737,7 +750,9 @@ function coerceType(action, el) {
           },
         ]}
         concludingRemark=""
-        notes={"- nur Prototypenstadium\n- 1 von 4 Aufgaben erfolgreich"}
+        notes={
+          "- Forschungsfrage grundsätzlich bejaht\n- bewusster Kompromiss, Cloud liefert mehr Kontext, aber weniger Datenschutz\n- nur Prototypenstadium, 1 von 4 Aufgaben erfolgreich\n- Machbarkeitsnachweis, nicht fertige Lösung"
+        }
       />
 
       <CardsSlide
@@ -774,7 +789,7 @@ function coerceType(action, el) {
         ]}
         concludingRemark=""
         notes={
-          "- Open-Source: Weiterentwicklung nach Fertigstellung, bestehende Probleme künftig behoben\n- Aktionsplanung: DOM-Selektor-Auswahl verbessern, NFA-11 Latenz-Ziel erreichen\n- Aufnahme/Transkription: automatisches Beenden nach Stimme absenken, verbesserte Zahlenerkennung\n- Testreihe: mehr Teilnehmer aus der Zielgruppe, mehr Feedback durch Open-Source-Tests in größeren Foren\n- Validierungsexperiment: prüfen, ob ein komplett deterministischer Ansatz ohne LLM in der Planung robuster wäre"
+          "- Open-Source aktuell im Freigabeprozess mit Patentabteilung und Open Source Officer\n- Aktionsplanung: DOM-Selektor-Auswahl verbessern, NFA-11 Latenz-Ziel erreichen\n- Aufnahme/Transkription: automatisches Beenden nach Stimme absenken, verbesserte Zahlenerkennung\n- Testreihe: mehr Teilnehmer aus der Zielgruppe über Open-Source-Foren\n- Validierungsexperiment: prüfen, ob ein deterministischer Ansatz ohne LLM funktioniert und die Performance verbessert"
         }
       />
 
