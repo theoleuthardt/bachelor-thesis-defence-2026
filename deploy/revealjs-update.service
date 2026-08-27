@@ -1,0 +1,9 @@
+[Unit]
+Description=Pull and (re)start the revealjs presentation container
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/revealjs-presentation
+ExecStart=/opt/revealjs-presentation/revealjs-update.sh

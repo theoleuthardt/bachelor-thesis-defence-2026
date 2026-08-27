@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodically check for a new revealjs presentation image
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=revealjs-update.service
+
+[Install]
+WantedBy=timers.target

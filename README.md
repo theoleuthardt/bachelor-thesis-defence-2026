@@ -101,6 +101,39 @@ The configuration lives in `src/App.tsx`:
 | `Esc`         | Slide overview                 |
 | `?`           | Show all shortcuts             |
 
+## Deployment
+
+Deployment is pull-based, so CI never needs VPN or SSH access to the homelab. Pushing to
+`main` runs [`.github/workflows/publish-image.yml`](.github/workflows/publish-image.yml),
+which lints, typechecks and builds the site, then builds the container image from
+[`Containerfile`](Containerfile) and pushes it to GHCR as
+`ghcr.io/theoleuthardt/bachelor-thesis-defence-2026:latest` (and `:<commit-sha>` for
+traceability/rollback). It only needs the built-in `GITHUB_TOKEN` — no secrets to configure.
+
+The Proxmox LXC pulls the image itself on a timer and restarts the container when it
+changes — nothing ever connects back into GitHub. One-time setup on the LXC (needs
+`podman` and `podman-compose`):
+
+1. Make the GHCR package public once it exists (package → Settings → Change visibility),
+   or run `podman login ghcr.io` with a PAT that has `read:packages` if you'd rather keep
+   it private.
+2. Copy the [`deploy/`](deploy) directory to `/opt/revealjs-presentation` on the LXC.
+3. Enable the timer:
+   ```sh
+   sudo cp deploy/revealjs-update.service deploy/revealjs-update.timer /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable --now revealjs-update.timer
+   ```
+
+`revealjs-update.timer` runs `revealjs-update.sh` every 5 minutes, which does
+`podman-compose pull && podman-compose up -d`, recreating the container only when a newer
+image is actually available. Check it with `systemctl status revealjs-update.timer` or
+`journalctl -u revealjs-update.service`.
+
+To try the container locally with Podman before pushing, use `task container:build` /
+`task container:up` / `task container:down` (builds from source via the root
+[`compose.yml`](compose.yml), separate from the GHCR-pulling one in `deploy/`).
+
 ## Dependencies
 
 - `react` — UI library

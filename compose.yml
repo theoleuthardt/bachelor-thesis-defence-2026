@@ -1,0 +1,12 @@
+# Local/dev use only - builds the image from source. Production runs from
+# deploy/compose.yml, which pulls the prebuilt image from GHCR instead.
+services:
+  revealjs:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: ${IMAGE_NAME:-revealjs-presentation}:${IMAGE_TAG:-latest}
+    container_name: ${IMAGE_NAME:-revealjs-presentation}
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:8080"

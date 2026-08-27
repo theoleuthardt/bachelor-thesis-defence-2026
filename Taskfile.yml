@@ -137,3 +137,23 @@ tasks:
       - task: lint
       - task: typecheck
       - task: build
+
+  container:build:
+    desc: Build the presentation image locally with Podman
+    cmds:
+      - podman-compose build
+
+  container:up:
+    desc: Build and run the presentation container locally with Podman
+    cmds:
+      - podman-compose up -d --build
+
+  container:down:
+    desc: Stop the local presentation container
+    cmds:
+      - podman-compose down
+
+  container:logs:
+    desc: Follow the local presentation container logs
+    cmds:
+      - podman-compose logs -f
