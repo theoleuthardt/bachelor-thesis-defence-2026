@@ -128,63 +128,25 @@ export default function Slides() {
 
       <BulletSlide
         title="Cloud-Web-Agenten der Forschung"
-        columns={2}
+        columns={1}
         variant="list"
         bullets={[
           {
-            text: (
-              <>
-                Mind2Web (Deng 2023) <Ref id="1" />
-              </>
-            ),
+            text: "Sechs aktuelle Arbeiten analysiert",
             subitems: [
-              "2000+ Aufgaben, 137 Webseiten",
-              "Textbasiert, dynamische Zustände ignoriert",
-            ],
-          },
-          {
-            text: (
-              <>
-                WebVoyager und SeeAct <Ref id="2" />
-              </>
-            ),
-            subitems: [
-              "Cloud-LMM GPT-4V",
-              "Grounding-Lücke 20 bis 25 Prozentpunkte",
-            ],
-          },
-          {
-            text: (
-              <>
-                AutoWebGLM (Lai 2024) <Ref id="3" />
-              </>
-            ),
-            subitems: [
-              "6B Open-Source-Modell",
-              "Iterationsschleifen nicht robust",
-            ],
-          },
-          {
-            text: (
-              <>
-                WebRL und WebChallenger <Ref id="4" />
-              </>
-            ),
-            subitems: [
-              "Architektur statt Modellskalierung",
-              "Trainingsinfrastruktur bzw. 32B nötig",
+              "Mind2Web, WebVoyager, SeeAct, AutoWebGLM, WebRL, WebChallenger",
             ],
           },
           {
             text: "Gemeinsamkeit aller Arbeiten",
             subitems: [
-              "Barrierefreiheit nie Designziel",
-              "Keine Sprachsteuerung, Cloud-Abhängigkeit",
+              "Barrierefreiheit nie Designziel, keine Sprachsteuerung",
+              "Alle setzen auf Cloud-Modelle oder große Trainingsinfrastruktur",
             ],
           },
         ]}
         notes={
-          "- Mind2Web Deng 2023 begründet das Feld, 2000+ Aufgaben, 137 Webseiten, textbasiert\n- WebVoyager SeeAct visuelle Wahrnehmung, Cloud GPT-4V, Grounding-Lücke 20 bis 25 pp\n- AutoWebGLM 2024, offenes 6B Modell, Iterationsschleifen nicht robust\n- WebRL 4,8 auf 42,4 % durch RL, WebChallenger PageMem 56,3 % WebArena\n- Architektur schlägt reine Modellgröße\n- Gemeinsamkeit, Barrierefreiheit nie Designziel, keine Sprachsteuerung, Cloud-Abhängigkeit"
+          "- sechs aktuelle Arbeiten zu Web-Agenten analysiert, Mind2Web, WebVoyager, SeeAct, AutoWebGLM, WebRL, WebChallenger\n- Details zu jeder einzelnen Arbeit im Backup, falls nachgefragt\n- Gemeinsamkeit aller sechs, Barrierefreiheit nirgends Designziel, echte Sprachsteuerung nirgends adressiert\n- alle setzen auf Cloud-Modelle oder große Trainingsinfrastruktur"
         }
         references={[
           {
@@ -263,7 +225,7 @@ export default function Slides() {
       <SectionHeaderSlide number="03" title="Entwurf der Systemarchitektur" />
 
       <NetworkDiagramSlide
-        title="MV3-Architektur der Browser-Erweiterung"
+        title="Architektur der Browser-Erweiterung nach Manifest V3"
         hub={{ icon: "cpu", label: "Background" }}
         spokes={[
           { icon: "layers", label: "Popup" },
@@ -273,24 +235,6 @@ export default function Slides() {
         ]}
         notes={
           "- Background vermittelt als Message Router alle Nachrichten zwischen den Kontexten\n- Service Worker ohne eigenen DOM-Zugriff, aber Orchestrator mit Zustandsautomat\n- Popup React-UI\n- Content Script Zugriff auf die DOM der Website\n- Offscreen einziger Kontext mit dauerhaftem DOM für KI-Inferenz\n- Permission-Tab 5. Kontext, löst die Mikrofon-Berechtigung separat\n- Aufteilung erfüllt zusammen NFA-1 und NFA-2, lokale und offlinefähige Ausführung"
-        }
-      />
-
-      <LogoGridSlide
-        title="Technologieauswahl"
-        columns={4}
-        logos={[
-          { src: "/logos/chrome.svg", label: "Manifest V3" },
-          { src: "/logos/wxt.svg", label: "WXT" },
-          { src: "/logos/vite.svg", label: "Vite" },
-          { src: "/logos/typescript.svg", label: "TypeScript" },
-          { src: "/logos/react.svg", label: "React 19" },
-          { src: "/logos/onnx.svg", label: "ONNX Runtime Web" },
-          { src: "/logos/nvidia.svg", label: "Parakeet-TDT" },
-          { src: "/logos/llamacpp.svg", label: "wllama / llama.cpp" },
-        ]}
-        notes={
-          "- WXT vereinheitlicht Chrome und Firefox\n- React 19 fürs Popup\n- Parakeet-TDT für ASR\n- wllama für Qwen im GGUF-Format\n- Playwright bewusst nicht gewählt"
         }
       />
 
@@ -384,38 +328,6 @@ export default function Slides() {
       />
 
       <CodeSlide
-        title="validatePlannedActions (5.9)"
-        caption="Validierung und Typ-Korrektur steuern Replan"
-        language="typescript"
-        code={`export function validatePlannedActions(actions, offered) {
-  const bySelector = new Map();
-  offered.forEach((el) => bySelector.set(normalizeSelector(el.selector), el));
-  const valid = [];
-  let dropped = 0, unknownSelector = 0, typeMismatch = 0;
-
-  for (const action of actions) {
-    const el = bySelector.get(normalizeSelector(action.selector));
-    if (!el) { dropped++; unknownSelector++; continue; }
-    const coerced = coerceType(action, el);
-    if (!coerced) { dropped++; typeMismatch++; continue; }
-    valid.push(coerced);
-  }
-  return { actions: valid, dropped, unknownSelector, typeMismatch };
-}
-
-function coerceType(action, el) {
-  if (action.type === 'select' && el.tag !== 'select') return null;
-  if (action.type === 'fill' && el.tag === 'select') return { ...action, type: 'select' };
-  if (action.type === 'fill' && !isFillableInput(el)) return null;
-  return action;
-}`}
-        highlightLines={[6, 7, 8, 9, 10, 11, 12, 13]}
-        notes={
-          "- Map von Selektoren gegen angebotenes DOM\n- unknownSelector wenn Selektor nicht existiert\n- coerceType Beispiel, fill auf select wird select, fill auf nicht ausfüllbar abgelehnt\n- Zähler dropped unknownSelector typeMismatch steuern den Replan\n- erfundene Aktion strukturell abgefangen vor Ausführung im Browser"
-        }
-      />
-
-      <CodeSlide
         title="buildFallback (5.13)"
         caption="Deterministischer Fallback nur bei commandImpliesFill"
         language="typescript"
@@ -480,37 +392,6 @@ function coerceType(action, el) {
         }
       />
 
-      <TakeawaysSlide
-        title="Robustheitspyramide"
-        variant="funnel"
-        items={[
-          {
-            icon: "scissors",
-            title: "Abschneidung bei erster DOM-Änderung",
-            description: "",
-          },
-          {
-            icon: "waves",
-            title: "Erkennung und Abwarten bei DOM-Änderungen vor der Planung",
-            description: "",
-          },
-          {
-            icon: "shield",
-            title:
-              "Absicherung gegen Endlosschleifen durch Zähler und Signatur",
-            description: "",
-          },
-          {
-            icon: "lifeBuoy",
-            title: "Deterministischer Fallback durch Vorabbewertung der DOM",
-            description: "",
-          },
-        ]}
-        notes={
-          "- gestaffelte Reihenfolge von unten nach oben\n- zuerst Abschneidung nach erster DOM-verändernder Aktion\n- MutationObserver wartet 250 ms auf ruhiges DOM\n- danach die Endlosschleifen-Sicherungen von der letzten Folie\n- zuletzt buildFallback ganz ohne LLM\n- nächste Ebene greift erst wenn vorherige versagt\n- Dauer 156 auf 118 s gesenkt"
-        }
-      />
-
       <SectionHeaderSlide number="05" title="Evaluation & Ergebnisse" />
 
       <KeyValueSlide
@@ -567,87 +448,7 @@ function coerceType(action, el) {
           },
         ]}
         notes={
-          "- Google Suche erfolgreich, trotz Zwischenklick auf ein Bild\n- Confluence Login, zweiter Versuch öffnet Suche statt Login-Button\n- Amazon zufälliges Produkt zuerst, zweiter Versuch rettet das Ergebnis\n- Zeiterfassung Endlosschleife, gleicher nicht existierender Selektor\n- drei von vier Aufgaben brauchen mehr als einen Versuch\n- Hauptfehler Selektor- und Element-Disambiguierung, nicht die Spracherkennung"
-        }
-      />
-
-      <KeyValueSlide
-        title="Kernergebnisse"
-        subtitle="Zeitmessung und Systemverhalten"
-        items={[
-          {
-            label: "Spanne",
-            value: (
-              <>
-                13,4 bis 78,3 s, NFA-11 nie eingehalten
-                <Meter
-                  min={0}
-                  max={80}
-                  rangeStart={13.4}
-                  rangeEnd={78.3}
-                  threshold={10}
-                  thresholdLabel="NFA-11"
-                />
-              </>
-            ),
-          },
-          {
-            label: "Replan-Iterationen",
-            value: "meist 1, vereinzelt 2, Cap nicht erreicht",
-          },
-          {
-            label: "Fallback",
-            value: "Nie ausgelöst, Fehler in Planqualität",
-          },
-          {
-            label: "Subjektive Wahrnehmung",
-            value: "TP1 schätzt ca. 10 s, kognitive Entlastung",
-          },
-        ]}
-        notes={
-          "- Spanne 13,4 bis 78,3 s, NFA-11 nie eingehalten\n- Replan-Iterationen meist 1, vereinzelt 2, Cap von 5 nie erreicht\n- Fallback nie ausgelöst, Modell liefert immer irgendeinen Plan\n- Lücke liegt an Rechenzeit der Modellinferenz, nicht an Wiederholungen\n- subjektiv ca. 10 s geschätzt, objektiv bis zum Achtfachen gemessen"
-        }
-      />
-
-      <KeyValueSlide
-        title="Interview-Bewertung"
-        subtitle="Einschätzung von TP1 nach dem Testlauf"
-        items={[
-          {
-            label: "Bedienbarkeit",
-            value: (
-              <>
-                4 von 5 <RatingDots value={4} />
-              </>
-            ),
-          },
-          {
-            label: "Feedback",
-            value: (
-              <>
-                5 von 5 <RatingDots value={5} />
-              </>
-            ),
-          },
-          {
-            label: "Erleichterung",
-            value: (
-              <>
-                3 von 5 <RatingDots value={3} />
-              </>
-            ),
-          },
-          {
-            label: "Vertrauen",
-            value: (
-              <>
-                2 von 5 <RatingDots value={2} />
-              </>
-            ),
-          },
-        ]}
-        notes={
-          "- Bedienbarkeit 4 von 5\n- Feedback 5 von 5, Transkript-Anzeige und Statusfarben kommen gut an\n- Erleichterung 3 von 5\n- Vertrauen 2 von 5, kritischster Wert im Interview"
+          "- Google Suche erfolgreich, trotz Zwischenklick auf ein Bild\n- Confluence Login, zweiter Versuch öffnet Suche statt Login-Button\n- Amazon zufälliges Produkt zuerst, zweiter Versuch rettet das Ergebnis\n- Zeiterfassung Endlosschleife, gleicher nicht existierender Selektor\n- drei von vier Aufgaben brauchen mehr als einen Versuch\n- Hauptfehler Selektor- und Element-Disambiguierung, nicht die Spracherkennung\n- kurz einordnen, Pipeline-Dauer 13,4 bis 78,3 s, NFA-11-Ziel von unter 10 s nie eingehalten\n- Replan meist nur 1 Durchlauf, Fallback nie ausgelöst, Modell liefert immer irgendeinen Plan\n- TP1 schätzt subjektiv ca. 10 s, obwohl bis zum Achtfachen gemessen wird, spürbare kognitive Entlastung"
         }
       />
 
@@ -767,6 +568,11 @@ function coerceType(action, el) {
             description: "",
           },
           {
+            icon: "globe",
+            title: "Browser-Kompatibilität über Chrome hinaus",
+            description: "",
+          },
+          {
             icon: "cpu",
             title: "Bessere Aktionsplanung",
             description: "",
@@ -789,7 +595,7 @@ function coerceType(action, el) {
         ]}
         concludingRemark=""
         notes={
-          "- Open-Source aktuell im Freigabeprozess mit Patentabteilung und Open Source Officer\n- Aktionsplanung: DOM-Selektor-Auswahl verbessern, NFA-11 Latenz-Ziel erreichen\n- Aufnahme/Transkription: automatisches Beenden nach Stimme absenken, verbesserte Zahlenerkennung\n- Testreihe: mehr Teilnehmer aus der Zielgruppe über Open-Source-Foren\n- Validierungsexperiment: prüfen, ob ein deterministischer Ansatz ohne LLM funktioniert und die Performance verbessert"
+          "- Open-Source aktuell im Freigabeprozess mit Patentabteilung und Open Source Officer\n- Browser-Kompatibilität: bisher fast nur Chrome getestet, Firefox und Safari als nächste Schritte\n- Aktionsplanung: DOM-Selektor-Auswahl verbessern, NFA-11 Latenz-Ziel erreichen\n- Aufnahme/Transkription: automatisches Beenden nach Stimme absenken, verbesserte Zahlenerkennung\n- Testreihe: mehr Teilnehmer aus der Zielgruppe über Open-Source-Foren\n- Validierungsexperiment: prüfen, ob ein deterministischer Ansatz ohne LLM funktioniert und die Performance verbessert"
         }
       />
 
@@ -841,6 +647,90 @@ function coerceType(action, el) {
             id: "2",
             label:
               "[WebAIM, 2024a] WebAIM (2024a). Screen Reader User Survey #10 Results.",
+          },
+        ]}
+      />
+
+      <BulletSlide
+        title="Cloud-Web-Agenten im Detail"
+        columns={2}
+        variant="list"
+        bullets={[
+          {
+            text: (
+              <>
+                Mind2Web (Deng 2023) <Ref id="1" />
+              </>
+            ),
+            subitems: [
+              "2000+ Aufgaben, 137 Webseiten",
+              "Textbasiert, dynamische Zustände ignoriert",
+            ],
+          },
+          {
+            text: (
+              <>
+                WebVoyager und SeeAct <Ref id="2" />
+              </>
+            ),
+            subitems: [
+              "Cloud-LMM GPT-4V",
+              "Grounding-Lücke 20 bis 25 Prozentpunkte",
+            ],
+          },
+          {
+            text: (
+              <>
+                AutoWebGLM (Lai 2024) <Ref id="3" />
+              </>
+            ),
+            subitems: [
+              "6B Open-Source-Modell",
+              "Iterationsschleifen nicht robust",
+            ],
+          },
+          {
+            text: (
+              <>
+                WebRL und WebChallenger <Ref id="4" />
+              </>
+            ),
+            subitems: [
+              "Architektur statt Modellskalierung",
+              "Trainingsinfrastruktur bzw. 32B nötig",
+            ],
+          },
+          {
+            text: "Gemeinsamkeit aller Arbeiten",
+            subitems: [
+              "Barrierefreiheit nie Designziel",
+              "Keine Sprachsteuerung, Cloud-Abhängigkeit",
+            ],
+          },
+        ]}
+        notes={
+          "- Mind2Web Deng 2023 begründet das Feld, 2000+ Aufgaben, 137 Webseiten, textbasiert\n- WebVoyager SeeAct visuelle Wahrnehmung, Cloud GPT-4V, Grounding-Lücke 20 bis 25 pp\n- AutoWebGLM 2024, offenes 6B Modell, Iterationsschleifen nicht robust\n- WebRL 4,8 auf 42,4 % durch RL, WebChallenger PageMem 56,3 % WebArena\n- Architektur schlägt reine Modellgröße\n- Gemeinsamkeit, Barrierefreiheit nie Designziel, keine Sprachsteuerung, Cloud-Abhängigkeit"
+        }
+        references={[
+          {
+            id: "1",
+            label:
+              "[Deng et al., 2023] Deng, X. et al. (2023). Mind2Web. NeurIPS 2023, vol. 36, S. 28091–28114.",
+          },
+          {
+            id: "2",
+            label:
+              "[He et al., 2024] He, H. et al. (2024). WebVoyager. ACL 2024, S. 6864–6890. / [Zheng et al., 2024] Zheng, B. et al. (2024). GPT-4V is a generalist web agent, if grounded.",
+          },
+          {
+            id: "3",
+            label:
+              "[Lai et al., 2024] Lai, H. et al. (2024). AutoWebGLM. KDD '24, S. 5295–5306. ACM.",
+          },
+          {
+            id: "4",
+            label:
+              "[Qi et al., 2024] Qi, Z. et al. (2024). WebRL. / [Hwang et al., 2026] Hwang, J. et al. (2026). WebChallenger.",
           },
         ]}
       />
@@ -959,6 +849,87 @@ function coerceType(action, el) {
         }
       />
 
+      <LogoGridSlide
+        title="Technologieauswahl"
+        columns={4}
+        logos={[
+          { src: "/logos/chrome.svg", label: "Manifest V3" },
+          { src: "/logos/wxt.svg", label: "WXT" },
+          { src: "/logos/vite.svg", label: "Vite" },
+          { src: "/logos/typescript.svg", label: "TypeScript" },
+          { src: "/logos/react.svg", label: "React 19" },
+          { src: "/logos/onnx.svg", label: "ONNX Runtime Web" },
+          { src: "/logos/nvidia.svg", label: "Parakeet-TDT" },
+          { src: "/logos/llamacpp.svg", label: "wllama / llama.cpp" },
+        ]}
+        notes={
+          "- WXT vereinheitlicht Chrome und Firefox\n- React 19 fürs Popup\n- Parakeet-TDT für ASR\n- wllama für Qwen im GGUF-Format\n- Playwright bewusst nicht gewählt"
+        }
+      />
+
+      <TakeawaysSlide
+        title="Robustheitspyramide"
+        variant="funnel"
+        items={[
+          {
+            icon: "scissors",
+            title: "Abschneidung bei erster DOM-Änderung",
+            description: "",
+          },
+          {
+            icon: "waves",
+            title: "Erkennung und Abwarten bei DOM-Änderungen vor der Planung",
+            description: "",
+          },
+          {
+            icon: "shield",
+            title:
+              "Absicherung gegen Endlosschleifen durch Zähler und Signatur",
+            description: "",
+          },
+          {
+            icon: "lifeBuoy",
+            title: "Deterministischer Fallback durch Vorabbewertung der DOM",
+            description: "",
+          },
+        ]}
+        notes={
+          "- gestaffelte Reihenfolge von unten nach oben\n- zuerst Abschneidung nach erster DOM-verändernder Aktion\n- MutationObserver wartet 250 ms auf ruhiges DOM\n- danach die Endlosschleifen-Sicherungen von der letzten Folie\n- zuletzt buildFallback ganz ohne LLM\n- nächste Ebene greift erst wenn vorherige versagt\n- Dauer 156 auf 118 s gesenkt"
+        }
+      />
+
+      <CodeSlide
+        title="validatePlannedActions (5.9)"
+        caption="Validierung und Typ-Korrektur steuern Replan"
+        language="typescript"
+        code={`export function validatePlannedActions(actions, offered) {
+  const bySelector = new Map();
+  offered.forEach((el) => bySelector.set(normalizeSelector(el.selector), el));
+  const valid = [];
+  let dropped = 0, unknownSelector = 0, typeMismatch = 0;
+
+  for (const action of actions) {
+    const el = bySelector.get(normalizeSelector(action.selector));
+    if (!el) { dropped++; unknownSelector++; continue; }
+    const coerced = coerceType(action, el);
+    if (!coerced) { dropped++; typeMismatch++; continue; }
+    valid.push(coerced);
+  }
+  return { actions: valid, dropped, unknownSelector, typeMismatch };
+}
+
+function coerceType(action, el) {
+  if (action.type === 'select' && el.tag !== 'select') return null;
+  if (action.type === 'fill' && el.tag === 'select') return { ...action, type: 'select' };
+  if (action.type === 'fill' && !isFillableInput(el)) return null;
+  return action;
+}`}
+        highlightLines={[6, 7, 8, 9, 10, 11, 12, 13]}
+        notes={
+          "- Map von Selektoren gegen angebotenes DOM\n- unknownSelector wenn Selektor nicht existiert\n- coerceType Beispiel, fill auf select wird select, fill auf nicht ausfüllbar abgelehnt\n- Zähler dropped unknownSelector typeMismatch steuern den Replan\n- erfundene Aktion strukturell abgefangen vor Ausführung im Browser"
+        }
+      />
+
       <CodeSlide
         title="setNativeValue (5.12)"
         caption="Framework-kompatibler Wert-Setter für React Vue Svelte"
@@ -1008,6 +979,44 @@ function coerceType(action, el) {
             ],
           },
         ]}
+      />
+
+      <KeyValueSlide
+        title="Kernergebnisse"
+        subtitle="Zeitmessung und Systemverhalten"
+        items={[
+          {
+            label: "Spanne",
+            value: (
+              <>
+                13,4 bis 78,3 s, NFA-11 nie eingehalten
+                <Meter
+                  min={0}
+                  max={80}
+                  rangeStart={13.4}
+                  rangeEnd={78.3}
+                  threshold={10}
+                  thresholdLabel="NFA-11"
+                />
+              </>
+            ),
+          },
+          {
+            label: "Replan-Iterationen",
+            value: "meist 1, vereinzelt 2, Cap nicht erreicht",
+          },
+          {
+            label: "Fallback",
+            value: "Nie ausgelöst, Fehler in Planqualität",
+          },
+          {
+            label: "Subjektive Wahrnehmung",
+            value: "TP1 schätzt ca. 10 s, kognitive Entlastung",
+          },
+        ]}
+        notes={
+          "- Spanne 13,4 bis 78,3 s, NFA-11 nie eingehalten\n- Replan-Iterationen meist 1, vereinzelt 2, Cap von 5 nie erreicht\n- Fallback nie ausgelöst, Modell liefert immer irgendeinen Plan\n- Lücke liegt an Rechenzeit der Modellinferenz, nicht an Wiederholungen\n- subjektiv ca. 10 s geschätzt, objektiv bis zum Achtfachen gemessen"
+        }
       />
 
       <TableSlide
@@ -1128,6 +1137,48 @@ function coerceType(action, el) {
         src="/demo-screenshots-gifs/amazon-testcase-kindle.mov"
         notes={
           "- zeigt den Amazon-Testfall, Klick auf Produkt statt Suchknopf\n- Video über eine Minute lang, bei Zeitdruck vorspulen\n- manuell starten, Klick auf Play"
+        }
+      />
+
+      <KeyValueSlide
+        title="Interview-Bewertung"
+        subtitle="Einschätzung von TP1 nach dem Testlauf"
+        items={[
+          {
+            label: "Bedienbarkeit",
+            value: (
+              <>
+                4 von 5 <RatingDots value={4} />
+              </>
+            ),
+          },
+          {
+            label: "Feedback",
+            value: (
+              <>
+                5 von 5 <RatingDots value={5} />
+              </>
+            ),
+          },
+          {
+            label: "Erleichterung",
+            value: (
+              <>
+                3 von 5 <RatingDots value={3} />
+              </>
+            ),
+          },
+          {
+            label: "Vertrauen",
+            value: (
+              <>
+                2 von 5 <RatingDots value={2} />
+              </>
+            ),
+          },
+        ]}
+        notes={
+          "- Bedienbarkeit 4 von 5\n- Feedback 5 von 5, Transkript-Anzeige und Statusfarben kommen gut an\n- Erleichterung 3 von 5\n- Vertrauen 2 von 5, kritischster Wert im Interview"
         }
       />
 
