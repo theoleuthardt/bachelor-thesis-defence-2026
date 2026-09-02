@@ -388,7 +388,7 @@ export default function Slides() {
         ]}
         concludingRemark=""
         notes={
-          "- Generation-Zähler: verwirft veraltete Rückkehrer nach einem Neustart\n- planSignature: erkennt identischen Wiederholungsplan, bricht ab\n- rejectedSignature: gleicher Plan zweimal abgelehnt, sofortiger Abbruch\n- Watchdog: 60 Sekunden Timeout gegen ein hängendes Modell\n- Iterationsgrenzen: maximal 5 Replan-Versuche, 2 Validierungs-Versuche\n- ergänzt buildFallback als letzte Sicherung\n- jeder Mechanismus greift an anderer Stelle, zusammen ein mehrstufiges Sicherheitsnetz"
+          "- Generation-Zähler: verwirft veraltete Rückkehrer nach Abbruch oder neuer Aufnahme\n- planSignature: validierter Plan wiederholt sich exakt → Abbruch (Stillstand trotz Erfolg)\n- rejectedSignature: abgelehnter Plan wiederholt sich exakt → Abbruch (Stillstand durch Misserfolg)\n- Watchdog: 60 Sekunden Timeout gegen ein hängendes Modell\n- Iterationsgrenzen: maximal 5 Replan-Versuche, 2 Validierungs-Versuche\n- ergänzt buildFallback als letzte Sicherung\n- jeder Mechanismus greift an anderer Stelle, zusammen ein mehrstufiges Sicherheitsnetz"
         }
       />
 
@@ -420,7 +420,7 @@ export default function Slides() {
           },
         ]}
         notes={
-          "- formativer Einzelfalltest, bewusst Tiefe statt Breite\n- Triangulation aus Beobachtung, Interview, Telemetrie\n- vier Aufgaben decken unterschiedliche Interaktionsmuster ab, Text, Suche, Login, Produktsuche\n- Rekrutierung schwierig wegen spezifischer Beeinträchtigung\n- falls N=1 gefragt, Nielsen ca. 31 %"
+          "- formativer Einzelfalltest, bewusst Tiefe statt Breite\n- Triangulation aus Beobachtung, Interview, Telemetrie\n- Tests vor Einbau der GBNF Grammatik\n- Rekrutierung schwierig wegen spezifischer Beeinträchtigung\n- falls N=1 gefragt, Nielsen ca. 31 %"
         }
       />
 
